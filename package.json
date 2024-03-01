@@ -1,0 +1,19 @@
+{
+  "name": "maa-copilot-client",
+  "version": "0.1.0-SNAPSHOT.726.3d19287",
+  "description": "OpenAPI client for maa-copilot-client",
+  "author": "OpenAPI-Generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.0"
+  }
+}
