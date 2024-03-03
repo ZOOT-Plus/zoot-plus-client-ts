@@ -1,6 +1,6 @@
 {
   "name": "maa-copilot-client",
-  "version": "0.1.0-SNAPSHOT.726.3d19287",
+  "version": "0.1.0-SNAPSHOT.740.37f1afc",
   "description": "OpenAPI client for maa-copilot-client",
   "author": "OpenAPI-Generator",
   "repository": {
@@ -9,8 +9,10 @@
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "sideEffects": false,
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc -p tsconfig.esm.json",
     "prepare": "npm run build"
   },
   "devDependencies": {
