@@ -41,7 +41,7 @@ import {
 } from '../models/index';
 
 export interface DeleteCopilotRequest {
-    copilotCUDRequest?: CopilotCUDRequest;
+    copilotCUDRequest: CopilotCUDRequest;
 }
 
 export interface GetCopilotByIdRequest {
@@ -88,6 +88,10 @@ export class CopilotControllerApi extends runtime.BaseAPI {
      * 删除作业
      */
     async deleteCopilotRaw(requestParameters: DeleteCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        if (requestParameters.copilotCUDRequest === null || requestParameters.copilotCUDRequest === undefined) {
+            throw new runtime.RequiredError('copilotCUDRequest','Required parameter requestParameters.copilotCUDRequest was null or undefined when calling deleteCopilot.');
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -116,7 +120,7 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     /**
      * 删除作业
      */
-    async deleteCopilot(requestParameters: DeleteCopilotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultUnit> {
+    async deleteCopilot(requestParameters: DeleteCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultUnit> {
         const response = await this.deleteCopilotRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -20,7 +20,7 @@ import { exists, mapValues } from '../runtime';
  */
 export interface CommentsAddDTO {
     /**
-     * 
+     * 评论内容
      * @type {string}
      * @memberof CommentsAddDTO
      */
@@ -38,7 +38,7 @@ export interface CommentsAddDTO {
      */
     fromCommentId?: string;
     /**
-     * 
+     * 是否接收通知
      * @type {boolean}
      * @memberof CommentsAddDTO
      */

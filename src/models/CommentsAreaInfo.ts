@@ -33,13 +33,13 @@ export interface CommentsAreaInfo {
      */
     hasNext: boolean;
     /**
-     * 
+     * Total number of pages
      * @type {number}
      * @memberof CommentsAreaInfo
      */
     page: number;
     /**
-     * 
+     * Total number of elements
      * @type {number}
      * @memberof CommentsAreaInfo
      */
