@@ -36,6 +36,12 @@ export interface CopilotInfo {
      * @type {string}
      * @memberof CopilotInfo
      */
+    uploaderId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CopilotInfo
+     */
     uploader: string;
     /**
      * 
@@ -112,6 +118,7 @@ export function instanceOfCopilotInfo(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "uploadTime" in value;
+    isInstance = isInstance && "uploaderId" in value;
     isInstance = isInstance && "uploader" in value;
     isInstance = isInstance && "views" in value;
     isInstance = isInstance && "hotScore" in value;
@@ -140,6 +147,7 @@ export function CopilotInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'id': json['id'],
         'uploadTime': (new Date(json['upload_time'])),
+        'uploaderId': json['uploader_id'],
         'uploader': json['uploader'],
         'views': json['views'],
         'hotScore': json['hot_score'],
@@ -166,6 +174,7 @@ export function CopilotInfoToJSON(value?: CopilotInfo | null): any {
         
         'id': value.id,
         'upload_time': (value.uploadTime.toISOString()),
+        'uploader_id': value.uploaderId,
         'uploader': value.uploader,
         'views': value.views,
         'hot_score': value.hotScore,
