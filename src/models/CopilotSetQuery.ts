@@ -37,6 +37,12 @@ export interface CopilotSetQuery {
      * @memberof CopilotSetQuery
      */
     keyword?: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof CopilotSetQuery
+     */
+    copilotIds?: Array<number>;
 }
 
 /**
@@ -63,6 +69,7 @@ export function CopilotSetQueryFromJSONTyped(json: any, ignoreDiscriminator: boo
         'page': json['page'],
         'limit': json['limit'],
         'keyword': !exists(json, 'keyword') ? undefined : json['keyword'],
+        'copilotIds': !exists(json, 'copilot_ids') ? undefined : json['copilot_ids'],
     };
 }
 
@@ -78,6 +85,7 @@ export function CopilotSetQueryToJSON(value?: CopilotSetQuery | null): any {
         'page': value.page,
         'limit': value.limit,
         'keyword': value.keyword,
+        'copilot_ids': value.copilotIds,
     };
 }
 
