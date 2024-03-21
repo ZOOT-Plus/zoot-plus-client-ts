@@ -39,6 +39,12 @@ export interface CopilotSetQuery {
     keyword?: string;
     /**
      * 
+     * @type {string}
+     * @memberof CopilotSetQuery
+     */
+    creatorId?: string;
+    /**
+     * 
      * @type {Array<number>}
      * @memberof CopilotSetQuery
      */
@@ -69,6 +75,7 @@ export function CopilotSetQueryFromJSONTyped(json: any, ignoreDiscriminator: boo
         'page': json['page'],
         'limit': json['limit'],
         'keyword': !exists(json, 'keyword') ? undefined : json['keyword'],
+        'creatorId': !exists(json, 'creator_id') ? undefined : json['creator_id'],
         'copilotIds': !exists(json, 'copilot_ids') ? undefined : json['copilot_ids'],
     };
 }
@@ -85,6 +92,7 @@ export function CopilotSetQueryToJSON(value?: CopilotSetQuery | null): any {
         'page': value.page,
         'limit': value.limit,
         'keyword': value.keyword,
+        'creator_id': value.creatorId,
         'copilot_ids': value.copilotIds,
     };
 }
