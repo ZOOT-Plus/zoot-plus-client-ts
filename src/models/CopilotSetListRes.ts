@@ -61,6 +61,12 @@ export interface CopilotSetListRes {
      * @memberof CopilotSetListRes
      */
     updateTime: Date;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof CopilotSetListRes
+     */
+    copilotIds: Array<number>;
 }
 
 /**
@@ -75,6 +81,7 @@ export function instanceOfCopilotSetListRes(value: object): boolean {
     isInstance = isInstance && "creator" in value;
     isInstance = isInstance && "createTime" in value;
     isInstance = isInstance && "updateTime" in value;
+    isInstance = isInstance && "copilotIds" in value;
 
     return isInstance;
 }
@@ -96,6 +103,7 @@ export function CopilotSetListResFromJSONTyped(json: any, ignoreDiscriminator: b
         'creator': json['creator'],
         'createTime': (new Date(json['create_time'])),
         'updateTime': (new Date(json['update_time'])),
+        'copilotIds': json['copilot_ids'],
     };
 }
 
@@ -115,6 +123,7 @@ export function CopilotSetListResToJSON(value?: CopilotSetListRes | null): any {
         'creator': value.creator,
         'create_time': (value.createTime.toISOString()),
         'update_time': (value.updateTime.toISOString()),
+        'copilot_ids': value.copilotIds,
     };
 }
 
