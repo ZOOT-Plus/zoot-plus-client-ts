@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { CopilotSetStatus } from './CopilotSetStatus';
+import {
+    CopilotSetStatusFromJSON,
+    CopilotSetStatusFromJSONTyped,
+    CopilotSetStatusToJSON,
+} from './CopilotSetStatus';
+
 /**
  * 
  * @export
@@ -51,6 +58,12 @@ export interface CopilotSetListRes {
     creator: string;
     /**
      * 
+     * @type {CopilotSetStatus}
+     * @memberof CopilotSetListRes
+     */
+    status: CopilotSetStatus;
+    /**
+     * 
      * @type {Date}
      * @memberof CopilotSetListRes
      */
@@ -79,6 +92,7 @@ export function instanceOfCopilotSetListRes(value: object): boolean {
     isInstance = isInstance && "description" in value;
     isInstance = isInstance && "creatorId" in value;
     isInstance = isInstance && "creator" in value;
+    isInstance = isInstance && "status" in value;
     isInstance = isInstance && "createTime" in value;
     isInstance = isInstance && "updateTime" in value;
     isInstance = isInstance && "copilotIds" in value;
@@ -101,6 +115,7 @@ export function CopilotSetListResFromJSONTyped(json: any, ignoreDiscriminator: b
         'description': json['description'],
         'creatorId': json['creator_id'],
         'creator': json['creator'],
+        'status': CopilotSetStatusFromJSON(json['status']),
         'createTime': (new Date(json['create_time'])),
         'updateTime': (new Date(json['update_time'])),
         'copilotIds': json['copilot_ids'],
@@ -121,6 +136,7 @@ export function CopilotSetListResToJSON(value?: CopilotSetListRes | null): any {
         'description': value.description,
         'creator_id': value.creatorId,
         'creator': value.creator,
+        'status': CopilotSetStatusToJSON(value.status),
         'create_time': (value.createTime.toISOString()),
         'update_time': (value.updateTime.toISOString()),
         'copilot_ids': value.copilotIds,
