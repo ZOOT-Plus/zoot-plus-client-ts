@@ -52,6 +52,10 @@ import {
     UserInfoUpdateDTOToJSON,
 } from '../models/index';
 
+export interface GetUserInfoRequest {
+    userId: string;
+}
+
 export interface LoginRequest {
     loginDTO: LoginDTO;
 }
@@ -88,6 +92,42 @@ export interface UpdatePasswordRequest {
  * 
  */
 export class CopilotUserApi extends runtime.BaseAPI {
+
+    /**
+     * 查询用户信息
+     * 查询用户信息
+     */
+    async getUserInfoRaw(requestParameters: GetUserInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaUserInfo>> {
+        if (requestParameters.userId === null || requestParameters.userId === undefined) {
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserInfo.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.userId !== undefined) {
+            queryParameters['userId'] = requestParameters.userId;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/user/info`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMaaUserInfoFromJSON(jsonValue));
+    }
+
+    /**
+     * 查询用户信息
+     * 查询用户信息
+     */
+    async getUserInfo(requestParameters: GetUserInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultMaaUserInfo> {
+        const response = await this.getUserInfoRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * 用户登录

@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * 
+ * 用户可对外公开的信息
  * @export
  * @interface MaaUserInfo
  */
