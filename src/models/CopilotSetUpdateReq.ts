@@ -37,19 +37,25 @@ export interface CopilotSetUpdateReq {
      * @type {string}
      * @memberof CopilotSetUpdateReq
      */
-    name: string;
+    name?: string;
     /**
      * 
      * @type {string}
      * @memberof CopilotSetUpdateReq
      */
-    description: string;
+    description?: string;
     /**
      * 
      * @type {CopilotSetStatus}
      * @memberof CopilotSetUpdateReq
      */
-    status: CopilotSetStatus;
+    status?: CopilotSetStatus;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof CopilotSetUpdateReq
+     */
+    copilotIds?: Array<number>;
 }
 
 /**
@@ -58,9 +64,6 @@ export interface CopilotSetUpdateReq {
 export function instanceOfCopilotSetUpdateReq(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "status" in value;
 
     return isInstance;
 }
@@ -76,9 +79,10 @@ export function CopilotSetUpdateReqFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'id': json['id'],
-        'name': json['name'],
-        'description': json['description'],
-        'status': CopilotSetStatusFromJSON(json['status']),
+        'name': !exists(json, 'name') ? undefined : json['name'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'status': !exists(json, 'status') ? undefined : CopilotSetStatusFromJSON(json['status']),
+        'copilotIds': !exists(json, 'copilot_ids') ? undefined : json['copilot_ids'],
     };
 }
 
@@ -95,6 +99,7 @@ export function CopilotSetUpdateReqToJSON(value?: CopilotSetUpdateReq | null): a
         'name': value.name,
         'description': value.description,
         'status': CopilotSetStatusToJSON(value.status),
+        'copilot_ids': value.copilotIds,
     };
 }
 
