@@ -21,6 +21,8 @@ import { exists, mapValues } from '../runtime';
 export interface CommentsAddDTO {
     /**
      * 评论内容
+     *  500字长度为对作者的限制，对于非作者限制为150字
+     *  在业务层中实现
      * @type {string}
      * @memberof CommentsAddDTO
      */
