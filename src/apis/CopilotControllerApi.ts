@@ -88,8 +88,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
      * 删除作业
      */
     async deleteCopilotRaw(requestParameters: DeleteCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
-        if (requestParameters.copilotCUDRequest === null || requestParameters.copilotCUDRequest === undefined) {
-            throw new runtime.RequiredError('copilotCUDRequest','Required parameter requestParameters.copilotCUDRequest was null or undefined when calling deleteCopilot.');
+        if (requestParameters['copilotCUDRequest'] == null) {
+            throw new runtime.RequiredError(
+                'copilotCUDRequest',
+                'Required parameter "copilotCUDRequest" was null or undefined when calling deleteCopilot().'
+            );
         }
 
         const queryParameters: any = {};
@@ -111,7 +114,7 @@ export class CopilotControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CopilotCUDRequestToJSON(requestParameters.copilotCUDRequest),
+            body: CopilotCUDRequestToJSON(requestParameters['copilotCUDRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
@@ -129,8 +132,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
      * 获取作业
      */
     async getCopilotByIdRaw(requestParameters: GetCopilotByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotInfo>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getCopilotById.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getCopilotById().'
+            );
         }
 
         const queryParameters: any = {};
@@ -138,7 +144,7 @@ export class CopilotControllerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/copilot/get/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/copilot/get/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -159,22 +165,28 @@ export class CopilotControllerApi extends runtime.BaseAPI {
      * 修改通知状态
      */
     async modifyStatusRaw(requestParameters: ModifyStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling modifyStatus.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling modifyStatus().'
+            );
         }
 
-        if (requestParameters.status === null || requestParameters.status === undefined) {
-            throw new runtime.RequiredError('status','Required parameter requestParameters.status was null or undefined when calling modifyStatus.');
+        if (requestParameters['status'] == null) {
+            throw new runtime.RequiredError(
+                'status',
+                'Required parameter "status" was null or undefined when calling modifyStatus().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.id !== undefined) {
-            queryParameters['id'] = requestParameters.id;
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
         }
 
-        if (requestParameters.status !== undefined) {
-            queryParameters['status'] = requestParameters.status;
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -211,48 +223,48 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     async queriesCopilotRaw(requestParameters: QueriesCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotPageInfo>> {
         const queryParameters: any = {};
 
-        if (requestParameters.page !== undefined) {
-            queryParameters['page'] = requestParameters.page;
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.levelKeyword !== undefined) {
-            queryParameters['levelKeyword'] = requestParameters.levelKeyword;
+        if (requestParameters['levelKeyword'] != null) {
+            queryParameters['levelKeyword'] = requestParameters['levelKeyword'];
         }
 
-        if (requestParameters.operator !== undefined) {
-            queryParameters['operator'] = requestParameters.operator;
+        if (requestParameters['operator'] != null) {
+            queryParameters['operator'] = requestParameters['operator'];
         }
 
-        if (requestParameters.content !== undefined) {
-            queryParameters['content'] = requestParameters.content;
+        if (requestParameters['content'] != null) {
+            queryParameters['content'] = requestParameters['content'];
         }
 
-        if (requestParameters.document !== undefined) {
-            queryParameters['document'] = requestParameters.document;
+        if (requestParameters['document'] != null) {
+            queryParameters['document'] = requestParameters['document'];
         }
 
-        if (requestParameters.uploaderId !== undefined) {
-            queryParameters['uploaderId'] = requestParameters.uploaderId;
+        if (requestParameters['uploaderId'] != null) {
+            queryParameters['uploaderId'] = requestParameters['uploaderId'];
         }
 
-        if (requestParameters.desc !== undefined) {
-            queryParameters['desc'] = requestParameters.desc;
+        if (requestParameters['desc'] != null) {
+            queryParameters['desc'] = requestParameters['desc'];
         }
 
-        if (requestParameters.orderBy !== undefined) {
-            queryParameters['orderBy'] = requestParameters.orderBy;
+        if (requestParameters['orderBy'] != null) {
+            queryParameters['orderBy'] = requestParameters['orderBy'];
         }
 
-        if (requestParameters.language !== undefined) {
-            queryParameters['language'] = requestParameters.language;
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
         }
 
-        if (requestParameters.copilotIds) {
-            queryParameters['copilotIds'] = requestParameters.copilotIds;
+        if (requestParameters['copilotIds'] != null) {
+            queryParameters['copilotIds'] = requestParameters['copilotIds'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -279,8 +291,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
      * 为作业评分
      */
     async ratesCopilotOperationRaw(requestParameters: RatesCopilotOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
-        if (requestParameters.copilotRatingReq === null || requestParameters.copilotRatingReq === undefined) {
-            throw new runtime.RequiredError('copilotRatingReq','Required parameter requestParameters.copilotRatingReq was null or undefined when calling ratesCopilotOperation.');
+        if (requestParameters['copilotRatingReq'] == null) {
+            throw new runtime.RequiredError(
+                'copilotRatingReq',
+                'Required parameter "copilotRatingReq" was null or undefined when calling ratesCopilotOperation().'
+            );
         }
 
         const queryParameters: any = {};
@@ -294,7 +309,7 @@ export class CopilotControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CopilotRatingReqToJSON(requestParameters.copilotRatingReq),
+            body: CopilotRatingReqToJSON(requestParameters['copilotRatingReq']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
@@ -312,8 +327,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
      * 更新作业
      */
     async updateCopilotRaw(requestParameters: UpdateCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
-        if (requestParameters.copilotCUDRequest === null || requestParameters.copilotCUDRequest === undefined) {
-            throw new runtime.RequiredError('copilotCUDRequest','Required parameter requestParameters.copilotCUDRequest was null or undefined when calling updateCopilot.');
+        if (requestParameters['copilotCUDRequest'] == null) {
+            throw new runtime.RequiredError(
+                'copilotCUDRequest',
+                'Required parameter "copilotCUDRequest" was null or undefined when calling updateCopilot().'
+            );
         }
 
         const queryParameters: any = {};
@@ -335,7 +353,7 @@ export class CopilotControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CopilotCUDRequestToJSON(requestParameters.copilotCUDRequest),
+            body: CopilotCUDRequestToJSON(requestParameters['copilotCUDRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
@@ -353,8 +371,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
      * 上传作业
      */
     async uploadCopilotRaw(requestParameters: UploadCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultLong>> {
-        if (requestParameters.copilotCUDRequest === null || requestParameters.copilotCUDRequest === undefined) {
-            throw new runtime.RequiredError('copilotCUDRequest','Required parameter requestParameters.copilotCUDRequest was null or undefined when calling uploadCopilot.');
+        if (requestParameters['copilotCUDRequest'] == null) {
+            throw new runtime.RequiredError(
+                'copilotCUDRequest',
+                'Required parameter "copilotCUDRequest" was null or undefined when calling uploadCopilot().'
+            );
         }
 
         const queryParameters: any = {};
@@ -376,7 +397,7 @@ export class CopilotControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CopilotCUDRequestToJSON(requestParameters.copilotCUDRequest),
+            body: CopilotCUDRequestToJSON(requestParameters['copilotCUDRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultLongFromJSON(jsonValue));

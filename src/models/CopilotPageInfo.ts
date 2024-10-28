@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CopilotInfo } from './CopilotInfo';
 import {
     CopilotInfoFromJSON,
     CopilotInfoFromJSONTyped,
     CopilotInfoToJSON,
+    CopilotInfoToJSONTyped,
 } from './CopilotInfo';
 
 /**
@@ -55,14 +56,12 @@ export interface CopilotPageInfo {
 /**
  * Check if a given object implements the CopilotPageInfo interface.
  */
-export function instanceOfCopilotPageInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "hasNext" in value;
-    isInstance = isInstance && "page" in value;
-    isInstance = isInstance && "total" in value;
-    isInstance = isInstance && "data" in value;
-
-    return isInstance;
+export function instanceOfCopilotPageInfo(value: object): value is CopilotPageInfo {
+    if (!('hasNext' in value) || value['hasNext'] === undefined) return false;
+    if (!('page' in value) || value['page'] === undefined) return false;
+    if (!('total' in value) || value['total'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
+    return true;
 }
 
 export function CopilotPageInfoFromJSON(json: any): CopilotPageInfo {
@@ -70,7 +69,7 @@ export function CopilotPageInfoFromJSON(json: any): CopilotPageInfo {
 }
 
 export function CopilotPageInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CopilotPageInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -82,19 +81,21 @@ export function CopilotPageInfoFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function CopilotPageInfoToJSON(value?: CopilotPageInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CopilotPageInfoToJSON(json: any): CopilotPageInfo {
+      return CopilotPageInfoToJSONTyped(json, false);
+  }
+
+  export function CopilotPageInfoToJSONTyped(value?: CopilotPageInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'has_next': value.hasNext,
-        'page': value.page,
-        'total': value.total,
-        'data': ((value.data as Array<any>).map(CopilotInfoToJSON)),
+        'has_next': value['hasNext'],
+        'page': value['page'],
+        'total': value['total'],
+        'data': ((value['data'] as Array<any>).map(CopilotInfoToJSON)),
     };
 }
 

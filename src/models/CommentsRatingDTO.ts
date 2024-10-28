@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface CommentsRatingDTO {
 /**
  * Check if a given object implements the CommentsRatingDTO interface.
  */
-export function instanceOfCommentsRatingDTO(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "commentId" in value;
-    isInstance = isInstance && "rating" in value;
-
-    return isInstance;
+export function instanceOfCommentsRatingDTO(value: object): value is CommentsRatingDTO {
+    if (!('commentId' in value) || value['commentId'] === undefined) return false;
+    if (!('rating' in value) || value['rating'] === undefined) return false;
+    return true;
 }
 
 export function CommentsRatingDTOFromJSON(json: any): CommentsRatingDTO {
@@ -49,7 +47,7 @@ export function CommentsRatingDTOFromJSON(json: any): CommentsRatingDTO {
 }
 
 export function CommentsRatingDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): CommentsRatingDTO {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function CommentsRatingDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function CommentsRatingDTOToJSON(value?: CommentsRatingDTO | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CommentsRatingDTOToJSON(json: any): CommentsRatingDTO {
+      return CommentsRatingDTOToJSONTyped(json, false);
+  }
+
+  export function CommentsRatingDTOToJSONTyped(value?: CommentsRatingDTO | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'comment_id': value.commentId,
-        'rating': value.rating,
+        'comment_id': value['commentId'],
+        'rating': value['rating'],
     };
 }
 

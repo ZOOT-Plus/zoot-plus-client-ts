@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { GitProperties } from './GitProperties';
 import {
     GitPropertiesFromJSON,
     GitPropertiesFromJSONTyped,
     GitPropertiesToJSON,
+    GitPropertiesToJSONTyped,
 } from './GitProperties';
 
 /**
@@ -55,14 +56,12 @@ export interface MaaSystemInfo {
 /**
  * Check if a given object implements the MaaSystemInfo interface.
  */
-export function instanceOfMaaSystemInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "title" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "version" in value;
-    isInstance = isInstance && "git" in value;
-
-    return isInstance;
+export function instanceOfMaaSystemInfo(value: object): value is MaaSystemInfo {
+    if (!('title' in value) || value['title'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('version' in value) || value['version'] === undefined) return false;
+    if (!('git' in value) || value['git'] === undefined) return false;
+    return true;
 }
 
 export function MaaSystemInfoFromJSON(json: any): MaaSystemInfo {
@@ -70,7 +69,7 @@ export function MaaSystemInfoFromJSON(json: any): MaaSystemInfo {
 }
 
 export function MaaSystemInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaSystemInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -82,19 +81,21 @@ export function MaaSystemInfoFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function MaaSystemInfoToJSON(value?: MaaSystemInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaSystemInfoToJSON(json: any): MaaSystemInfo {
+      return MaaSystemInfoToJSONTyped(json, false);
+  }
+
+  export function MaaSystemInfoToJSONTyped(value?: MaaSystemInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'title': value.title,
-        'description': value.description,
-        'version': value.version,
-        'git': GitPropertiesToJSON(value.git),
+        'title': value['title'],
+        'description': value['description'],
+        'version': value['version'],
+        'git': GitPropertiesToJSON(value['git']),
     };
 }
 

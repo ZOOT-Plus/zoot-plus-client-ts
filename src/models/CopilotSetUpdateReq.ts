@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CopilotSetStatus } from './CopilotSetStatus';
 import {
     CopilotSetStatusFromJSON,
     CopilotSetStatusFromJSONTyped,
     CopilotSetStatusToJSON,
+    CopilotSetStatusToJSONTyped,
 } from './CopilotSetStatus';
 
 /**
@@ -58,14 +59,14 @@ export interface CopilotSetUpdateReq {
     copilotIds?: Array<number>;
 }
 
+
+
 /**
  * Check if a given object implements the CopilotSetUpdateReq interface.
  */
-export function instanceOfCopilotSetUpdateReq(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-
-    return isInstance;
+export function instanceOfCopilotSetUpdateReq(value: object): value is CopilotSetUpdateReq {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    return true;
 }
 
 export function CopilotSetUpdateReqFromJSON(json: any): CopilotSetUpdateReq {
@@ -73,33 +74,35 @@ export function CopilotSetUpdateReqFromJSON(json: any): CopilotSetUpdateReq {
 }
 
 export function CopilotSetUpdateReqFromJSONTyped(json: any, ignoreDiscriminator: boolean): CopilotSetUpdateReq {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'id': json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'status': !exists(json, 'status') ? undefined : CopilotSetStatusFromJSON(json['status']),
-        'copilotIds': !exists(json, 'copilot_ids') ? undefined : json['copilot_ids'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'status': json['status'] == null ? undefined : CopilotSetStatusFromJSON(json['status']),
+        'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
     };
 }
 
-export function CopilotSetUpdateReqToJSON(value?: CopilotSetUpdateReq | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CopilotSetUpdateReqToJSON(json: any): CopilotSetUpdateReq {
+      return CopilotSetUpdateReqToJSONTyped(json, false);
+  }
+
+  export function CopilotSetUpdateReqToJSONTyped(value?: CopilotSetUpdateReq | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'description': value.description,
-        'status': CopilotSetStatusToJSON(value.status),
-        'copilot_ids': value.copilotIds,
+        'id': value['id'],
+        'name': value['name'],
+        'description': value['description'],
+        'status': CopilotSetStatusToJSON(value['status']),
+        'copilot_ids': value['copilotIds'],
     };
 }
 

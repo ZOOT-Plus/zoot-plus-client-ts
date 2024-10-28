@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MaaLoginRsp } from './MaaLoginRsp';
 import {
     MaaLoginRspFromJSON,
     MaaLoginRspFromJSONTyped,
     MaaLoginRspToJSON,
+    MaaLoginRspToJSONTyped,
 } from './MaaLoginRsp';
 
 /**
@@ -49,11 +50,9 @@ export interface MaaResultMaaLoginRsp {
 /**
  * Check if a given object implements the MaaResultMaaLoginRsp interface.
  */
-export function instanceOfMaaResultMaaLoginRsp(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResultMaaLoginRsp(value: object): value is MaaResultMaaLoginRsp {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultMaaLoginRspFromJSON(json: any): MaaResultMaaLoginRsp {
@@ -61,29 +60,31 @@ export function MaaResultMaaLoginRspFromJSON(json: any): MaaResultMaaLoginRsp {
 }
 
 export function MaaResultMaaLoginRspFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResultMaaLoginRsp {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : MaaLoginRspFromJSON(json['data']),
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : MaaLoginRspFromJSON(json['data']),
     };
 }
 
-export function MaaResultMaaLoginRspToJSON(value?: MaaResultMaaLoginRsp | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultMaaLoginRspToJSON(json: any): MaaResultMaaLoginRsp {
+      return MaaResultMaaLoginRspToJSONTyped(json, false);
+  }
+
+  export function MaaResultMaaLoginRspToJSONTyped(value?: MaaResultMaaLoginRsp | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': MaaLoginRspToJSON(value.data),
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': MaaLoginRspToJSON(value['data']),
     };
 }
 

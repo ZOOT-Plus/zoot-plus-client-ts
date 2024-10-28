@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,11 +42,9 @@ export interface MaaResult {
 /**
  * Check if a given object implements the MaaResult interface.
  */
-export function instanceOfMaaResult(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResult(value: object): value is MaaResult {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultFromJSON(json: any): MaaResult {
@@ -54,29 +52,31 @@ export function MaaResultFromJSON(json: any): MaaResult {
 }
 
 export function MaaResultFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResult {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : json['data'],
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : json['data'],
     };
 }
 
-export function MaaResultToJSON(value?: MaaResult | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultToJSON(json: any): MaaResult {
+      return MaaResultToJSONTyped(json, false);
+  }
+
+  export function MaaResultToJSONTyped(value?: MaaResult | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': value.data,
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': value['data'],
     };
 }
 

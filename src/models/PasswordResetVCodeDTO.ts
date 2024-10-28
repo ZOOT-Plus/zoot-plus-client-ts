@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 通过邮件修改密码发送验证码请求
  * @export
@@ -30,11 +30,9 @@ export interface PasswordResetVCodeDTO {
 /**
  * Check if a given object implements the PasswordResetVCodeDTO interface.
  */
-export function instanceOfPasswordResetVCodeDTO(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "email" in value;
-
-    return isInstance;
+export function instanceOfPasswordResetVCodeDTO(value: object): value is PasswordResetVCodeDTO {
+    if (!('email' in value) || value['email'] === undefined) return false;
+    return true;
 }
 
 export function PasswordResetVCodeDTOFromJSON(json: any): PasswordResetVCodeDTO {
@@ -42,7 +40,7 @@ export function PasswordResetVCodeDTOFromJSON(json: any): PasswordResetVCodeDTO 
 }
 
 export function PasswordResetVCodeDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): PasswordResetVCodeDTO {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function PasswordResetVCodeDTOFromJSONTyped(json: any, ignoreDiscriminato
     };
 }
 
-export function PasswordResetVCodeDTOToJSON(value?: PasswordResetVCodeDTO | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function PasswordResetVCodeDTOToJSON(json: any): PasswordResetVCodeDTO {
+      return PasswordResetVCodeDTOToJSONTyped(json, false);
+  }
+
+  export function PasswordResetVCodeDTOToJSONTyped(value?: PasswordResetVCodeDTO | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'email': value.email,
+        'email': value['email'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface CommentsToppingDTO {
 /**
  * Check if a given object implements the CommentsToppingDTO interface.
  */
-export function instanceOfCommentsToppingDTO(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "commentId" in value;
-    isInstance = isInstance && "topping" in value;
-
-    return isInstance;
+export function instanceOfCommentsToppingDTO(value: object): value is CommentsToppingDTO {
+    if (!('commentId' in value) || value['commentId'] === undefined) return false;
+    if (!('topping' in value) || value['topping'] === undefined) return false;
+    return true;
 }
 
 export function CommentsToppingDTOFromJSON(json: any): CommentsToppingDTO {
@@ -49,7 +47,7 @@ export function CommentsToppingDTOFromJSON(json: any): CommentsToppingDTO {
 }
 
 export function CommentsToppingDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): CommentsToppingDTO {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function CommentsToppingDTOFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function CommentsToppingDTOToJSON(value?: CommentsToppingDTO | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CommentsToppingDTOToJSON(json: any): CommentsToppingDTO {
+      return CommentsToppingDTOToJSONTyped(json, false);
+  }
+
+  export function CommentsToppingDTOToJSONTyped(value?: CommentsToppingDTO | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'comment_id': value.commentId,
-        'topping': value.topping,
+        'comment_id': value['commentId'],
+        'topping': value['topping'],
     };
 }
 

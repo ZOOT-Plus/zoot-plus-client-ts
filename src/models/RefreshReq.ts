@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface RefreshReq {
 /**
  * Check if a given object implements the RefreshReq interface.
  */
-export function instanceOfRefreshReq(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "refreshToken" in value;
-
-    return isInstance;
+export function instanceOfRefreshReq(value: object): value is RefreshReq {
+    if (!('refreshToken' in value) || value['refreshToken'] === undefined) return false;
+    return true;
 }
 
 export function RefreshReqFromJSON(json: any): RefreshReq {
@@ -42,7 +40,7 @@ export function RefreshReqFromJSON(json: any): RefreshReq {
 }
 
 export function RefreshReqFromJSONTyped(json: any, ignoreDiscriminator: boolean): RefreshReq {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function RefreshReqFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-export function RefreshReqToJSON(value?: RefreshReq | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function RefreshReqToJSON(json: any): RefreshReq {
+      return RefreshReqToJSONTyped(json, false);
+  }
+
+  export function RefreshReqToJSONTyped(value?: RefreshReq | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'refresh_token': value.refreshToken,
+        'refresh_token': value['refreshToken'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -48,10 +48,8 @@ export interface GitProperties {
 /**
  * Check if a given object implements the GitProperties interface.
  */
-export function instanceOfGitProperties(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfGitProperties(value: object): value is GitProperties {
+    return true;
 }
 
 export function GitPropertiesFromJSON(json: any): GitProperties {
@@ -59,31 +57,33 @@ export function GitPropertiesFromJSON(json: any): GitProperties {
 }
 
 export function GitPropertiesFromJSONTyped(json: any, ignoreDiscriminator: boolean): GitProperties {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'commitId': !exists(json, 'commit_id') ? undefined : json['commit_id'],
-        'branch': !exists(json, 'branch') ? undefined : json['branch'],
-        'shortCommitId': !exists(json, 'short_commit_id') ? undefined : json['short_commit_id'],
-        'commitTime': !exists(json, 'commit_time') ? undefined : (new Date(json['commit_time'])),
+        'commitId': json['commit_id'] == null ? undefined : json['commit_id'],
+        'branch': json['branch'] == null ? undefined : json['branch'],
+        'shortCommitId': json['short_commit_id'] == null ? undefined : json['short_commit_id'],
+        'commitTime': json['commit_time'] == null ? undefined : (new Date(json['commit_time'])),
     };
 }
 
-export function GitPropertiesToJSON(value?: GitProperties | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function GitPropertiesToJSON(json: any): GitProperties {
+      return GitPropertiesToJSONTyped(json, false);
+  }
+
+  export function GitPropertiesToJSONTyped(value?: GitProperties | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'commit_id': value.commitId,
-        'branch': value.branch,
-        'short_commit_id': value.shortCommitId,
-        'commit_time': value.commitTime === undefined ? undefined : (value.commitTime.toISOString()),
+        'commit_id': value['commitId'],
+        'branch': value['branch'],
+        'short_commit_id': value['shortCommitId'],
+        'commit_time': value['commitTime'] == null ? undefined : ((value['commitTime']).toISOString()),
     };
 }
 

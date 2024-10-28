@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface CopilotRatingReq {
 /**
  * Check if a given object implements the CopilotRatingReq interface.
  */
-export function instanceOfCopilotRatingReq(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "rating" in value;
-
-    return isInstance;
+export function instanceOfCopilotRatingReq(value: object): value is CopilotRatingReq {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('rating' in value) || value['rating'] === undefined) return false;
+    return true;
 }
 
 export function CopilotRatingReqFromJSON(json: any): CopilotRatingReq {
@@ -49,7 +47,7 @@ export function CopilotRatingReqFromJSON(json: any): CopilotRatingReq {
 }
 
 export function CopilotRatingReqFromJSONTyped(json: any, ignoreDiscriminator: boolean): CopilotRatingReq {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function CopilotRatingReqFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function CopilotRatingReqToJSON(value?: CopilotRatingReq | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CopilotRatingReqToJSON(json: any): CopilotRatingReq {
+      return CopilotRatingReqToJSONTyped(json, false);
+  }
+
+  export function CopilotRatingReqToJSONTyped(value?: CopilotRatingReq | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'id': value.id,
-        'rating': value.rating,
+        'id': value['id'],
+        'rating': value['rating'],
     };
 }
 

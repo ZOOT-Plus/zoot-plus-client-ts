@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ArkLevelInfo } from './ArkLevelInfo';
 import {
     ArkLevelInfoFromJSON,
     ArkLevelInfoFromJSONTyped,
     ArkLevelInfoToJSON,
+    ArkLevelInfoToJSONTyped,
 } from './ArkLevelInfo';
 
 /**
@@ -49,11 +50,9 @@ export interface MaaResultListArkLevelInfo {
 /**
  * Check if a given object implements the MaaResultListArkLevelInfo interface.
  */
-export function instanceOfMaaResultListArkLevelInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResultListArkLevelInfo(value: object): value is MaaResultListArkLevelInfo {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultListArkLevelInfoFromJSON(json: any): MaaResultListArkLevelInfo {
@@ -61,29 +60,31 @@ export function MaaResultListArkLevelInfoFromJSON(json: any): MaaResultListArkLe
 }
 
 export function MaaResultListArkLevelInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResultListArkLevelInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(ArkLevelInfoFromJSON)),
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(ArkLevelInfoFromJSON)),
     };
 }
 
-export function MaaResultListArkLevelInfoToJSON(value?: MaaResultListArkLevelInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultListArkLevelInfoToJSON(json: any): MaaResultListArkLevelInfo {
+      return MaaResultListArkLevelInfoToJSONTyped(json, false);
+  }
+
+  export function MaaResultListArkLevelInfoToJSONTyped(value?: MaaResultListArkLevelInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(ArkLevelInfoToJSON)),
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(ArkLevelInfoToJSON)),
     };
 }
 

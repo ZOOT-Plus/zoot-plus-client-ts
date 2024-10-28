@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface CommonIdReqLong {
 /**
  * Check if a given object implements the CommonIdReqLong interface.
  */
-export function instanceOfCommonIdReqLong(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-
-    return isInstance;
+export function instanceOfCommonIdReqLong(value: object): value is CommonIdReqLong {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    return true;
 }
 
 export function CommonIdReqLongFromJSON(json: any): CommonIdReqLong {
@@ -42,7 +40,7 @@ export function CommonIdReqLongFromJSON(json: any): CommonIdReqLong {
 }
 
 export function CommonIdReqLongFromJSONTyped(json: any, ignoreDiscriminator: boolean): CommonIdReqLong {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function CommonIdReqLongFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function CommonIdReqLongToJSON(value?: CommonIdReqLong | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CommonIdReqLongToJSON(json: any): CommonIdReqLong {
+      return CommonIdReqLongToJSONTyped(json, false);
+  }
+
+  export function CommonIdReqLongToJSONTyped(value?: CommonIdReqLong | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'id': value.id,
+        'id': value['id'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -54,12 +54,10 @@ export interface CopilotSetQuery {
 /**
  * Check if a given object implements the CopilotSetQuery interface.
  */
-export function instanceOfCopilotSetQuery(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "page" in value;
-    isInstance = isInstance && "limit" in value;
-
-    return isInstance;
+export function instanceOfCopilotSetQuery(value: object): value is CopilotSetQuery {
+    if (!('page' in value) || value['page'] === undefined) return false;
+    if (!('limit' in value) || value['limit'] === undefined) return false;
+    return true;
 }
 
 export function CopilotSetQueryFromJSON(json: any): CopilotSetQuery {
@@ -67,33 +65,35 @@ export function CopilotSetQueryFromJSON(json: any): CopilotSetQuery {
 }
 
 export function CopilotSetQueryFromJSONTyped(json: any, ignoreDiscriminator: boolean): CopilotSetQuery {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'page': json['page'],
         'limit': json['limit'],
-        'keyword': !exists(json, 'keyword') ? undefined : json['keyword'],
-        'creatorId': !exists(json, 'creator_id') ? undefined : json['creator_id'],
-        'copilotIds': !exists(json, 'copilot_ids') ? undefined : json['copilot_ids'],
+        'keyword': json['keyword'] == null ? undefined : json['keyword'],
+        'creatorId': json['creator_id'] == null ? undefined : json['creator_id'],
+        'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
     };
 }
 
-export function CopilotSetQueryToJSON(value?: CopilotSetQuery | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CopilotSetQueryToJSON(json: any): CopilotSetQuery {
+      return CopilotSetQueryToJSONTyped(json, false);
+  }
+
+  export function CopilotSetQueryToJSONTyped(value?: CopilotSetQuery | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'page': value.page,
-        'limit': value.limit,
-        'keyword': value.keyword,
-        'creator_id': value.creatorId,
-        'copilot_ids': value.copilotIds,
+        'page': value['page'],
+        'limit': value['limit'],
+        'keyword': value['keyword'],
+        'creator_id': value['creatorId'],
+        'copilot_ids': value['copilotIds'],
     };
 }
 

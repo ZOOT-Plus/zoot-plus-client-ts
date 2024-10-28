@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MaaUserInfo } from './MaaUserInfo';
 import {
     MaaUserInfoFromJSON,
     MaaUserInfoFromJSONTyped,
     MaaUserInfoToJSON,
+    MaaUserInfoToJSONTyped,
 } from './MaaUserInfo';
 
 /**
@@ -73,17 +74,15 @@ export interface MaaLoginRsp {
 /**
  * Check if a given object implements the MaaLoginRsp interface.
  */
-export function instanceOfMaaLoginRsp(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "token" in value;
-    isInstance = isInstance && "validBefore" in value;
-    isInstance = isInstance && "validAfter" in value;
-    isInstance = isInstance && "refreshToken" in value;
-    isInstance = isInstance && "refreshTokenValidBefore" in value;
-    isInstance = isInstance && "refreshTokenValidAfter" in value;
-    isInstance = isInstance && "userInfo" in value;
-
-    return isInstance;
+export function instanceOfMaaLoginRsp(value: object): value is MaaLoginRsp {
+    if (!('token' in value) || value['token'] === undefined) return false;
+    if (!('validBefore' in value) || value['validBefore'] === undefined) return false;
+    if (!('validAfter' in value) || value['validAfter'] === undefined) return false;
+    if (!('refreshToken' in value) || value['refreshToken'] === undefined) return false;
+    if (!('refreshTokenValidBefore' in value) || value['refreshTokenValidBefore'] === undefined) return false;
+    if (!('refreshTokenValidAfter' in value) || value['refreshTokenValidAfter'] === undefined) return false;
+    if (!('userInfo' in value) || value['userInfo'] === undefined) return false;
+    return true;
 }
 
 export function MaaLoginRspFromJSON(json: any): MaaLoginRsp {
@@ -91,7 +90,7 @@ export function MaaLoginRspFromJSON(json: any): MaaLoginRsp {
 }
 
 export function MaaLoginRspFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaLoginRsp {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -106,22 +105,24 @@ export function MaaLoginRspFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function MaaLoginRspToJSON(value?: MaaLoginRsp | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaLoginRspToJSON(json: any): MaaLoginRsp {
+      return MaaLoginRspToJSONTyped(json, false);
+  }
+
+  export function MaaLoginRspToJSONTyped(value?: MaaLoginRsp | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'token': value.token,
-        'valid_before': (value.validBefore.toISOString()),
-        'valid_after': (value.validAfter.toISOString()),
-        'refresh_token': value.refreshToken,
-        'refresh_token_valid_before': (value.refreshTokenValidBefore.toISOString()),
-        'refresh_token_valid_after': (value.refreshTokenValidAfter.toISOString()),
-        'user_info': MaaUserInfoToJSON(value.userInfo),
+        'token': value['token'],
+        'valid_before': ((value['validBefore']).toISOString()),
+        'valid_after': ((value['validAfter']).toISOString()),
+        'refresh_token': value['refreshToken'],
+        'refresh_token_valid_before': ((value['refreshTokenValidBefore']).toISOString()),
+        'refresh_token_valid_after': ((value['refreshTokenValidAfter']).toISOString()),
+        'user_info': MaaUserInfoToJSON(value['userInfo']),
     };
 }
 

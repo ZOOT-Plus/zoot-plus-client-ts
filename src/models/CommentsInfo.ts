@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SubCommentsInfo } from './SubCommentsInfo';
 import {
     SubCommentsInfoFromJSON,
     SubCommentsInfoFromJSONTyped,
     SubCommentsInfoToJSON,
+    SubCommentsInfoToJSONTyped,
 } from './SubCommentsInfo';
 
 /**
@@ -85,19 +86,17 @@ export interface CommentsInfo {
 /**
  * Check if a given object implements the CommentsInfo interface.
  */
-export function instanceOfCommentsInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "commentId" in value;
-    isInstance = isInstance && "uploader" in value;
-    isInstance = isInstance && "uploaderId" in value;
-    isInstance = isInstance && "message" in value;
-    isInstance = isInstance && "uploadTime" in value;
-    isInstance = isInstance && "like" in value;
-    isInstance = isInstance && "dislike" in value;
-    isInstance = isInstance && "topping" in value;
-    isInstance = isInstance && "subCommentsInfos" in value;
-
-    return isInstance;
+export function instanceOfCommentsInfo(value: object): value is CommentsInfo {
+    if (!('commentId' in value) || value['commentId'] === undefined) return false;
+    if (!('uploader' in value) || value['uploader'] === undefined) return false;
+    if (!('uploaderId' in value) || value['uploaderId'] === undefined) return false;
+    if (!('message' in value) || value['message'] === undefined) return false;
+    if (!('uploadTime' in value) || value['uploadTime'] === undefined) return false;
+    if (!('like' in value) || value['like'] === undefined) return false;
+    if (!('dislike' in value) || value['dislike'] === undefined) return false;
+    if (!('topping' in value) || value['topping'] === undefined) return false;
+    if (!('subCommentsInfos' in value) || value['subCommentsInfos'] === undefined) return false;
+    return true;
 }
 
 export function CommentsInfoFromJSON(json: any): CommentsInfo {
@@ -105,7 +104,7 @@ export function CommentsInfoFromJSON(json: any): CommentsInfo {
 }
 
 export function CommentsInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CommentsInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -122,24 +121,26 @@ export function CommentsInfoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function CommentsInfoToJSON(value?: CommentsInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CommentsInfoToJSON(json: any): CommentsInfo {
+      return CommentsInfoToJSONTyped(json, false);
+  }
+
+  export function CommentsInfoToJSONTyped(value?: CommentsInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'comment_id': value.commentId,
-        'uploader': value.uploader,
-        'uploader_id': value.uploaderId,
-        'message': value.message,
-        'upload_time': (value.uploadTime.toISOString()),
-        'like': value.like,
-        'dislike': value.dislike,
-        'topping': value.topping,
-        'sub_comments_infos': ((value.subCommentsInfos as Array<any>).map(SubCommentsInfoToJSON)),
+        'comment_id': value['commentId'],
+        'uploader': value['uploader'],
+        'uploader_id': value['uploaderId'],
+        'message': value['message'],
+        'upload_time': ((value['uploadTime']).toISOString()),
+        'like': value['like'],
+        'dislike': value['dislike'],
+        'topping': value['topping'],
+        'sub_comments_infos': ((value['subCommentsInfos'] as Array<any>).map(SubCommentsInfoToJSON)),
     };
 }
 

@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CopilotPageInfo } from './CopilotPageInfo';
 import {
     CopilotPageInfoFromJSON,
     CopilotPageInfoFromJSONTyped,
     CopilotPageInfoToJSON,
+    CopilotPageInfoToJSONTyped,
 } from './CopilotPageInfo';
 
 /**
@@ -49,11 +50,9 @@ export interface MaaResultCopilotPageInfo {
 /**
  * Check if a given object implements the MaaResultCopilotPageInfo interface.
  */
-export function instanceOfMaaResultCopilotPageInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResultCopilotPageInfo(value: object): value is MaaResultCopilotPageInfo {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultCopilotPageInfoFromJSON(json: any): MaaResultCopilotPageInfo {
@@ -61,29 +60,31 @@ export function MaaResultCopilotPageInfoFromJSON(json: any): MaaResultCopilotPag
 }
 
 export function MaaResultCopilotPageInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResultCopilotPageInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : CopilotPageInfoFromJSON(json['data']),
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : CopilotPageInfoFromJSON(json['data']),
     };
 }
 
-export function MaaResultCopilotPageInfoToJSON(value?: MaaResultCopilotPageInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultCopilotPageInfoToJSON(json: any): MaaResultCopilotPageInfo {
+      return MaaResultCopilotPageInfoToJSONTyped(json, false);
+  }
+
+  export function MaaResultCopilotPageInfoToJSONTyped(value?: MaaResultCopilotPageInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': CopilotPageInfoToJSON(value.data),
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': CopilotPageInfoToJSON(value['data']),
     };
 }
 

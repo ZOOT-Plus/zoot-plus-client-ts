@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CopilotSetPageRes } from './CopilotSetPageRes';
 import {
     CopilotSetPageResFromJSON,
     CopilotSetPageResFromJSONTyped,
     CopilotSetPageResToJSON,
+    CopilotSetPageResToJSONTyped,
 } from './CopilotSetPageRes';
 
 /**
@@ -49,11 +50,9 @@ export interface MaaResultCopilotSetPageRes {
 /**
  * Check if a given object implements the MaaResultCopilotSetPageRes interface.
  */
-export function instanceOfMaaResultCopilotSetPageRes(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResultCopilotSetPageRes(value: object): value is MaaResultCopilotSetPageRes {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultCopilotSetPageResFromJSON(json: any): MaaResultCopilotSetPageRes {
@@ -61,29 +60,31 @@ export function MaaResultCopilotSetPageResFromJSON(json: any): MaaResultCopilotS
 }
 
 export function MaaResultCopilotSetPageResFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResultCopilotSetPageRes {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : CopilotSetPageResFromJSON(json['data']),
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : CopilotSetPageResFromJSON(json['data']),
     };
 }
 
-export function MaaResultCopilotSetPageResToJSON(value?: MaaResultCopilotSetPageRes | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultCopilotSetPageResToJSON(json: any): MaaResultCopilotSetPageRes {
+      return MaaResultCopilotSetPageResToJSONTyped(json, false);
+  }
+
+  export function MaaResultCopilotSetPageResToJSONTyped(value?: MaaResultCopilotSetPageRes | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': CopilotSetPageResToJSON(value.data),
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': CopilotSetPageResToJSON(value['data']),
     };
 }
 

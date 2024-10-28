@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CommentsAreaInfo } from './CommentsAreaInfo';
 import {
     CommentsAreaInfoFromJSON,
     CommentsAreaInfoFromJSONTyped,
     CommentsAreaInfoToJSON,
+    CommentsAreaInfoToJSONTyped,
 } from './CommentsAreaInfo';
 
 /**
@@ -49,11 +50,9 @@ export interface MaaResultCommentsAreaInfo {
 /**
  * Check if a given object implements the MaaResultCommentsAreaInfo interface.
  */
-export function instanceOfMaaResultCommentsAreaInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResultCommentsAreaInfo(value: object): value is MaaResultCommentsAreaInfo {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultCommentsAreaInfoFromJSON(json: any): MaaResultCommentsAreaInfo {
@@ -61,29 +60,31 @@ export function MaaResultCommentsAreaInfoFromJSON(json: any): MaaResultCommentsA
 }
 
 export function MaaResultCommentsAreaInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResultCommentsAreaInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : CommentsAreaInfoFromJSON(json['data']),
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : CommentsAreaInfoFromJSON(json['data']),
     };
 }
 
-export function MaaResultCommentsAreaInfoToJSON(value?: MaaResultCommentsAreaInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultCommentsAreaInfoToJSON(json: any): MaaResultCommentsAreaInfo {
+      return MaaResultCommentsAreaInfoToJSONTyped(json, false);
+  }
+
+  export function MaaResultCommentsAreaInfoToJSONTyped(value?: MaaResultCommentsAreaInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': CommentsAreaInfoToJSON(value.data),
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': CommentsAreaInfoToJSON(value['data']),
     };
 }
 

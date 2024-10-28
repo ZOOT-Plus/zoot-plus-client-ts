@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CommentsInfo } from './CommentsInfo';
 import {
     CommentsInfoFromJSON,
     CommentsInfoFromJSONTyped,
     CommentsInfoToJSON,
+    CommentsInfoToJSONTyped,
 } from './CommentsInfo';
 
 /**
@@ -55,14 +56,12 @@ export interface CommentsAreaInfo {
 /**
  * Check if a given object implements the CommentsAreaInfo interface.
  */
-export function instanceOfCommentsAreaInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "hasNext" in value;
-    isInstance = isInstance && "page" in value;
-    isInstance = isInstance && "total" in value;
-    isInstance = isInstance && "data" in value;
-
-    return isInstance;
+export function instanceOfCommentsAreaInfo(value: object): value is CommentsAreaInfo {
+    if (!('hasNext' in value) || value['hasNext'] === undefined) return false;
+    if (!('page' in value) || value['page'] === undefined) return false;
+    if (!('total' in value) || value['total'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
+    return true;
 }
 
 export function CommentsAreaInfoFromJSON(json: any): CommentsAreaInfo {
@@ -70,7 +69,7 @@ export function CommentsAreaInfoFromJSON(json: any): CommentsAreaInfo {
 }
 
 export function CommentsAreaInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CommentsAreaInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -82,19 +81,21 @@ export function CommentsAreaInfoFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function CommentsAreaInfoToJSON(value?: CommentsAreaInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CommentsAreaInfoToJSON(json: any): CommentsAreaInfo {
+      return CommentsAreaInfoToJSONTyped(json, false);
+  }
+
+  export function CommentsAreaInfoToJSONTyped(value?: CommentsAreaInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'has_next': value.hasNext,
-        'page': value.page,
-        'total': value.total,
-        'data': ((value.data as Array<any>).map(CommentsInfoToJSON)),
+        'has_next': value['hasNext'],
+        'page': value['page'],
+        'total': value['total'],
+        'data': ((value['data'] as Array<any>).map(CommentsInfoToJSON)),
     };
 }
 

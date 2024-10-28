@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -50,13 +50,11 @@ export interface CommentsAddDTO {
 /**
  * Check if a given object implements the CommentsAddDTO interface.
  */
-export function instanceOfCommentsAddDTO(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "message" in value;
-    isInstance = isInstance && "copilotId" in value;
-    isInstance = isInstance && "notification" in value;
-
-    return isInstance;
+export function instanceOfCommentsAddDTO(value: object): value is CommentsAddDTO {
+    if (!('message' in value) || value['message'] === undefined) return false;
+    if (!('copilotId' in value) || value['copilotId'] === undefined) return false;
+    if (!('notification' in value) || value['notification'] === undefined) return false;
+    return true;
 }
 
 export function CommentsAddDTOFromJSON(json: any): CommentsAddDTO {
@@ -64,31 +62,33 @@ export function CommentsAddDTOFromJSON(json: any): CommentsAddDTO {
 }
 
 export function CommentsAddDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): CommentsAddDTO {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'message': json['message'],
         'copilotId': json['copilot_id'],
-        'fromCommentId': !exists(json, 'from_comment_id') ? undefined : json['from_comment_id'],
+        'fromCommentId': json['from_comment_id'] == null ? undefined : json['from_comment_id'],
         'notification': json['notification'],
     };
 }
 
-export function CommentsAddDTOToJSON(value?: CommentsAddDTO | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CommentsAddDTOToJSON(json: any): CommentsAddDTO {
+      return CommentsAddDTOToJSONTyped(json, false);
+  }
+
+  export function CommentsAddDTOToJSONTyped(value?: CommentsAddDTO | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'message': value.message,
-        'copilot_id': value.copilotId,
-        'from_comment_id': value.fromCommentId,
-        'notification': value.notification,
+        'message': value['message'],
+        'copilot_id': value['copilotId'],
+        'from_comment_id': value['fromCommentId'],
+        'notification': value['notification'],
     };
 }
 

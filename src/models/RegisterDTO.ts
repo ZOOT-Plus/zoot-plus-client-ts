@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -48,14 +48,12 @@ export interface RegisterDTO {
 /**
  * Check if a given object implements the RegisterDTO interface.
  */
-export function instanceOfRegisterDTO(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "userName" in value;
-    isInstance = isInstance && "password" in value;
-    isInstance = isInstance && "registrationToken" in value;
-
-    return isInstance;
+export function instanceOfRegisterDTO(value: object): value is RegisterDTO {
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('userName' in value) || value['userName'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
+    if (!('registrationToken' in value) || value['registrationToken'] === undefined) return false;
+    return true;
 }
 
 export function RegisterDTOFromJSON(json: any): RegisterDTO {
@@ -63,7 +61,7 @@ export function RegisterDTOFromJSON(json: any): RegisterDTO {
 }
 
 export function RegisterDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): RegisterDTO {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -75,19 +73,21 @@ export function RegisterDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function RegisterDTOToJSON(value?: RegisterDTO | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function RegisterDTOToJSON(json: any): RegisterDTO {
+      return RegisterDTOToJSONTyped(json, false);
+  }
+
+  export function RegisterDTOToJSONTyped(value?: RegisterDTO | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'email': value.email,
-        'user_name': value.userName,
-        'password': value.password,
-        'registration_token': value.registrationToken,
+        'email': value['email'],
+        'user_name': value['userName'],
+        'password': value['password'],
+        'registration_token': value['registrationToken'],
     };
 }
 

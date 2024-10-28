@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CopilotSetListRes } from './CopilotSetListRes';
 import {
     CopilotSetListResFromJSON,
     CopilotSetListResFromJSONTyped,
     CopilotSetListResToJSON,
+    CopilotSetListResToJSONTyped,
 } from './CopilotSetListRes';
 
 /**
@@ -55,14 +56,12 @@ export interface CopilotSetPageRes {
 /**
  * Check if a given object implements the CopilotSetPageRes interface.
  */
-export function instanceOfCopilotSetPageRes(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "hasNext" in value;
-    isInstance = isInstance && "page" in value;
-    isInstance = isInstance && "total" in value;
-    isInstance = isInstance && "data" in value;
-
-    return isInstance;
+export function instanceOfCopilotSetPageRes(value: object): value is CopilotSetPageRes {
+    if (!('hasNext' in value) || value['hasNext'] === undefined) return false;
+    if (!('page' in value) || value['page'] === undefined) return false;
+    if (!('total' in value) || value['total'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
+    return true;
 }
 
 export function CopilotSetPageResFromJSON(json: any): CopilotSetPageRes {
@@ -70,7 +69,7 @@ export function CopilotSetPageResFromJSON(json: any): CopilotSetPageRes {
 }
 
 export function CopilotSetPageResFromJSONTyped(json: any, ignoreDiscriminator: boolean): CopilotSetPageRes {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -82,19 +81,21 @@ export function CopilotSetPageResFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function CopilotSetPageResToJSON(value?: CopilotSetPageRes | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CopilotSetPageResToJSON(json: any): CopilotSetPageRes {
+      return CopilotSetPageResToJSONTyped(json, false);
+  }
+
+  export function CopilotSetPageResToJSONTyped(value?: CopilotSetPageRes | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'has_next': value.hasNext,
-        'page': value.page,
-        'total': value.total,
-        'data': ((value.data as Array<any>).map(CopilotSetListResToJSON)),
+        'has_next': value['hasNext'],
+        'page': value['page'],
+        'total': value['total'],
+        'data': ((value['data'] as Array<any>).map(CopilotSetListResToJSON)),
     };
 }
 

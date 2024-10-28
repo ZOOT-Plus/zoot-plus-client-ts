@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 通过邮件修改密码请求
  * @export
@@ -42,13 +42,11 @@ export interface PasswordResetDTO {
 /**
  * Check if a given object implements the PasswordResetDTO interface.
  */
-export function instanceOfPasswordResetDTO(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "activeCode" in value;
-    isInstance = isInstance && "password" in value;
-
-    return isInstance;
+export function instanceOfPasswordResetDTO(value: object): value is PasswordResetDTO {
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('activeCode' in value) || value['activeCode'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
+    return true;
 }
 
 export function PasswordResetDTOFromJSON(json: any): PasswordResetDTO {
@@ -56,7 +54,7 @@ export function PasswordResetDTOFromJSON(json: any): PasswordResetDTO {
 }
 
 export function PasswordResetDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): PasswordResetDTO {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,18 +65,20 @@ export function PasswordResetDTOFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function PasswordResetDTOToJSON(value?: PasswordResetDTO | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function PasswordResetDTOToJSON(json: any): PasswordResetDTO {
+      return PasswordResetDTOToJSONTyped(json, false);
+  }
+
+  export function PasswordResetDTOToJSONTyped(value?: PasswordResetDTO | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'email': value.email,
-        'active_code': value.activeCode,
-        'password': value.password,
+        'email': value['email'],
+        'active_code': value['activeCode'],
+        'password': value['password'],
     };
 }
 

@@ -73,8 +73,11 @@ export class FileControllerApi extends runtime.BaseAPI {
      * 关闭uploadfile接口
      */
     async disableRaw(requestParameters: DisableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
-        if (requestParameters.body === null || requestParameters.body === undefined) {
-            throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling disable.');
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling disable().'
+            );
         }
 
         const queryParameters: any = {};
@@ -96,7 +99,7 @@ export class FileControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.body as any,
+            body: requestParameters['body'] as any,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
@@ -114,8 +117,11 @@ export class FileControllerApi extends runtime.BaseAPI {
      * 下载文件
      */
     async downloadFileRaw(requestParameters: DownloadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
-        if (requestParameters.imageDownloadDTO === null || requestParameters.imageDownloadDTO === undefined) {
-            throw new runtime.RequiredError('imageDownloadDTO','Required parameter requestParameters.imageDownloadDTO was null or undefined when calling downloadFile.');
+        if (requestParameters['imageDownloadDTO'] == null) {
+            throw new runtime.RequiredError(
+                'imageDownloadDTO',
+                'Required parameter "imageDownloadDTO" was null or undefined when calling downloadFile().'
+            );
         }
 
         const queryParameters: any = {};
@@ -137,7 +143,7 @@ export class FileControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ImageDownloadDTOToJSON(requestParameters.imageDownloadDTO),
+            body: ImageDownloadDTOToJSON(requestParameters['imageDownloadDTO']),
         }, initOverrides);
 
         return new runtime.BlobApiResponse(response);
@@ -155,26 +161,32 @@ export class FileControllerApi extends runtime.BaseAPI {
      * 下载文件
      */
     async downloadSpecifiedDateFileRaw(requestParameters: DownloadSpecifiedDateFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
-        if (requestParameters.beLocated === null || requestParameters.beLocated === undefined) {
-            throw new runtime.RequiredError('beLocated','Required parameter requestParameters.beLocated was null or undefined when calling downloadSpecifiedDateFile.');
+        if (requestParameters['beLocated'] == null) {
+            throw new runtime.RequiredError(
+                'beLocated',
+                'Required parameter "beLocated" was null or undefined when calling downloadSpecifiedDateFile().'
+            );
         }
 
-        if (requestParameters._delete === null || requestParameters._delete === undefined) {
-            throw new runtime.RequiredError('_delete','Required parameter requestParameters._delete was null or undefined when calling downloadSpecifiedDateFile.');
+        if (requestParameters['_delete'] == null) {
+            throw new runtime.RequiredError(
+                '_delete',
+                'Required parameter "_delete" was null or undefined when calling downloadSpecifiedDateFile().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.date !== undefined) {
-            queryParameters['date'] = requestParameters.date;
+        if (requestParameters['date'] != null) {
+            queryParameters['date'] = requestParameters['date'];
         }
 
-        if (requestParameters.beLocated !== undefined) {
-            queryParameters['beLocated'] = requestParameters.beLocated;
+        if (requestParameters['beLocated'] != null) {
+            queryParameters['beLocated'] = requestParameters['beLocated'];
         }
 
-        if (requestParameters._delete !== undefined) {
-            queryParameters['delete'] = requestParameters._delete;
+        if (requestParameters['_delete'] != null) {
+            queryParameters['delete'] = requestParameters['_delete'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -209,8 +221,11 @@ export class FileControllerApi extends runtime.BaseAPI {
      * 开启uploadfile接口
      */
     async enableRaw(requestParameters: EnableRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
-        if (requestParameters.body === null || requestParameters.body === undefined) {
-            throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling enable.');
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling enable().'
+            );
         }
 
         const queryParameters: any = {};
@@ -232,7 +247,7 @@ export class FileControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.body as any,
+            body: requestParameters['body'] as any,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
@@ -284,8 +299,11 @@ export class FileControllerApi extends runtime.BaseAPI {
      * 设置上传文件功能状态
      */
     async setUploadAbilityRaw(requestParameters: SetUploadAbilityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
-        if (requestParameters.uploadAbility === null || requestParameters.uploadAbility === undefined) {
-            throw new runtime.RequiredError('uploadAbility','Required parameter requestParameters.uploadAbility was null or undefined when calling setUploadAbility.');
+        if (requestParameters['uploadAbility'] == null) {
+            throw new runtime.RequiredError(
+                'uploadAbility',
+                'Required parameter "uploadAbility" was null or undefined when calling setUploadAbility().'
+            );
         }
 
         const queryParameters: any = {};
@@ -307,7 +325,7 @@ export class FileControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UploadAbilityToJSON(requestParameters.uploadAbility),
+            body: UploadAbilityToJSON(requestParameters['uploadAbility']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
@@ -326,16 +344,25 @@ export class FileControllerApi extends runtime.BaseAPI {
      * 支持匿名
      */
     async uploadFileRaw(requestParameters: UploadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
-        if (requestParameters.file === null || requestParameters.file === undefined) {
-            throw new runtime.RequiredError('file','Required parameter requestParameters.file was null or undefined when calling uploadFile.');
+        if (requestParameters['file'] == null) {
+            throw new runtime.RequiredError(
+                'file',
+                'Required parameter "file" was null or undefined when calling uploadFile().'
+            );
         }
 
-        if (requestParameters.type === null || requestParameters.type === undefined) {
-            throw new runtime.RequiredError('type','Required parameter requestParameters.type was null or undefined when calling uploadFile.');
+        if (requestParameters['type'] == null) {
+            throw new runtime.RequiredError(
+                'type',
+                'Required parameter "type" was null or undefined when calling uploadFile().'
+            );
         }
 
-        if (requestParameters.version === null || requestParameters.version === undefined) {
-            throw new runtime.RequiredError('version','Required parameter requestParameters.version was null or undefined when calling uploadFile.');
+        if (requestParameters['version'] == null) {
+            throw new runtime.RequiredError(
+                'version',
+                'Required parameter "version" was null or undefined when calling uploadFile().'
+            );
         }
 
         const queryParameters: any = {};
@@ -358,24 +385,24 @@ export class FileControllerApi extends runtime.BaseAPI {
             formParams = new URLSearchParams();
         }
 
-        if (requestParameters.file !== undefined) {
-            formParams.append('file', requestParameters.file as any);
+        if (requestParameters['file'] != null) {
+            formParams.append('file', requestParameters['file'] as any);
         }
 
-        if (requestParameters.type !== undefined) {
-            formParams.append('type', requestParameters.type as any);
+        if (requestParameters['type'] != null) {
+            formParams.append('type', requestParameters['type'] as any);
         }
 
-        if (requestParameters.version !== undefined) {
-            formParams.append('version', requestParameters.version as any);
+        if (requestParameters['version'] != null) {
+            formParams.append('version', requestParameters['version'] as any);
         }
 
-        if (requestParameters.classification !== undefined) {
-            formParams.append('classification', requestParameters.classification as any);
+        if (requestParameters['classification'] != null) {
+            formParams.append('classification', requestParameters['classification'] as any);
         }
 
-        if (requestParameters.label !== undefined) {
-            formParams.append('label', requestParameters.label as any);
+        if (requestParameters['label'] != null) {
+            formParams.append('label', requestParameters['label'] as any);
         }
 
         const response = await this.request({

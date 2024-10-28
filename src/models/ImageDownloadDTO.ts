@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -54,12 +54,10 @@ export interface ImageDownloadDTO {
 /**
  * Check if a given object implements the ImageDownloadDTO interface.
  */
-export function instanceOfImageDownloadDTO(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "_delete" in value;
-
-    return isInstance;
+export function instanceOfImageDownloadDTO(value: object): value is ImageDownloadDTO {
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('_delete' in value) || value['_delete'] === undefined) return false;
+    return true;
 }
 
 export function ImageDownloadDTOFromJSON(json: any): ImageDownloadDTO {
@@ -67,33 +65,35 @@ export function ImageDownloadDTOFromJSON(json: any): ImageDownloadDTO {
 }
 
 export function ImageDownloadDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): ImageDownloadDTO {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'type': json['type'],
-        'classification': !exists(json, 'classification') ? undefined : json['classification'],
-        'version': !exists(json, 'version') ? undefined : json['version'],
-        'label': !exists(json, 'label') ? undefined : json['label'],
+        'classification': json['classification'] == null ? undefined : json['classification'],
+        'version': json['version'] == null ? undefined : json['version'],
+        'label': json['label'] == null ? undefined : json['label'],
         '_delete': json['delete'],
     };
 }
 
-export function ImageDownloadDTOToJSON(value?: ImageDownloadDTO | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function ImageDownloadDTOToJSON(json: any): ImageDownloadDTO {
+      return ImageDownloadDTOToJSONTyped(json, false);
+  }
+
+  export function ImageDownloadDTOToJSONTyped(value?: ImageDownloadDTO | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'type': value.type,
-        'classification': value.classification,
-        'version': value.version,
-        'label': value.label,
-        'delete': value._delete,
+        'type': value['type'],
+        'classification': value['classification'],
+        'version': value['version'],
+        'label': value['label'],
+        'delete': value['_delete'],
     };
 }
 

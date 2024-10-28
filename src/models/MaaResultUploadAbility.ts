@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UploadAbility } from './UploadAbility';
 import {
     UploadAbilityFromJSON,
     UploadAbilityFromJSONTyped,
     UploadAbilityToJSON,
+    UploadAbilityToJSONTyped,
 } from './UploadAbility';
 
 /**
@@ -49,11 +50,9 @@ export interface MaaResultUploadAbility {
 /**
  * Check if a given object implements the MaaResultUploadAbility interface.
  */
-export function instanceOfMaaResultUploadAbility(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResultUploadAbility(value: object): value is MaaResultUploadAbility {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultUploadAbilityFromJSON(json: any): MaaResultUploadAbility {
@@ -61,29 +60,31 @@ export function MaaResultUploadAbilityFromJSON(json: any): MaaResultUploadAbilit
 }
 
 export function MaaResultUploadAbilityFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResultUploadAbility {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : UploadAbilityFromJSON(json['data']),
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : UploadAbilityFromJSON(json['data']),
     };
 }
 
-export function MaaResultUploadAbilityToJSON(value?: MaaResultUploadAbility | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultUploadAbilityToJSON(json: any): MaaResultUploadAbility {
+      return MaaResultUploadAbilityToJSONTyped(json, false);
+  }
+
+  export function MaaResultUploadAbilityToJSONTyped(value?: MaaResultUploadAbility | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': UploadAbilityToJSON(value.data),
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': UploadAbilityToJSON(value['data']),
     };
 }
 

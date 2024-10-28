@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,11 +42,9 @@ export interface MaaResultUnit {
 /**
  * Check if a given object implements the MaaResultUnit interface.
  */
-export function instanceOfMaaResultUnit(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResultUnit(value: object): value is MaaResultUnit {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultUnitFromJSON(json: any): MaaResultUnit {
@@ -54,29 +52,31 @@ export function MaaResultUnitFromJSON(json: any): MaaResultUnit {
 }
 
 export function MaaResultUnitFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResultUnit {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : json['data'],
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : json['data'],
     };
 }
 
-export function MaaResultUnitToJSON(value?: MaaResultUnit | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultUnitToJSON(json: any): MaaResultUnit {
+      return MaaResultUnitToJSONTyped(json, false);
+  }
+
+  export function MaaResultUnitToJSONTyped(value?: MaaResultUnit | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': value.data,
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': value['data'],
     };
 }
 

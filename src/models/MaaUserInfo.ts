@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 用户可对外公开的信息
  * @export
@@ -42,13 +42,11 @@ export interface MaaUserInfo {
 /**
  * Check if a given object implements the MaaUserInfo interface.
  */
-export function instanceOfMaaUserInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "userName" in value;
-    isInstance = isInstance && "activated" in value;
-
-    return isInstance;
+export function instanceOfMaaUserInfo(value: object): value is MaaUserInfo {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('userName' in value) || value['userName'] === undefined) return false;
+    if (!('activated' in value) || value['activated'] === undefined) return false;
+    return true;
 }
 
 export function MaaUserInfoFromJSON(json: any): MaaUserInfo {
@@ -56,7 +54,7 @@ export function MaaUserInfoFromJSON(json: any): MaaUserInfo {
 }
 
 export function MaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaUserInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,18 +65,20 @@ export function MaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function MaaUserInfoToJSON(value?: MaaUserInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaUserInfoToJSON(json: any): MaaUserInfo {
+      return MaaUserInfoToJSONTyped(json, false);
+  }
+
+  export function MaaUserInfoToJSONTyped(value?: MaaUserInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'id': value.id,
-        'user_name': value.userName,
-        'activated': value.activated,
+        'id': value['id'],
+        'user_name': value['userName'],
+        'activated': value['activated'],
     };
 }
 

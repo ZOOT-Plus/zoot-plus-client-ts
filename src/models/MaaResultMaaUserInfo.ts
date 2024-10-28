@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MaaUserInfo } from './MaaUserInfo';
 import {
     MaaUserInfoFromJSON,
     MaaUserInfoFromJSONTyped,
     MaaUserInfoToJSON,
+    MaaUserInfoToJSONTyped,
 } from './MaaUserInfo';
 
 /**
@@ -49,11 +50,9 @@ export interface MaaResultMaaUserInfo {
 /**
  * Check if a given object implements the MaaResultMaaUserInfo interface.
  */
-export function instanceOfMaaResultMaaUserInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResultMaaUserInfo(value: object): value is MaaResultMaaUserInfo {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultMaaUserInfoFromJSON(json: any): MaaResultMaaUserInfo {
@@ -61,29 +60,31 @@ export function MaaResultMaaUserInfoFromJSON(json: any): MaaResultMaaUserInfo {
 }
 
 export function MaaResultMaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResultMaaUserInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : MaaUserInfoFromJSON(json['data']),
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : MaaUserInfoFromJSON(json['data']),
     };
 }
 
-export function MaaResultMaaUserInfoToJSON(value?: MaaResultMaaUserInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultMaaUserInfoToJSON(json: any): MaaResultMaaUserInfo {
+      return MaaResultMaaUserInfoToJSONTyped(json, false);
+  }
+
+  export function MaaResultMaaUserInfoToJSONTyped(value?: MaaResultMaaUserInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': MaaUserInfoToJSON(value.data),
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': MaaUserInfoToJSON(value['data']),
     };
 }
 

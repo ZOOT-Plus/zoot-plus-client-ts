@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,10 +36,8 @@ export interface CopilotCUDRequest {
 /**
  * Check if a given object implements the CopilotCUDRequest interface.
  */
-export function instanceOfCopilotCUDRequest(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfCopilotCUDRequest(value: object): value is CopilotCUDRequest {
+    return true;
 }
 
 export function CopilotCUDRequestFromJSON(json: any): CopilotCUDRequest {
@@ -47,27 +45,29 @@ export function CopilotCUDRequestFromJSON(json: any): CopilotCUDRequest {
 }
 
 export function CopilotCUDRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CopilotCUDRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'content': !exists(json, 'content') ? undefined : json['content'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'content': json['content'] == null ? undefined : json['content'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 
-export function CopilotCUDRequestToJSON(value?: CopilotCUDRequest | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CopilotCUDRequestToJSON(json: any): CopilotCUDRequest {
+      return CopilotCUDRequestToJSONTyped(json, false);
+  }
+
+  export function CopilotCUDRequestToJSONTyped(value?: CopilotCUDRequest | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'content': value.content,
-        'id': value.id,
+        'content': value['content'],
+        'id': value['id'],
     };
 }
 

@@ -24,6 +24,17 @@ export const CopilotSetStatus = {
 export type CopilotSetStatus = typeof CopilotSetStatus[keyof typeof CopilotSetStatus];
 
 
+export function instanceOfCopilotSetStatus(value: any): boolean {
+    for (const key in CopilotSetStatus) {
+        if (Object.prototype.hasOwnProperty.call(CopilotSetStatus, key)) {
+            if (CopilotSetStatus[key as keyof typeof CopilotSetStatus] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function CopilotSetStatusFromJSON(json: any): CopilotSetStatus {
     return CopilotSetStatusFromJSONTyped(json, false);
 }
@@ -34,5 +45,9 @@ export function CopilotSetStatusFromJSONTyped(json: any, ignoreDiscriminator: bo
 
 export function CopilotSetStatusToJSON(value?: CopilotSetStatus | null): any {
     return value as any;
+}
+
+export function CopilotSetStatusToJSONTyped(value: any, ignoreDiscriminator: boolean): CopilotSetStatus {
+    return value as CopilotSetStatus;
 }
 

@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CopilotSetStatus } from './CopilotSetStatus';
 import {
     CopilotSetStatusFromJSON,
     CopilotSetStatusFromJSONTyped,
     CopilotSetStatusToJSON,
+    CopilotSetStatusToJSONTyped,
 } from './CopilotSetStatus';
 
 /**
@@ -82,22 +83,22 @@ export interface CopilotSetRes {
     status: CopilotSetStatus;
 }
 
+
+
 /**
  * Check if a given object implements the CopilotSetRes interface.
  */
-export function instanceOfCopilotSetRes(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "copilotIds" in value;
-    isInstance = isInstance && "creatorId" in value;
-    isInstance = isInstance && "creator" in value;
-    isInstance = isInstance && "createTime" in value;
-    isInstance = isInstance && "updateTime" in value;
-    isInstance = isInstance && "status" in value;
-
-    return isInstance;
+export function instanceOfCopilotSetRes(value: object): value is CopilotSetRes {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('copilotIds' in value) || value['copilotIds'] === undefined) return false;
+    if (!('creatorId' in value) || value['creatorId'] === undefined) return false;
+    if (!('creator' in value) || value['creator'] === undefined) return false;
+    if (!('createTime' in value) || value['createTime'] === undefined) return false;
+    if (!('updateTime' in value) || value['updateTime'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    return true;
 }
 
 export function CopilotSetResFromJSON(json: any): CopilotSetRes {
@@ -105,7 +106,7 @@ export function CopilotSetResFromJSON(json: any): CopilotSetRes {
 }
 
 export function CopilotSetResFromJSONTyped(json: any, ignoreDiscriminator: boolean): CopilotSetRes {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -122,24 +123,26 @@ export function CopilotSetResFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function CopilotSetResToJSON(value?: CopilotSetRes | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CopilotSetResToJSON(json: any): CopilotSetRes {
+      return CopilotSetResToJSONTyped(json, false);
+  }
+
+  export function CopilotSetResToJSONTyped(value?: CopilotSetRes | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'description': value.description,
-        'copilot_ids': value.copilotIds,
-        'creator_id': value.creatorId,
-        'creator': value.creator,
-        'create_time': (value.createTime.toISOString()),
-        'update_time': (value.updateTime.toISOString()),
-        'status': CopilotSetStatusToJSON(value.status),
+        'id': value['id'],
+        'name': value['name'],
+        'description': value['description'],
+        'copilot_ids': value['copilotIds'],
+        'creator_id': value['creatorId'],
+        'creator': value['creator'],
+        'create_time': ((value['createTime']).toISOString()),
+        'update_time': ((value['updateTime']).toISOString()),
+        'status': CopilotSetStatusToJSON(value['status']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -114,25 +114,23 @@ export interface CopilotInfo {
 /**
  * Check if a given object implements the CopilotInfo interface.
  */
-export function instanceOfCopilotInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "uploadTime" in value;
-    isInstance = isInstance && "uploaderId" in value;
-    isInstance = isInstance && "uploader" in value;
-    isInstance = isInstance && "views" in value;
-    isInstance = isInstance && "hotScore" in value;
-    isInstance = isInstance && "available" in value;
-    isInstance = isInstance && "ratingLevel" in value;
-    isInstance = isInstance && "notEnoughRating" in value;
-    isInstance = isInstance && "ratingRatio" in value;
-    isInstance = isInstance && "ratingType" in value;
-    isInstance = isInstance && "commentsCount" in value;
-    isInstance = isInstance && "content" in value;
-    isInstance = isInstance && "like" in value;
-    isInstance = isInstance && "dislike" in value;
-
-    return isInstance;
+export function instanceOfCopilotInfo(value: object): value is CopilotInfo {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('uploadTime' in value) || value['uploadTime'] === undefined) return false;
+    if (!('uploaderId' in value) || value['uploaderId'] === undefined) return false;
+    if (!('uploader' in value) || value['uploader'] === undefined) return false;
+    if (!('views' in value) || value['views'] === undefined) return false;
+    if (!('hotScore' in value) || value['hotScore'] === undefined) return false;
+    if (!('available' in value) || value['available'] === undefined) return false;
+    if (!('ratingLevel' in value) || value['ratingLevel'] === undefined) return false;
+    if (!('notEnoughRating' in value) || value['notEnoughRating'] === undefined) return false;
+    if (!('ratingRatio' in value) || value['ratingRatio'] === undefined) return false;
+    if (!('ratingType' in value) || value['ratingType'] === undefined) return false;
+    if (!('commentsCount' in value) || value['commentsCount'] === undefined) return false;
+    if (!('content' in value) || value['content'] === undefined) return false;
+    if (!('like' in value) || value['like'] === undefined) return false;
+    if (!('dislike' in value) || value['dislike'] === undefined) return false;
+    return true;
 }
 
 export function CopilotInfoFromJSON(json: any): CopilotInfo {
@@ -140,7 +138,7 @@ export function CopilotInfoFromJSON(json: any): CopilotInfo {
 }
 
 export function CopilotInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CopilotInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -163,30 +161,32 @@ export function CopilotInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function CopilotInfoToJSON(value?: CopilotInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CopilotInfoToJSON(json: any): CopilotInfo {
+      return CopilotInfoToJSONTyped(json, false);
+  }
+
+  export function CopilotInfoToJSONTyped(value?: CopilotInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'id': value.id,
-        'upload_time': (value.uploadTime.toISOString()),
-        'uploader_id': value.uploaderId,
-        'uploader': value.uploader,
-        'views': value.views,
-        'hot_score': value.hotScore,
-        'available': value.available,
-        'rating_level': value.ratingLevel,
-        'not_enough_rating': value.notEnoughRating,
-        'rating_ratio': value.ratingRatio,
-        'rating_type': value.ratingType,
-        'comments_count': value.commentsCount,
-        'content': value.content,
-        'like': value.like,
-        'dislike': value.dislike,
+        'id': value['id'],
+        'upload_time': ((value['uploadTime']).toISOString()),
+        'uploader_id': value['uploaderId'],
+        'uploader': value['uploader'],
+        'views': value['views'],
+        'hot_score': value['hotScore'],
+        'available': value['available'],
+        'rating_level': value['ratingLevel'],
+        'not_enough_rating': value['notEnoughRating'],
+        'rating_ratio': value['ratingRatio'],
+        'rating_type': value['ratingType'],
+        'comments_count': value['commentsCount'],
+        'content': value['content'],
+        'like': value['like'],
+        'dislike': value['dislike'],
     };
 }
 

@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CopilotSetStatus } from './CopilotSetStatus';
 import {
     CopilotSetStatusFromJSON,
     CopilotSetStatusFromJSONTyped,
     CopilotSetStatusToJSON,
+    CopilotSetStatusToJSONTyped,
 } from './CopilotSetStatus';
 
 /**
@@ -52,17 +53,17 @@ export interface CopilotSetCreateReq {
     status: CopilotSetStatus;
 }
 
+
+
 /**
  * Check if a given object implements the CopilotSetCreateReq interface.
  */
-export function instanceOfCopilotSetCreateReq(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "copilotIds" in value;
-    isInstance = isInstance && "status" in value;
-
-    return isInstance;
+export function instanceOfCopilotSetCreateReq(value: object): value is CopilotSetCreateReq {
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('copilotIds' in value) || value['copilotIds'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    return true;
 }
 
 export function CopilotSetCreateReqFromJSON(json: any): CopilotSetCreateReq {
@@ -70,7 +71,7 @@ export function CopilotSetCreateReqFromJSON(json: any): CopilotSetCreateReq {
 }
 
 export function CopilotSetCreateReqFromJSONTyped(json: any, ignoreDiscriminator: boolean): CopilotSetCreateReq {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -82,19 +83,21 @@ export function CopilotSetCreateReqFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function CopilotSetCreateReqToJSON(value?: CopilotSetCreateReq | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CopilotSetCreateReqToJSON(json: any): CopilotSetCreateReq {
+      return CopilotSetCreateReqToJSONTyped(json, false);
+  }
+
+  export function CopilotSetCreateReqToJSONTyped(value?: CopilotSetCreateReq | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'name': value.name,
-        'description': value.description,
-        'copilot_ids': value.copilotIds,
-        'status': CopilotSetStatusToJSON(value.status),
+        'name': value['name'],
+        'description': value['description'],
+        'copilot_ids': value['copilotIds'],
+        'status': CopilotSetStatusToJSON(value['status']),
     };
 }
 

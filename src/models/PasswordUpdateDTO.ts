@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface PasswordUpdateDTO {
 /**
  * Check if a given object implements the PasswordUpdateDTO interface.
  */
-export function instanceOfPasswordUpdateDTO(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "originalPassword" in value;
-    isInstance = isInstance && "newPassword" in value;
-
-    return isInstance;
+export function instanceOfPasswordUpdateDTO(value: object): value is PasswordUpdateDTO {
+    if (!('originalPassword' in value) || value['originalPassword'] === undefined) return false;
+    if (!('newPassword' in value) || value['newPassword'] === undefined) return false;
+    return true;
 }
 
 export function PasswordUpdateDTOFromJSON(json: any): PasswordUpdateDTO {
@@ -49,7 +47,7 @@ export function PasswordUpdateDTOFromJSON(json: any): PasswordUpdateDTO {
 }
 
 export function PasswordUpdateDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): PasswordUpdateDTO {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function PasswordUpdateDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function PasswordUpdateDTOToJSON(value?: PasswordUpdateDTO | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function PasswordUpdateDTOToJSON(json: any): PasswordUpdateDTO {
+      return PasswordUpdateDTOToJSONTyped(json, false);
+  }
+
+  export function PasswordUpdateDTOToJSONTyped(value?: PasswordUpdateDTO | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'original_password': value.originalPassword,
-        'new_password': value.newPassword,
+        'original_password': value['originalPassword'],
+        'new_password': value['newPassword'],
     };
 }
 

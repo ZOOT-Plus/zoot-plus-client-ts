@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface CopilotSetModCopilotsReq {
 /**
  * Check if a given object implements the CopilotSetModCopilotsReq interface.
  */
-export function instanceOfCopilotSetModCopilotsReq(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "copilotIds" in value;
-
-    return isInstance;
+export function instanceOfCopilotSetModCopilotsReq(value: object): value is CopilotSetModCopilotsReq {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('copilotIds' in value) || value['copilotIds'] === undefined) return false;
+    return true;
 }
 
 export function CopilotSetModCopilotsReqFromJSON(json: any): CopilotSetModCopilotsReq {
@@ -49,7 +47,7 @@ export function CopilotSetModCopilotsReqFromJSON(json: any): CopilotSetModCopilo
 }
 
 export function CopilotSetModCopilotsReqFromJSONTyped(json: any, ignoreDiscriminator: boolean): CopilotSetModCopilotsReq {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function CopilotSetModCopilotsReqFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function CopilotSetModCopilotsReqToJSON(value?: CopilotSetModCopilotsReq | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function CopilotSetModCopilotsReqToJSON(json: any): CopilotSetModCopilotsReq {
+      return CopilotSetModCopilotsReqToJSONTyped(json, false);
+  }
+
+  export function CopilotSetModCopilotsReqToJSONTyped(value?: CopilotSetModCopilotsReq | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'id': value.id,
-        'copilot_ids': value.copilotIds,
+        'id': value['id'],
+        'copilot_ids': value['copilotIds'],
     };
 }
 

@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MaaSystemInfo } from './MaaSystemInfo';
 import {
     MaaSystemInfoFromJSON,
     MaaSystemInfoFromJSONTyped,
     MaaSystemInfoToJSON,
+    MaaSystemInfoToJSONTyped,
 } from './MaaSystemInfo';
 
 /**
@@ -49,11 +50,9 @@ export interface MaaResultMaaSystemInfo {
 /**
  * Check if a given object implements the MaaResultMaaSystemInfo interface.
  */
-export function instanceOfMaaResultMaaSystemInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResultMaaSystemInfo(value: object): value is MaaResultMaaSystemInfo {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultMaaSystemInfoFromJSON(json: any): MaaResultMaaSystemInfo {
@@ -61,29 +60,31 @@ export function MaaResultMaaSystemInfoFromJSON(json: any): MaaResultMaaSystemInf
 }
 
 export function MaaResultMaaSystemInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResultMaaSystemInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : MaaSystemInfoFromJSON(json['data']),
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : MaaSystemInfoFromJSON(json['data']),
     };
 }
 
-export function MaaResultMaaSystemInfoToJSON(value?: MaaResultMaaSystemInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultMaaSystemInfoToJSON(json: any): MaaResultMaaSystemInfo {
+      return MaaResultMaaSystemInfoToJSONTyped(json, false);
+  }
+
+  export function MaaResultMaaSystemInfoToJSONTyped(value?: MaaResultMaaSystemInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': MaaSystemInfoToJSON(value.data),
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': MaaSystemInfoToJSON(value['data']),
     };
 }
 

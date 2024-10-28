@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface UserInfoUpdateDTO {
 /**
  * Check if a given object implements the UserInfoUpdateDTO interface.
  */
-export function instanceOfUserInfoUpdateDTO(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userName" in value;
-
-    return isInstance;
+export function instanceOfUserInfoUpdateDTO(value: object): value is UserInfoUpdateDTO {
+    if (!('userName' in value) || value['userName'] === undefined) return false;
+    return true;
 }
 
 export function UserInfoUpdateDTOFromJSON(json: any): UserInfoUpdateDTO {
@@ -42,7 +40,7 @@ export function UserInfoUpdateDTOFromJSON(json: any): UserInfoUpdateDTO {
 }
 
 export function UserInfoUpdateDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserInfoUpdateDTO {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function UserInfoUpdateDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function UserInfoUpdateDTOToJSON(value?: UserInfoUpdateDTO | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function UserInfoUpdateDTOToJSON(json: any): UserInfoUpdateDTO {
+      return UserInfoUpdateDTOToJSONTyped(json, false);
+  }
+
+  export function UserInfoUpdateDTOToJSONTyped(value?: UserInfoUpdateDTO | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'user_name': value.userName,
+        'user_name': value['userName'],
     };
 }
 

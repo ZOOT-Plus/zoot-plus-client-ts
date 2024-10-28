@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -84,20 +84,18 @@ export interface SubCommentsInfo {
 /**
  * Check if a given object implements the SubCommentsInfo interface.
  */
-export function instanceOfSubCommentsInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "commentId" in value;
-    isInstance = isInstance && "uploader" in value;
-    isInstance = isInstance && "uploaderId" in value;
-    isInstance = isInstance && "message" in value;
-    isInstance = isInstance && "uploadTime" in value;
-    isInstance = isInstance && "like" in value;
-    isInstance = isInstance && "dislike" in value;
-    isInstance = isInstance && "fromCommentId" in value;
-    isInstance = isInstance && "mainCommentId" in value;
-    isInstance = isInstance && "deleted" in value;
-
-    return isInstance;
+export function instanceOfSubCommentsInfo(value: object): value is SubCommentsInfo {
+    if (!('commentId' in value) || value['commentId'] === undefined) return false;
+    if (!('uploader' in value) || value['uploader'] === undefined) return false;
+    if (!('uploaderId' in value) || value['uploaderId'] === undefined) return false;
+    if (!('message' in value) || value['message'] === undefined) return false;
+    if (!('uploadTime' in value) || value['uploadTime'] === undefined) return false;
+    if (!('like' in value) || value['like'] === undefined) return false;
+    if (!('dislike' in value) || value['dislike'] === undefined) return false;
+    if (!('fromCommentId' in value) || value['fromCommentId'] === undefined) return false;
+    if (!('mainCommentId' in value) || value['mainCommentId'] === undefined) return false;
+    if (!('deleted' in value) || value['deleted'] === undefined) return false;
+    return true;
 }
 
 export function SubCommentsInfoFromJSON(json: any): SubCommentsInfo {
@@ -105,7 +103,7 @@ export function SubCommentsInfoFromJSON(json: any): SubCommentsInfo {
 }
 
 export function SubCommentsInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): SubCommentsInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -123,25 +121,27 @@ export function SubCommentsInfoFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function SubCommentsInfoToJSON(value?: SubCommentsInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function SubCommentsInfoToJSON(json: any): SubCommentsInfo {
+      return SubCommentsInfoToJSONTyped(json, false);
+  }
+
+  export function SubCommentsInfoToJSONTyped(value?: SubCommentsInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'comment_id': value.commentId,
-        'uploader': value.uploader,
-        'uploader_id': value.uploaderId,
-        'message': value.message,
-        'upload_time': (value.uploadTime.toISOString()),
-        'like': value.like,
-        'dislike': value.dislike,
-        'from_comment_id': value.fromCommentId,
-        'main_comment_id': value.mainCommentId,
-        'deleted': value.deleted,
+        'comment_id': value['commentId'],
+        'uploader': value['uploader'],
+        'uploader_id': value['uploaderId'],
+        'message': value['message'],
+        'upload_time': ((value['uploadTime']).toISOString()),
+        'like': value['like'],
+        'dislike': value['dislike'],
+        'from_comment_id': value['fromCommentId'],
+        'main_comment_id': value['mainCommentId'],
+        'deleted': value['deleted'],
     };
 }
 

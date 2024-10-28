@@ -98,14 +98,17 @@ export class CopilotUserApi extends runtime.BaseAPI {
      * 查询用户信息
      */
     async getUserInfoRaw(requestParameters: GetUserInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaUserInfo>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserInfo.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getUserInfo().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.userId !== undefined) {
-            queryParameters['userId'] = requestParameters.userId;
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -134,8 +137,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
      * 用户登录
      */
     async loginRaw(requestParameters: LoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaLoginRsp>> {
-        if (requestParameters.loginDTO === null || requestParameters.loginDTO === undefined) {
-            throw new runtime.RequiredError('loginDTO','Required parameter requestParameters.loginDTO was null or undefined when calling login.');
+        if (requestParameters['loginDTO'] == null) {
+            throw new runtime.RequiredError(
+                'loginDTO',
+                'Required parameter "loginDTO" was null or undefined when calling login().'
+            );
         }
 
         const queryParameters: any = {};
@@ -149,7 +155,7 @@ export class CopilotUserApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: LoginDTOToJSON(requestParameters.loginDTO),
+            body: LoginDTOToJSON(requestParameters['loginDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMaaLoginRspFromJSON(jsonValue));
@@ -169,8 +175,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
      * 重置密码
      */
     async passwordResetRaw(requestParameters: PasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
-        if (requestParameters.passwordResetDTO === null || requestParameters.passwordResetDTO === undefined) {
-            throw new runtime.RequiredError('passwordResetDTO','Required parameter requestParameters.passwordResetDTO was null or undefined when calling passwordReset.');
+        if (requestParameters['passwordResetDTO'] == null) {
+            throw new runtime.RequiredError(
+                'passwordResetDTO',
+                'Required parameter "passwordResetDTO" was null or undefined when calling passwordReset().'
+            );
         }
 
         const queryParameters: any = {};
@@ -184,7 +193,7 @@ export class CopilotUserApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PasswordResetDTOToJSON(requestParameters.passwordResetDTO),
+            body: PasswordResetDTOToJSON(requestParameters['passwordResetDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
@@ -204,8 +213,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
      * 发送用于重置密码的验证码
      */
     async passwordResetRequestRaw(requestParameters: PasswordResetRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
-        if (requestParameters.passwordResetVCodeDTO === null || requestParameters.passwordResetVCodeDTO === undefined) {
-            throw new runtime.RequiredError('passwordResetVCodeDTO','Required parameter requestParameters.passwordResetVCodeDTO was null or undefined when calling passwordResetRequest.');
+        if (requestParameters['passwordResetVCodeDTO'] == null) {
+            throw new runtime.RequiredError(
+                'passwordResetVCodeDTO',
+                'Required parameter "passwordResetVCodeDTO" was null or undefined when calling passwordResetRequest().'
+            );
         }
 
         const queryParameters: any = {};
@@ -219,7 +231,7 @@ export class CopilotUserApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PasswordResetVCodeDTOToJSON(requestParameters.passwordResetVCodeDTO),
+            body: PasswordResetVCodeDTOToJSON(requestParameters['passwordResetVCodeDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
@@ -239,8 +251,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
      * 刷新token
      */
     async refreshRaw(requestParameters: RefreshRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaLoginRsp>> {
-        if (requestParameters.refreshReq === null || requestParameters.refreshReq === undefined) {
-            throw new runtime.RequiredError('refreshReq','Required parameter requestParameters.refreshReq was null or undefined when calling refresh.');
+        if (requestParameters['refreshReq'] == null) {
+            throw new runtime.RequiredError(
+                'refreshReq',
+                'Required parameter "refreshReq" was null or undefined when calling refresh().'
+            );
         }
 
         const queryParameters: any = {};
@@ -254,7 +269,7 @@ export class CopilotUserApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: RefreshReqToJSON(requestParameters.refreshReq),
+            body: RefreshReqToJSON(requestParameters['refreshReq']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMaaLoginRspFromJSON(jsonValue));
@@ -274,8 +289,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
      * 用户注册
      */
     async registerRaw(requestParameters: RegisterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaUserInfo>> {
-        if (requestParameters.registerDTO === null || requestParameters.registerDTO === undefined) {
-            throw new runtime.RequiredError('registerDTO','Required parameter requestParameters.registerDTO was null or undefined when calling register.');
+        if (requestParameters['registerDTO'] == null) {
+            throw new runtime.RequiredError(
+                'registerDTO',
+                'Required parameter "registerDTO" was null or undefined when calling register().'
+            );
         }
 
         const queryParameters: any = {};
@@ -289,7 +307,7 @@ export class CopilotUserApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: RegisterDTOToJSON(requestParameters.registerDTO),
+            body: RegisterDTOToJSON(requestParameters['registerDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMaaUserInfoFromJSON(jsonValue));
@@ -309,8 +327,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
      * 注册时发送验证码
      */
     async sendRegistrationTokenRaw(requestParameters: SendRegistrationTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
-        if (requestParameters.sendRegistrationTokenDTO === null || requestParameters.sendRegistrationTokenDTO === undefined) {
-            throw new runtime.RequiredError('sendRegistrationTokenDTO','Required parameter requestParameters.sendRegistrationTokenDTO was null or undefined when calling sendRegistrationToken.');
+        if (requestParameters['sendRegistrationTokenDTO'] == null) {
+            throw new runtime.RequiredError(
+                'sendRegistrationTokenDTO',
+                'Required parameter "sendRegistrationTokenDTO" was null or undefined when calling sendRegistrationToken().'
+            );
         }
 
         const queryParameters: any = {};
@@ -324,7 +345,7 @@ export class CopilotUserApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SendRegistrationTokenDTOToJSON(requestParameters.sendRegistrationTokenDTO),
+            body: SendRegistrationTokenDTOToJSON(requestParameters['sendRegistrationTokenDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
@@ -344,8 +365,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
      * 更新用户详细信息
      */
     async updateInfoRaw(requestParameters: UpdateInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
-        if (requestParameters.userInfoUpdateDTO === null || requestParameters.userInfoUpdateDTO === undefined) {
-            throw new runtime.RequiredError('userInfoUpdateDTO','Required parameter requestParameters.userInfoUpdateDTO was null or undefined when calling updateInfo.');
+        if (requestParameters['userInfoUpdateDTO'] == null) {
+            throw new runtime.RequiredError(
+                'userInfoUpdateDTO',
+                'Required parameter "userInfoUpdateDTO" was null or undefined when calling updateInfo().'
+            );
         }
 
         const queryParameters: any = {};
@@ -367,7 +391,7 @@ export class CopilotUserApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UserInfoUpdateDTOToJSON(requestParameters.userInfoUpdateDTO),
+            body: UserInfoUpdateDTOToJSON(requestParameters['userInfoUpdateDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
@@ -387,8 +411,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
      * 修改当前用户密码
      */
     async updatePasswordRaw(requestParameters: UpdatePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
-        if (requestParameters.passwordUpdateDTO === null || requestParameters.passwordUpdateDTO === undefined) {
-            throw new runtime.RequiredError('passwordUpdateDTO','Required parameter requestParameters.passwordUpdateDTO was null or undefined when calling updatePassword.');
+        if (requestParameters['passwordUpdateDTO'] == null) {
+            throw new runtime.RequiredError(
+                'passwordUpdateDTO',
+                'Required parameter "passwordUpdateDTO" was null or undefined when calling updatePassword().'
+            );
         }
 
         const queryParameters: any = {};
@@ -410,7 +437,7 @@ export class CopilotUserApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PasswordUpdateDTOToJSON(requestParameters.passwordUpdateDTO),
+            body: PasswordUpdateDTOToJSON(requestParameters['passwordUpdateDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));

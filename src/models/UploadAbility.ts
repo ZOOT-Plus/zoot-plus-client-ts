@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface UploadAbility {
 /**
  * Check if a given object implements the UploadAbility interface.
  */
-export function instanceOfUploadAbility(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "enabled" in value;
-
-    return isInstance;
+export function instanceOfUploadAbility(value: object): value is UploadAbility {
+    if (!('enabled' in value) || value['enabled'] === undefined) return false;
+    return true;
 }
 
 export function UploadAbilityFromJSON(json: any): UploadAbility {
@@ -42,7 +40,7 @@ export function UploadAbilityFromJSON(json: any): UploadAbility {
 }
 
 export function UploadAbilityFromJSONTyped(json: any, ignoreDiscriminator: boolean): UploadAbility {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function UploadAbilityFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function UploadAbilityToJSON(value?: UploadAbility | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function UploadAbilityToJSON(json: any): UploadAbility {
+      return UploadAbilityToJSONTyped(json, false);
+  }
+
+  export function UploadAbilityToJSONTyped(value?: UploadAbility | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'enabled': value.enabled,
+        'enabled': value['enabled'],
     };
 }
 

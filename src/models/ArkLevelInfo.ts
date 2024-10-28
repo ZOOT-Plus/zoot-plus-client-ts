@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -72,18 +72,16 @@ export interface ArkLevelInfo {
 /**
  * Check if a given object implements the ArkLevelInfo interface.
  */
-export function instanceOfArkLevelInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "levelId" in value;
-    isInstance = isInstance && "stageId" in value;
-    isInstance = isInstance && "catOne" in value;
-    isInstance = isInstance && "catTwo" in value;
-    isInstance = isInstance && "catThree" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "width" in value;
-    isInstance = isInstance && "height" in value;
-
-    return isInstance;
+export function instanceOfArkLevelInfo(value: object): value is ArkLevelInfo {
+    if (!('levelId' in value) || value['levelId'] === undefined) return false;
+    if (!('stageId' in value) || value['stageId'] === undefined) return false;
+    if (!('catOne' in value) || value['catOne'] === undefined) return false;
+    if (!('catTwo' in value) || value['catTwo'] === undefined) return false;
+    if (!('catThree' in value) || value['catThree'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('width' in value) || value['width'] === undefined) return false;
+    if (!('height' in value) || value['height'] === undefined) return false;
+    return true;
 }
 
 export function ArkLevelInfoFromJSON(json: any): ArkLevelInfo {
@@ -91,7 +89,7 @@ export function ArkLevelInfoFromJSON(json: any): ArkLevelInfo {
 }
 
 export function ArkLevelInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ArkLevelInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -107,23 +105,25 @@ export function ArkLevelInfoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function ArkLevelInfoToJSON(value?: ArkLevelInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function ArkLevelInfoToJSON(json: any): ArkLevelInfo {
+      return ArkLevelInfoToJSONTyped(json, false);
+  }
+
+  export function ArkLevelInfoToJSONTyped(value?: ArkLevelInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'level_id': value.levelId,
-        'stage_id': value.stageId,
-        'cat_one': value.catOne,
-        'cat_two': value.catTwo,
-        'cat_three': value.catThree,
-        'name': value.name,
-        'width': value.width,
-        'height': value.height,
+        'level_id': value['levelId'],
+        'stage_id': value['stageId'],
+        'cat_one': value['catOne'],
+        'cat_two': value['catTwo'],
+        'cat_three': value['catThree'],
+        'name': value['name'],
+        'width': value['width'],
+        'height': value['height'],
     };
 }
 

@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CopilotSetRes } from './CopilotSetRes';
 import {
     CopilotSetResFromJSON,
     CopilotSetResFromJSONTyped,
     CopilotSetResToJSON,
+    CopilotSetResToJSONTyped,
 } from './CopilotSetRes';
 
 /**
@@ -49,11 +50,9 @@ export interface MaaResultCopilotSetRes {
 /**
  * Check if a given object implements the MaaResultCopilotSetRes interface.
  */
-export function instanceOfMaaResultCopilotSetRes(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "statusCode" in value;
-
-    return isInstance;
+export function instanceOfMaaResultCopilotSetRes(value: object): value is MaaResultCopilotSetRes {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    return true;
 }
 
 export function MaaResultCopilotSetResFromJSON(json: any): MaaResultCopilotSetRes {
@@ -61,29 +60,31 @@ export function MaaResultCopilotSetResFromJSON(json: any): MaaResultCopilotSetRe
 }
 
 export function MaaResultCopilotSetResFromJSONTyped(json: any, ignoreDiscriminator: boolean): MaaResultCopilotSetRes {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'statusCode': json['status_code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'data': !exists(json, 'data') ? undefined : CopilotSetResFromJSON(json['data']),
+        'message': json['message'] == null ? undefined : json['message'],
+        'data': json['data'] == null ? undefined : CopilotSetResFromJSON(json['data']),
     };
 }
 
-export function MaaResultCopilotSetResToJSON(value?: MaaResultCopilotSetRes | null): any {
-    if (value === undefined) {
-        return undefined;
+  export function MaaResultCopilotSetResToJSON(json: any): MaaResultCopilotSetRes {
+      return MaaResultCopilotSetResToJSONTyped(json, false);
+  }
+
+  export function MaaResultCopilotSetResToJSONTyped(value?: MaaResultCopilotSetRes | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'status_code': value.statusCode,
-        'message': value.message,
-        'data': CopilotSetResToJSON(value.data),
+        'status_code': value['statusCode'],
+        'message': value['message'],
+        'data': CopilotSetResToJSON(value['data']),
     };
 }
 

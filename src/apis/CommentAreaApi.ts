@@ -76,8 +76,11 @@ export class CommentAreaApi extends runtime.BaseAPI {
      * 删除评论
      */
     async deleteCommentsRaw(requestParameters: DeleteCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
-        if (requestParameters.commentsDeleteDTO === null || requestParameters.commentsDeleteDTO === undefined) {
-            throw new runtime.RequiredError('commentsDeleteDTO','Required parameter requestParameters.commentsDeleteDTO was null or undefined when calling deleteComments.');
+        if (requestParameters['commentsDeleteDTO'] == null) {
+            throw new runtime.RequiredError(
+                'commentsDeleteDTO',
+                'Required parameter "commentsDeleteDTO" was null or undefined when calling deleteComments().'
+            );
         }
 
         const queryParameters: any = {};
@@ -99,7 +102,7 @@ export class CommentAreaApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CommentsDeleteDTOToJSON(requestParameters.commentsDeleteDTO),
+            body: CommentsDeleteDTOToJSON(requestParameters['commentsDeleteDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
@@ -117,22 +120,28 @@ export class CommentAreaApi extends runtime.BaseAPI {
      * 设置通知接收状态
      */
     async modifyStatus1Raw(requestParameters: ModifyStatus1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling modifyStatus1.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling modifyStatus1().'
+            );
         }
 
-        if (requestParameters.status === null || requestParameters.status === undefined) {
-            throw new runtime.RequiredError('status','Required parameter requestParameters.status was null or undefined when calling modifyStatus1.');
+        if (requestParameters['status'] == null) {
+            throw new runtime.RequiredError(
+                'status',
+                'Required parameter "status" was null or undefined when calling modifyStatus1().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.id !== undefined) {
-            queryParameters['id'] = requestParameters.id;
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
         }
 
-        if (requestParameters.status !== undefined) {
-            queryParameters['status'] = requestParameters.status;
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -167,34 +176,37 @@ export class CommentAreaApi extends runtime.BaseAPI {
      * 分页查询评论
      */
     async queriesCommentsAreaRaw(requestParameters: QueriesCommentsAreaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCommentsAreaInfo>> {
-        if (requestParameters.copilotId === null || requestParameters.copilotId === undefined) {
-            throw new runtime.RequiredError('copilotId','Required parameter requestParameters.copilotId was null or undefined when calling queriesCommentsArea.');
+        if (requestParameters['copilotId'] == null) {
+            throw new runtime.RequiredError(
+                'copilotId',
+                'Required parameter "copilotId" was null or undefined when calling queriesCommentsArea().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.copilotId !== undefined) {
-            queryParameters['copilotId'] = requestParameters.copilotId;
+        if (requestParameters['copilotId'] != null) {
+            queryParameters['copilotId'] = requestParameters['copilotId'];
         }
 
-        if (requestParameters.page !== undefined) {
-            queryParameters['page'] = requestParameters.page;
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.desc !== undefined) {
-            queryParameters['desc'] = requestParameters.desc;
+        if (requestParameters['desc'] != null) {
+            queryParameters['desc'] = requestParameters['desc'];
         }
 
-        if (requestParameters.orderBy !== undefined) {
-            queryParameters['orderBy'] = requestParameters.orderBy;
+        if (requestParameters['orderBy'] != null) {
+            queryParameters['orderBy'] = requestParameters['orderBy'];
         }
 
-        if (requestParameters.justSeeId !== undefined) {
-            queryParameters['justSeeId'] = requestParameters.justSeeId;
+        if (requestParameters['justSeeId'] != null) {
+            queryParameters['justSeeId'] = requestParameters['justSeeId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -221,8 +233,11 @@ export class CommentAreaApi extends runtime.BaseAPI {
      * 为评论点赞
      */
     async ratesCommentsRaw(requestParameters: RatesCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
-        if (requestParameters.commentsRatingDTO === null || requestParameters.commentsRatingDTO === undefined) {
-            throw new runtime.RequiredError('commentsRatingDTO','Required parameter requestParameters.commentsRatingDTO was null or undefined when calling ratesComments.');
+        if (requestParameters['commentsRatingDTO'] == null) {
+            throw new runtime.RequiredError(
+                'commentsRatingDTO',
+                'Required parameter "commentsRatingDTO" was null or undefined when calling ratesComments().'
+            );
         }
 
         const queryParameters: any = {};
@@ -244,7 +259,7 @@ export class CommentAreaApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CommentsRatingDTOToJSON(requestParameters.commentsRatingDTO),
+            body: CommentsRatingDTOToJSON(requestParameters['commentsRatingDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
@@ -262,8 +277,11 @@ export class CommentAreaApi extends runtime.BaseAPI {
      * 发送评论
      */
     async sendCommentsRaw(requestParameters: SendCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
-        if (requestParameters.commentsAddDTO === null || requestParameters.commentsAddDTO === undefined) {
-            throw new runtime.RequiredError('commentsAddDTO','Required parameter requestParameters.commentsAddDTO was null or undefined when calling sendComments.');
+        if (requestParameters['commentsAddDTO'] == null) {
+            throw new runtime.RequiredError(
+                'commentsAddDTO',
+                'Required parameter "commentsAddDTO" was null or undefined when calling sendComments().'
+            );
         }
 
         const queryParameters: any = {};
@@ -285,7 +303,7 @@ export class CommentAreaApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CommentsAddDTOToJSON(requestParameters.commentsAddDTO),
+            body: CommentsAddDTOToJSON(requestParameters['commentsAddDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
@@ -303,8 +321,11 @@ export class CommentAreaApi extends runtime.BaseAPI {
      * 为评论置顶/取消置顶
      */
     async toppingCommentsRaw(requestParameters: ToppingCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
-        if (requestParameters.commentsToppingDTO === null || requestParameters.commentsToppingDTO === undefined) {
-            throw new runtime.RequiredError('commentsToppingDTO','Required parameter requestParameters.commentsToppingDTO was null or undefined when calling toppingComments.');
+        if (requestParameters['commentsToppingDTO'] == null) {
+            throw new runtime.RequiredError(
+                'commentsToppingDTO',
+                'Required parameter "commentsToppingDTO" was null or undefined when calling toppingComments().'
+            );
         }
 
         const queryParameters: any = {};
@@ -326,7 +347,7 @@ export class CommentAreaApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CommentsToppingDTOToJSON(requestParameters.commentsToppingDTO),
+            body: CommentsToppingDTOToJSON(requestParameters['commentsToppingDTO']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
