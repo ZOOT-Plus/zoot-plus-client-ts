@@ -24,6 +24,12 @@ export interface GitProperties {
      * @type {string}
      * @memberof GitProperties
      */
+    commitId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GitProperties
+     */
     branch?: string;
     /**
      * 
@@ -37,12 +43,6 @@ export interface GitProperties {
      * @memberof GitProperties
      */
     commitTime?: Date;
-    /**
-     * 
-     * @type {string}
-     * @memberof GitProperties
-     */
-    commitId?: string;
 }
 
 /**
@@ -62,10 +62,10 @@ export function GitPropertiesFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'commitId': json['commit_id'] == null ? undefined : json['commit_id'],
         'branch': json['branch'] == null ? undefined : json['branch'],
         'shortCommitId': json['short_commit_id'] == null ? undefined : json['short_commit_id'],
         'commitTime': json['commit_time'] == null ? undefined : (new Date(json['commit_time'])),
-        'commitId': json['commit_id'] == null ? undefined : json['commit_id'],
     };
 }
 
@@ -80,10 +80,10 @@ export function GitPropertiesFromJSONTyped(json: any, ignoreDiscriminator: boole
 
     return {
         
+        'commit_id': value['commitId'],
         'branch': value['branch'],
         'short_commit_id': value['shortCommitId'],
         'commit_time': value['commitTime'] == null ? undefined : ((value['commitTime']).toISOString()),
-        'commit_id': value['commitId'],
     };
 }
 
