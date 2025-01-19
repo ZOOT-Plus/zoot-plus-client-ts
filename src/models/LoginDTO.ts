@@ -57,11 +57,11 @@ export function LoginDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     };
 }
 
-  export function LoginDTOToJSON(json: any): LoginDTO {
-      return LoginDTOToJSONTyped(json, false);
-  }
+export function LoginDTOToJSON(json: any): LoginDTO {
+    return LoginDTOToJSONTyped(json, false);
+}
 
-  export function LoginDTOToJSONTyped(value?: LoginDTO | null, ignoreDiscriminator: boolean = false): any {
+export function LoginDTOToJSONTyped(value?: LoginDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

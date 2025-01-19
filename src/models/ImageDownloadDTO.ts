@@ -78,11 +78,11 @@ export function ImageDownloadDTOFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-  export function ImageDownloadDTOToJSON(json: any): ImageDownloadDTO {
-      return ImageDownloadDTOToJSONTyped(json, false);
-  }
+export function ImageDownloadDTOToJSON(json: any): ImageDownloadDTO {
+    return ImageDownloadDTOToJSONTyped(json, false);
+}
 
-  export function ImageDownloadDTOToJSONTyped(value?: ImageDownloadDTO | null, ignoreDiscriminator: boolean = false): any {
+export function ImageDownloadDTOToJSONTyped(value?: ImageDownloadDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

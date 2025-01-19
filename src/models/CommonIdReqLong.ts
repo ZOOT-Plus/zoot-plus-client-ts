@@ -49,11 +49,11 @@ export function CommonIdReqLongFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-  export function CommonIdReqLongToJSON(json: any): CommonIdReqLong {
-      return CommonIdReqLongToJSONTyped(json, false);
-  }
+export function CommonIdReqLongToJSON(json: any): CommonIdReqLong {
+    return CommonIdReqLongToJSONTyped(json, false);
+}
 
-  export function CommonIdReqLongToJSONTyped(value?: CommonIdReqLong | null, ignoreDiscriminator: boolean = false): any {
+export function CommonIdReqLongToJSONTyped(value?: CommonIdReqLong | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

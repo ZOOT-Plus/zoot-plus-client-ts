@@ -71,11 +71,11 @@ export function MaaResultCopilotSetPageResFromJSONTyped(json: any, ignoreDiscrim
     };
 }
 
-  export function MaaResultCopilotSetPageResToJSON(json: any): MaaResultCopilotSetPageRes {
-      return MaaResultCopilotSetPageResToJSONTyped(json, false);
-  }
+export function MaaResultCopilotSetPageResToJSON(json: any): MaaResultCopilotSetPageRes {
+    return MaaResultCopilotSetPageResToJSONTyped(json, false);
+}
 
-  export function MaaResultCopilotSetPageResToJSONTyped(value?: MaaResultCopilotSetPageRes | null, ignoreDiscriminator: boolean = false): any {
+export function MaaResultCopilotSetPageResToJSONTyped(value?: MaaResultCopilotSetPageRes | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

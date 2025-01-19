@@ -49,11 +49,11 @@ export function CommentsDeleteDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-  export function CommentsDeleteDTOToJSON(json: any): CommentsDeleteDTO {
-      return CommentsDeleteDTOToJSONTyped(json, false);
-  }
+export function CommentsDeleteDTOToJSON(json: any): CommentsDeleteDTO {
+    return CommentsDeleteDTOToJSONTyped(json, false);
+}
 
-  export function CommentsDeleteDTOToJSONTyped(value?: CommentsDeleteDTO | null, ignoreDiscriminator: boolean = false): any {
+export function CommentsDeleteDTOToJSONTyped(value?: CommentsDeleteDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -83,11 +83,11 @@ export function CopilotSetCreateReqFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-  export function CopilotSetCreateReqToJSON(json: any): CopilotSetCreateReq {
-      return CopilotSetCreateReqToJSONTyped(json, false);
-  }
+export function CopilotSetCreateReqToJSON(json: any): CopilotSetCreateReq {
+    return CopilotSetCreateReqToJSONTyped(json, false);
+}
 
-  export function CopilotSetCreateReqToJSONTyped(value?: CopilotSetCreateReq | null, ignoreDiscriminator: boolean = false): any {
+export function CopilotSetCreateReqToJSONTyped(value?: CopilotSetCreateReq | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -73,11 +73,11 @@ export function RegisterDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-  export function RegisterDTOToJSON(json: any): RegisterDTO {
-      return RegisterDTOToJSONTyped(json, false);
-  }
+export function RegisterDTOToJSON(json: any): RegisterDTO {
+    return RegisterDTOToJSONTyped(json, false);
+}
 
-  export function RegisterDTOToJSONTyped(value?: RegisterDTO | null, ignoreDiscriminator: boolean = false): any {
+export function RegisterDTOToJSONTyped(value?: RegisterDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

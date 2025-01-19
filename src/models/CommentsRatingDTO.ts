@@ -57,11 +57,11 @@ export function CommentsRatingDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-  export function CommentsRatingDTOToJSON(json: any): CommentsRatingDTO {
-      return CommentsRatingDTOToJSONTyped(json, false);
-  }
+export function CommentsRatingDTOToJSON(json: any): CommentsRatingDTO {
+    return CommentsRatingDTOToJSONTyped(json, false);
+}
 
-  export function CommentsRatingDTOToJSONTyped(value?: CommentsRatingDTO | null, ignoreDiscriminator: boolean = false): any {
+export function CommentsRatingDTOToJSONTyped(value?: CommentsRatingDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

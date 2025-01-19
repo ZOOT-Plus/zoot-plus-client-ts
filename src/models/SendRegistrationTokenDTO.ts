@@ -49,11 +49,11 @@ export function SendRegistrationTokenDTOFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-  export function SendRegistrationTokenDTOToJSON(json: any): SendRegistrationTokenDTO {
-      return SendRegistrationTokenDTOToJSONTyped(json, false);
-  }
+export function SendRegistrationTokenDTOToJSON(json: any): SendRegistrationTokenDTO {
+    return SendRegistrationTokenDTOToJSONTyped(json, false);
+}
 
-  export function SendRegistrationTokenDTOToJSONTyped(value?: SendRegistrationTokenDTO | null, ignoreDiscriminator: boolean = false): any {
+export function SendRegistrationTokenDTOToJSONTyped(value?: SendRegistrationTokenDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

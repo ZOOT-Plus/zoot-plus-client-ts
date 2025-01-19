@@ -14,13 +14,13 @@
 
 import { mapValues } from '../runtime';
 /**
- * 通过邮件修改密码发送验证码请求
+ * 
  * @export
  * @interface PasswordResetVCodeDTO
  */
 export interface PasswordResetVCodeDTO {
     /**
-     * 邮箱
+     * 
      * @type {string}
      * @memberof PasswordResetVCodeDTO
      */
@@ -49,11 +49,11 @@ export function PasswordResetVCodeDTOFromJSONTyped(json: any, ignoreDiscriminato
     };
 }
 
-  export function PasswordResetVCodeDTOToJSON(json: any): PasswordResetVCodeDTO {
-      return PasswordResetVCodeDTOToJSONTyped(json, false);
-  }
+export function PasswordResetVCodeDTOToJSON(json: any): PasswordResetVCodeDTO {
+    return PasswordResetVCodeDTOToJSONTyped(json, false);
+}
 
-  export function PasswordResetVCodeDTOToJSONTyped(value?: PasswordResetVCodeDTO | null, ignoreDiscriminator: boolean = false): any {
+export function PasswordResetVCodeDTOToJSONTyped(value?: PasswordResetVCodeDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

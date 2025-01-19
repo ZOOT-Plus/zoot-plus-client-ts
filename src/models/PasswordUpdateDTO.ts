@@ -57,11 +57,11 @@ export function PasswordUpdateDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-  export function PasswordUpdateDTOToJSON(json: any): PasswordUpdateDTO {
-      return PasswordUpdateDTOToJSONTyped(json, false);
-  }
+export function PasswordUpdateDTOToJSON(json: any): PasswordUpdateDTO {
+    return PasswordUpdateDTOToJSONTyped(json, false);
+}
 
-  export function PasswordUpdateDTOToJSONTyped(value?: PasswordUpdateDTO | null, ignoreDiscriminator: boolean = false): any {
+export function PasswordUpdateDTOToJSONTyped(value?: PasswordUpdateDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

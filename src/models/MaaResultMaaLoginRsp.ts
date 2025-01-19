@@ -71,11 +71,11 @@ export function MaaResultMaaLoginRspFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-  export function MaaResultMaaLoginRspToJSON(json: any): MaaResultMaaLoginRsp {
-      return MaaResultMaaLoginRspToJSONTyped(json, false);
-  }
+export function MaaResultMaaLoginRspToJSON(json: any): MaaResultMaaLoginRsp {
+    return MaaResultMaaLoginRspToJSONTyped(json, false);
+}
 
-  export function MaaResultMaaLoginRspToJSONTyped(value?: MaaResultMaaLoginRsp | null, ignoreDiscriminator: boolean = false): any {
+export function MaaResultMaaLoginRspToJSONTyped(value?: MaaResultMaaLoginRsp | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

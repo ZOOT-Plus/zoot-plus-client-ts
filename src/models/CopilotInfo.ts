@@ -161,11 +161,11 @@ export function CopilotInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-  export function CopilotInfoToJSON(json: any): CopilotInfo {
-      return CopilotInfoToJSONTyped(json, false);
-  }
+export function CopilotInfoToJSON(json: any): CopilotInfo {
+    return CopilotInfoToJSONTyped(json, false);
+}
 
-  export function CopilotInfoToJSONTyped(value?: CopilotInfo | null, ignoreDiscriminator: boolean = false): any {
+export function CopilotInfoToJSONTyped(value?: CopilotInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

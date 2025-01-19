@@ -63,11 +63,11 @@ export function MaaResultStringFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-  export function MaaResultStringToJSON(json: any): MaaResultString {
-      return MaaResultStringToJSONTyped(json, false);
-  }
+export function MaaResultStringToJSON(json: any): MaaResultString {
+    return MaaResultStringToJSONTyped(json, false);
+}
 
-  export function MaaResultStringToJSONTyped(value?: MaaResultString | null, ignoreDiscriminator: boolean = false): any {
+export function MaaResultStringToJSONTyped(value?: MaaResultString | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

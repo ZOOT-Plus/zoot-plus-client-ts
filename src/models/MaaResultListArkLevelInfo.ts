@@ -71,11 +71,11 @@ export function MaaResultListArkLevelInfoFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-  export function MaaResultListArkLevelInfoToJSON(json: any): MaaResultListArkLevelInfo {
-      return MaaResultListArkLevelInfoToJSONTyped(json, false);
-  }
+export function MaaResultListArkLevelInfoToJSON(json: any): MaaResultListArkLevelInfo {
+    return MaaResultListArkLevelInfoToJSONTyped(json, false);
+}
 
-  export function MaaResultListArkLevelInfoToJSONTyped(value?: MaaResultListArkLevelInfo | null, ignoreDiscriminator: boolean = false): any {
+export function MaaResultListArkLevelInfoToJSONTyped(value?: MaaResultListArkLevelInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -55,11 +55,11 @@ export function CopilotCUDRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-  export function CopilotCUDRequestToJSON(json: any): CopilotCUDRequest {
-      return CopilotCUDRequestToJSONTyped(json, false);
-  }
+export function CopilotCUDRequestToJSON(json: any): CopilotCUDRequest {
+    return CopilotCUDRequestToJSONTyped(json, false);
+}
 
-  export function CopilotCUDRequestToJSONTyped(value?: CopilotCUDRequest | null, ignoreDiscriminator: boolean = false): any {
+export function CopilotCUDRequestToJSONTyped(value?: CopilotCUDRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

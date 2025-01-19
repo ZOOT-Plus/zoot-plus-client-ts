@@ -105,11 +105,11 @@ export function MaaLoginRspFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-  export function MaaLoginRspToJSON(json: any): MaaLoginRsp {
-      return MaaLoginRspToJSONTyped(json, false);
-  }
+export function MaaLoginRspToJSON(json: any): MaaLoginRsp {
+    return MaaLoginRspToJSONTyped(json, false);
+}
 
-  export function MaaLoginRspToJSONTyped(value?: MaaLoginRsp | null, ignoreDiscriminator: boolean = false): any {
+export function MaaLoginRspToJSONTyped(value?: MaaLoginRsp | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

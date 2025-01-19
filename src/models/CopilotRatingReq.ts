@@ -57,11 +57,11 @@ export function CopilotRatingReqFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-  export function CopilotRatingReqToJSON(json: any): CopilotRatingReq {
-      return CopilotRatingReqToJSONTyped(json, false);
-  }
+export function CopilotRatingReqToJSON(json: any): CopilotRatingReq {
+    return CopilotRatingReqToJSONTyped(json, false);
+}
 
-  export function CopilotRatingReqToJSONTyped(value?: CopilotRatingReq | null, ignoreDiscriminator: boolean = false): any {
+export function CopilotRatingReqToJSONTyped(value?: CopilotRatingReq | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

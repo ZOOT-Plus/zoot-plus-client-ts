@@ -121,11 +121,11 @@ export function SubCommentsInfoFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-  export function SubCommentsInfoToJSON(json: any): SubCommentsInfo {
-      return SubCommentsInfoToJSONTyped(json, false);
-  }
+export function SubCommentsInfoToJSON(json: any): SubCommentsInfo {
+    return SubCommentsInfoToJSONTyped(json, false);
+}
 
-  export function SubCommentsInfoToJSONTyped(value?: SubCommentsInfo | null, ignoreDiscriminator: boolean = false): any {
+export function SubCommentsInfoToJSONTyped(value?: SubCommentsInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

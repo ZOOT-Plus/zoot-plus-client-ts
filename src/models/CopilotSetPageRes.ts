@@ -81,11 +81,11 @@ export function CopilotSetPageResFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-  export function CopilotSetPageResToJSON(json: any): CopilotSetPageRes {
-      return CopilotSetPageResToJSONTyped(json, false);
-  }
+export function CopilotSetPageResToJSON(json: any): CopilotSetPageRes {
+    return CopilotSetPageResToJSONTyped(json, false);
+}
 
-  export function CopilotSetPageResToJSONTyped(value?: CopilotSetPageRes | null, ignoreDiscriminator: boolean = false): any {
+export function CopilotSetPageResToJSONTyped(value?: CopilotSetPageRes | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

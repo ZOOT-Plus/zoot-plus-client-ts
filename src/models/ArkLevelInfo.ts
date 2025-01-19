@@ -105,11 +105,11 @@ export function ArkLevelInfoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-  export function ArkLevelInfoToJSON(json: any): ArkLevelInfo {
-      return ArkLevelInfoToJSONTyped(json, false);
-  }
+export function ArkLevelInfoToJSON(json: any): ArkLevelInfo {
+    return ArkLevelInfoToJSONTyped(json, false);
+}
 
-  export function ArkLevelInfoToJSONTyped(value?: ArkLevelInfo | null, ignoreDiscriminator: boolean = false): any {
+export function ArkLevelInfoToJSONTyped(value?: ArkLevelInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

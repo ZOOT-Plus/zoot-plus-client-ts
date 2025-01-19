@@ -31,12 +31,6 @@ export interface MaaResultUnit {
      * @memberof MaaResultUnit
      */
     message?: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof MaaResultUnit
-     */
-    data?: object;
 }
 
 /**
@@ -59,15 +53,14 @@ export function MaaResultUnitFromJSONTyped(json: any, ignoreDiscriminator: boole
         
         'statusCode': json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
-        'data': json['data'] == null ? undefined : json['data'],
     };
 }
 
-  export function MaaResultUnitToJSON(json: any): MaaResultUnit {
-      return MaaResultUnitToJSONTyped(json, false);
-  }
+export function MaaResultUnitToJSON(json: any): MaaResultUnit {
+    return MaaResultUnitToJSONTyped(json, false);
+}
 
-  export function MaaResultUnitToJSONTyped(value?: MaaResultUnit | null, ignoreDiscriminator: boolean = false): any {
+export function MaaResultUnitToJSONTyped(value?: MaaResultUnit | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -76,7 +69,6 @@ export function MaaResultUnitFromJSONTyped(json: any, ignoreDiscriminator: boole
         
         'status_code': value['statusCode'],
         'message': value['message'],
-        'data': value['data'],
     };
 }
 

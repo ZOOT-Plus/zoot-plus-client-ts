@@ -57,11 +57,11 @@ export function CommentsToppingDTOFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-  export function CommentsToppingDTOToJSON(json: any): CommentsToppingDTO {
-      return CommentsToppingDTOToJSONTyped(json, false);
-  }
+export function CommentsToppingDTOToJSON(json: any): CommentsToppingDTO {
+    return CommentsToppingDTOToJSONTyped(json, false);
+}
 
-  export function CommentsToppingDTOToJSONTyped(value?: CommentsToppingDTO | null, ignoreDiscriminator: boolean = false): any {
+export function CommentsToppingDTOToJSONTyped(value?: CommentsToppingDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

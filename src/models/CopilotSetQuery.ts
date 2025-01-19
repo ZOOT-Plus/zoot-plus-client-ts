@@ -78,11 +78,11 @@ export function CopilotSetQueryFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-  export function CopilotSetQueryToJSON(json: any): CopilotSetQuery {
-      return CopilotSetQueryToJSONTyped(json, false);
-  }
+export function CopilotSetQueryToJSON(json: any): CopilotSetQuery {
+    return CopilotSetQueryToJSONTyped(json, false);
+}
 
-  export function CopilotSetQueryToJSONTyped(value?: CopilotSetQuery | null, ignoreDiscriminator: boolean = false): any {
+export function CopilotSetQueryToJSONTyped(value?: CopilotSetQuery | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

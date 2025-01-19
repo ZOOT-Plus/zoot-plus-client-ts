@@ -123,11 +123,11 @@ export function CopilotSetResFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-  export function CopilotSetResToJSON(json: any): CopilotSetRes {
-      return CopilotSetResToJSONTyped(json, false);
-  }
+export function CopilotSetResToJSON(json: any): CopilotSetRes {
+    return CopilotSetResToJSONTyped(json, false);
+}
 
-  export function CopilotSetResToJSONTyped(value?: CopilotSetRes | null, ignoreDiscriminator: boolean = false): any {
+export function CopilotSetResToJSONTyped(value?: CopilotSetRes | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

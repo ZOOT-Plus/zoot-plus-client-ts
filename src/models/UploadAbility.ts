@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface UploadAbility {
     /**
-     * 是否开启上传功能
+     * 
      * @type {boolean}
      * @memberof UploadAbility
      */
@@ -49,11 +49,11 @@ export function UploadAbilityFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-  export function UploadAbilityToJSON(json: any): UploadAbility {
-      return UploadAbilityToJSONTyped(json, false);
-  }
+export function UploadAbilityToJSON(json: any): UploadAbility {
+    return UploadAbilityToJSONTyped(json, false);
+}
 
-  export function UploadAbilityToJSONTyped(value?: UploadAbility | null, ignoreDiscriminator: boolean = false): any {
+export function UploadAbilityToJSONTyped(value?: UploadAbility | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

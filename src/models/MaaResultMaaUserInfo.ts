@@ -71,11 +71,11 @@ export function MaaResultMaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-  export function MaaResultMaaUserInfoToJSON(json: any): MaaResultMaaUserInfo {
-      return MaaResultMaaUserInfoToJSONTyped(json, false);
-  }
+export function MaaResultMaaUserInfoToJSON(json: any): MaaResultMaaUserInfo {
+    return MaaResultMaaUserInfoToJSONTyped(json, false);
+}
 
-  export function MaaResultMaaUserInfoToJSONTyped(value?: MaaResultMaaUserInfo | null, ignoreDiscriminator: boolean = false): any {
+export function MaaResultMaaUserInfoToJSONTyped(value?: MaaResultMaaUserInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

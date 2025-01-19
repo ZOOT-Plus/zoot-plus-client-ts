@@ -71,11 +71,11 @@ export function MaaResultMaaSystemInfoFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-  export function MaaResultMaaSystemInfoToJSON(json: any): MaaResultMaaSystemInfo {
-      return MaaResultMaaSystemInfoToJSONTyped(json, false);
-  }
+export function MaaResultMaaSystemInfoToJSON(json: any): MaaResultMaaSystemInfo {
+    return MaaResultMaaSystemInfoToJSONTyped(json, false);
+}
 
-  export function MaaResultMaaSystemInfoToJSONTyped(value?: MaaResultMaaSystemInfo | null, ignoreDiscriminator: boolean = false): any {
+export function MaaResultMaaSystemInfoToJSONTyped(value?: MaaResultMaaSystemInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

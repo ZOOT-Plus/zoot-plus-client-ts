@@ -63,11 +63,11 @@ export function MaaResultLongFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-  export function MaaResultLongToJSON(json: any): MaaResultLong {
-      return MaaResultLongToJSONTyped(json, false);
-  }
+export function MaaResultLongToJSON(json: any): MaaResultLong {
+    return MaaResultLongToJSONTyped(json, false);
+}
 
-  export function MaaResultLongToJSONTyped(value?: MaaResultLong | null, ignoreDiscriminator: boolean = false): any {
+export function MaaResultLongToJSONTyped(value?: MaaResultLong | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

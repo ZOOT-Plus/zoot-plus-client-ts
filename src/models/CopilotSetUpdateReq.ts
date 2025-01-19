@@ -87,11 +87,11 @@ export function CopilotSetUpdateReqFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-  export function CopilotSetUpdateReqToJSON(json: any): CopilotSetUpdateReq {
-      return CopilotSetUpdateReqToJSONTyped(json, false);
-  }
+export function CopilotSetUpdateReqToJSON(json: any): CopilotSetUpdateReq {
+    return CopilotSetUpdateReqToJSONTyped(json, false);
+}
 
-  export function CopilotSetUpdateReqToJSONTyped(value?: CopilotSetUpdateReq | null, ignoreDiscriminator: boolean = false): any {
+export function CopilotSetUpdateReqToJSONTyped(value?: CopilotSetUpdateReq | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

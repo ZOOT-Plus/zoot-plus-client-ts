@@ -20,9 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface CommentsAddDTO {
     /**
-     * 评论内容
-     *  500字长度为对作者的限制，对于非作者限制为150字
-     *  在业务层中实现
+     * 
      * @type {string}
      * @memberof CommentsAddDTO
      */
@@ -40,7 +38,7 @@ export interface CommentsAddDTO {
      */
     fromCommentId?: string;
     /**
-     * 是否接收通知
+     * 
      * @type {boolean}
      * @memberof CommentsAddDTO
      */
@@ -74,11 +72,11 @@ export function CommentsAddDTOFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-  export function CommentsAddDTOToJSON(json: any): CommentsAddDTO {
-      return CommentsAddDTOToJSONTyped(json, false);
-  }
+export function CommentsAddDTOToJSON(json: any): CommentsAddDTO {
+    return CommentsAddDTOToJSONTyped(json, false);
+}
 
-  export function CommentsAddDTOToJSONTyped(value?: CommentsAddDTO | null, ignoreDiscriminator: boolean = false): any {
+export function CommentsAddDTOToJSONTyped(value?: CommentsAddDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

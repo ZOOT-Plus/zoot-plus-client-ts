@@ -49,11 +49,11 @@ export function RefreshReqFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-  export function RefreshReqToJSON(json: any): RefreshReq {
-      return RefreshReqToJSONTyped(json, false);
-  }
+export function RefreshReqToJSON(json: any): RefreshReq {
+    return RefreshReqToJSONTyped(json, false);
+}
 
-  export function RefreshReqToJSONTyped(value?: RefreshReq | null, ignoreDiscriminator: boolean = false): any {
+export function RefreshReqToJSONTyped(value?: RefreshReq | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

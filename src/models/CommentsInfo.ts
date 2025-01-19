@@ -121,11 +121,11 @@ export function CommentsInfoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-  export function CommentsInfoToJSON(json: any): CommentsInfo {
-      return CommentsInfoToJSONTyped(json, false);
-  }
+export function CommentsInfoToJSON(json: any): CommentsInfo {
+    return CommentsInfoToJSONTyped(json, false);
+}
 
-  export function CommentsInfoToJSONTyped(value?: CommentsInfo | null, ignoreDiscriminator: boolean = false): any {
+export function CommentsInfoToJSONTyped(value?: CommentsInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

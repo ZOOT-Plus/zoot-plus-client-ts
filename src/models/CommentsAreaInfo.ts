@@ -34,13 +34,13 @@ export interface CommentsAreaInfo {
      */
     hasNext: boolean;
     /**
-     * Total number of pages
+     * 
      * @type {number}
      * @memberof CommentsAreaInfo
      */
     page: number;
     /**
-     * Total number of elements
+     * 
      * @type {number}
      * @memberof CommentsAreaInfo
      */
@@ -81,11 +81,11 @@ export function CommentsAreaInfoFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-  export function CommentsAreaInfoToJSON(json: any): CommentsAreaInfo {
-      return CommentsAreaInfoToJSONTyped(json, false);
-  }
+export function CommentsAreaInfoToJSON(json: any): CommentsAreaInfo {
+    return CommentsAreaInfoToJSONTyped(json, false);
+}
 
-  export function CommentsAreaInfoToJSONTyped(value?: CommentsAreaInfo | null, ignoreDiscriminator: boolean = false): any {
+export function CommentsAreaInfoToJSONTyped(value?: CommentsAreaInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

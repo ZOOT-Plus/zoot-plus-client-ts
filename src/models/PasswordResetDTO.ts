@@ -14,13 +14,13 @@
 
 import { mapValues } from '../runtime';
 /**
- * 通过邮件修改密码请求
+ * 
  * @export
  * @interface PasswordResetDTO
  */
 export interface PasswordResetDTO {
     /**
-     * 邮箱
+     * 
      * @type {string}
      * @memberof PasswordResetDTO
      */
@@ -32,7 +32,7 @@ export interface PasswordResetDTO {
      */
     activeCode: string;
     /**
-     * 修改后的密码
+     * 
      * @type {string}
      * @memberof PasswordResetDTO
      */
@@ -65,11 +65,11 @@ export function PasswordResetDTOFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-  export function PasswordResetDTOToJSON(json: any): PasswordResetDTO {
-      return PasswordResetDTOToJSONTyped(json, false);
-  }
+export function PasswordResetDTOToJSON(json: any): PasswordResetDTO {
+    return PasswordResetDTOToJSONTyped(json, false);
+}
 
-  export function PasswordResetDTOToJSONTyped(value?: PasswordResetDTO | null, ignoreDiscriminator: boolean = false): any {
+export function PasswordResetDTOToJSONTyped(value?: PasswordResetDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

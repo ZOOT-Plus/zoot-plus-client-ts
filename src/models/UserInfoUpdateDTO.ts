@@ -49,11 +49,11 @@ export function UserInfoUpdateDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-  export function UserInfoUpdateDTOToJSON(json: any): UserInfoUpdateDTO {
-      return UserInfoUpdateDTOToJSONTyped(json, false);
-  }
+export function UserInfoUpdateDTOToJSON(json: any): UserInfoUpdateDTO {
+    return UserInfoUpdateDTOToJSONTyped(json, false);
+}
 
-  export function UserInfoUpdateDTOToJSONTyped(value?: UserInfoUpdateDTO | null, ignoreDiscriminator: boolean = false): any {
+export function UserInfoUpdateDTOToJSONTyped(value?: UserInfoUpdateDTO | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

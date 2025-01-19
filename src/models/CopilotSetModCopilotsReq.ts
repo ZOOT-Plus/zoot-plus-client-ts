@@ -57,11 +57,11 @@ export function CopilotSetModCopilotsReqFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-  export function CopilotSetModCopilotsReqToJSON(json: any): CopilotSetModCopilotsReq {
-      return CopilotSetModCopilotsReqToJSONTyped(json, false);
-  }
+export function CopilotSetModCopilotsReqToJSON(json: any): CopilotSetModCopilotsReq {
+    return CopilotSetModCopilotsReqToJSONTyped(json, false);
+}
 
-  export function CopilotSetModCopilotsReqToJSONTyped(value?: CopilotSetModCopilotsReq | null, ignoreDiscriminator: boolean = false): any {
+export function CopilotSetModCopilotsReqToJSONTyped(value?: CopilotSetModCopilotsReq | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime';
 /**
- * 用户可对外公开的信息
+ * 
  * @export
  * @interface MaaUserInfo
  */
@@ -65,11 +65,11 @@ export function MaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-  export function MaaUserInfoToJSON(json: any): MaaUserInfo {
-      return MaaUserInfoToJSONTyped(json, false);
-  }
+export function MaaUserInfoToJSON(json: any): MaaUserInfo {
+    return MaaUserInfoToJSONTyped(json, false);
+}
 
-  export function MaaUserInfoToJSONTyped(value?: MaaUserInfo | null, ignoreDiscriminator: boolean = false): any {
+export function MaaUserInfoToJSONTyped(value?: MaaUserInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

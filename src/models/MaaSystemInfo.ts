@@ -81,11 +81,11 @@ export function MaaSystemInfoFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-  export function MaaSystemInfoToJSON(json: any): MaaSystemInfo {
-      return MaaSystemInfoToJSONTyped(json, false);
-  }
+export function MaaSystemInfoToJSON(json: any): MaaSystemInfo {
+    return MaaSystemInfoToJSONTyped(json, false);
+}
 
-  export function MaaSystemInfoToJSONTyped(value?: MaaSystemInfo | null, ignoreDiscriminator: boolean = false): any {
+export function MaaSystemInfoToJSONTyped(value?: MaaSystemInfo | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
