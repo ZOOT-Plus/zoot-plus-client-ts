@@ -24,19 +24,38 @@ export interface CopilotCUDRequest {
      * @type {string}
      * @memberof CopilotCUDRequest
      */
-    content?: string;
+    content: string;
     /**
      * 
      * @type {number}
      * @memberof CopilotCUDRequest
      */
     id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CopilotCUDRequest
+     */
+    status: CopilotCUDRequestStatusEnum;
 }
+
+
+/**
+ * @export
+ */
+export const CopilotCUDRequestStatusEnum = {
+    Private: 'PRIVATE',
+    Public: 'PUBLIC'
+} as const;
+export type CopilotCUDRequestStatusEnum = typeof CopilotCUDRequestStatusEnum[keyof typeof CopilotCUDRequestStatusEnum];
+
 
 /**
  * Check if a given object implements the CopilotCUDRequest interface.
  */
 export function instanceOfCopilotCUDRequest(value: object): value is CopilotCUDRequest {
+    if (!('content' in value) || value['content'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
 
@@ -50,8 +69,9 @@ export function CopilotCUDRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'content': json['content'] == null ? undefined : json['content'],
+        'content': json['content'],
         'id': json['id'] == null ? undefined : json['id'],
+        'status': json['status'],
     };
 }
 
@@ -68,6 +88,7 @@ export function CopilotCUDRequestToJSONTyped(value?: CopilotCUDRequest | null, i
         
         'content': value['content'],
         'id': value['id'],
+        'status': value['status'],
     };
 }
 

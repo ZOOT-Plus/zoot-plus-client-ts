@@ -16,6 +16,7 @@
 import * as runtime from '../runtime';
 import type {
   LoginDTO,
+  MaaResultListMaaUserInfo,
   MaaResultMaaLoginRsp,
   MaaResultMaaUserInfo,
   MaaResultUnit,
@@ -30,6 +31,8 @@ import type {
 import {
     LoginDTOFromJSON,
     LoginDTOToJSON,
+    MaaResultListMaaUserInfoFromJSON,
+    MaaResultListMaaUserInfoToJSON,
     MaaResultMaaLoginRspFromJSON,
     MaaResultMaaLoginRspToJSON,
     MaaResultMaaUserInfoFromJSON,
@@ -74,6 +77,12 @@ export interface RefreshRequest {
 
 export interface RegisterRequest {
     registerDTO: RegisterDTO;
+}
+
+export interface SearchUsersRequest {
+    userName: string;
+    page?: number;
+    size?: number;
 }
 
 export interface SendRegistrationTokenRequest {
@@ -319,6 +328,53 @@ export class CopilotUserApi extends runtime.BaseAPI {
      */
     async register(requestParameters: RegisterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultMaaUserInfo> {
         const response = await this.registerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 用户模糊搜索
+     * 用户模糊搜索
+     */
+    async searchUsersRaw(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultListMaaUserInfo>> {
+        if (requestParameters['userName'] == null) {
+            throw new runtime.RequiredError(
+                'userName',
+                'Required parameter "userName" was null or undefined when calling searchUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['userName'] != null) {
+            queryParameters['userName'] = requestParameters['userName'];
+        }
+
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+
+        if (requestParameters['size'] != null) {
+            queryParameters['size'] = requestParameters['size'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/user/search`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultListMaaUserInfoFromJSON(jsonValue));
+    }
+
+    /**
+     * 用户模糊搜索
+     * 用户模糊搜索
+     */
+    async searchUsers(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultListMaaUserInfo> {
+        const response = await this.searchUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

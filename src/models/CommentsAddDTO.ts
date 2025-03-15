@@ -43,7 +43,24 @@ export interface CommentsAddDTO {
      * @memberof CommentsAddDTO
      */
     notification: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommentsAddDTO
+     */
+    commentStatus: CommentsAddDTOCommentStatusEnum;
 }
+
+
+/**
+ * @export
+ */
+export const CommentsAddDTOCommentStatusEnum = {
+    Enabled: 'ENABLED',
+    Disabled: 'DISABLED'
+} as const;
+export type CommentsAddDTOCommentStatusEnum = typeof CommentsAddDTOCommentStatusEnum[keyof typeof CommentsAddDTOCommentStatusEnum];
+
 
 /**
  * Check if a given object implements the CommentsAddDTO interface.
@@ -52,6 +69,7 @@ export function instanceOfCommentsAddDTO(value: object): value is CommentsAddDTO
     if (!('message' in value) || value['message'] === undefined) return false;
     if (!('copilotId' in value) || value['copilotId'] === undefined) return false;
     if (!('notification' in value) || value['notification'] === undefined) return false;
+    if (!('commentStatus' in value) || value['commentStatus'] === undefined) return false;
     return true;
 }
 
@@ -69,6 +87,7 @@ export function CommentsAddDTOFromJSONTyped(json: any, ignoreDiscriminator: bool
         'copilotId': json['copilot_id'],
         'fromCommentId': json['from_comment_id'] == null ? undefined : json['from_comment_id'],
         'notification': json['notification'],
+        'commentStatus': json['comment_status'],
     };
 }
 
@@ -87,6 +106,7 @@ export function CommentsAddDTOToJSONTyped(value?: CommentsAddDTO | null, ignoreD
         'copilot_id': value['copilotId'],
         'from_comment_id': value['fromCommentId'],
         'notification': value['notification'],
+        'comment_status': value['commentStatus'],
     };
 }
 

@@ -40,6 +40,11 @@ import {
     MaaResultUnitToJSON,
 } from '../models/index';
 
+export interface BanCommentsRequest {
+    copilotId: number;
+    status: BanCommentsStatusEnum;
+}
+
 export interface DeleteCopilotRequest {
     copilotCUDRequest: CopilotCUDRequest;
 }
@@ -83,6 +88,62 @@ export interface UploadCopilotRequest {
  * 
  */
 export class CopilotControllerApi extends runtime.BaseAPI {
+
+    /**
+     * 禁用评论区/开启评论区
+     */
+    async banCommentsRaw(requestParameters: BanCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+        if (requestParameters['copilotId'] == null) {
+            throw new runtime.RequiredError(
+                'copilotId',
+                'Required parameter "copilotId" was null or undefined when calling banComments().'
+            );
+        }
+
+        if (requestParameters['status'] == null) {
+            throw new runtime.RequiredError(
+                'status',
+                'Required parameter "status" was null or undefined when calling banComments().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['copilotId'] != null) {
+            queryParameters['copilotId'] = requestParameters['copilotId'];
+        }
+
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("Jwt", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/copilot/ban`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
+    }
+
+    /**
+     * 禁用评论区/开启评论区
+     */
+    async banComments(requestParameters: BanCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultString> {
+        const response = await this.banCommentsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * 删除作业
@@ -412,3 +473,12 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     }
 
 }
+
+/**
+ * @export
+ */
+export const BanCommentsStatusEnum = {
+    Enabled: 'ENABLED',
+    Disabled: 'DISABLED'
+} as const;
+export type BanCommentsStatusEnum = typeof BanCommentsStatusEnum[keyof typeof BanCommentsStatusEnum];

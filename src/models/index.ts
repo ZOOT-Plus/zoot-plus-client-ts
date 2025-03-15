@@ -31,6 +31,7 @@ export * from './MaaResultCopilotPageInfo';
 export * from './MaaResultCopilotSetPageRes';
 export * from './MaaResultCopilotSetRes';
 export * from './MaaResultListArkLevelInfo';
+export * from './MaaResultListMaaUserInfo';
 export * from './MaaResultLong';
 export * from './MaaResultMaaLoginRsp';
 export * from './MaaResultMaaSystemInfo';

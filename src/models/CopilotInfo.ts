@@ -109,7 +109,39 @@ export interface CopilotInfo {
      * @memberof CopilotInfo
      */
     dislike: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CopilotInfo
+     */
+    commentStatus: CopilotInfoCommentStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CopilotInfo
+     */
+    status: CopilotInfoStatusEnum;
 }
+
+
+/**
+ * @export
+ */
+export const CopilotInfoCommentStatusEnum = {
+    Enabled: 'ENABLED',
+    Disabled: 'DISABLED'
+} as const;
+export type CopilotInfoCommentStatusEnum = typeof CopilotInfoCommentStatusEnum[keyof typeof CopilotInfoCommentStatusEnum];
+
+/**
+ * @export
+ */
+export const CopilotInfoStatusEnum = {
+    Private: 'PRIVATE',
+    Public: 'PUBLIC'
+} as const;
+export type CopilotInfoStatusEnum = typeof CopilotInfoStatusEnum[keyof typeof CopilotInfoStatusEnum];
+
 
 /**
  * Check if a given object implements the CopilotInfo interface.
@@ -130,6 +162,8 @@ export function instanceOfCopilotInfo(value: object): value is CopilotInfo {
     if (!('content' in value) || value['content'] === undefined) return false;
     if (!('like' in value) || value['like'] === undefined) return false;
     if (!('dislike' in value) || value['dislike'] === undefined) return false;
+    if (!('commentStatus' in value) || value['commentStatus'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
 
@@ -158,6 +192,8 @@ export function CopilotInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'content': json['content'],
         'like': json['like'],
         'dislike': json['dislike'],
+        'commentStatus': json['comment_status'],
+        'status': json['status'],
     };
 }
 
@@ -187,6 +223,8 @@ export function CopilotInfoToJSONTyped(value?: CopilotInfo | null, ignoreDiscrim
         'content': value['content'],
         'like': value['like'],
         'dislike': value['dislike'],
+        'comment_status': value['commentStatus'],
+        'status': value['status'],
     };
 }
 
