@@ -1,4 +1,4 @@
-## maa-copilot-client@0.1.0-SNAPSHOT.817.eae2fca
+## maa-copilot-client@0.1.0-SNAPSHOT.820.0e3d9ed
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install maa-copilot-client@0.1.0-SNAPSHOT.817.eae2fca --save
+npm install maa-copilot-client@0.1.0-SNAPSHOT.820.0e3d9ed --save
 ```
 
 _unPublished (not recommended):_
