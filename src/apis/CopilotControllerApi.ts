@@ -70,6 +70,7 @@ export interface QueriesCopilotRequest {
     orderBy?: string;
     language?: string;
     copilotIds?: Array<number>;
+    status?: QueriesCopilotStatusEnum;
 }
 
 export interface RatesCopilotOperationRequest {
@@ -328,6 +329,10 @@ export class CopilotControllerApi extends runtime.BaseAPI {
             queryParameters['copilotIds'] = requestParameters['copilotIds'];
         }
 
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
@@ -482,3 +487,11 @@ export const BanCommentsStatusEnum = {
     Disabled: 'DISABLED'
 } as const;
 export type BanCommentsStatusEnum = typeof BanCommentsStatusEnum[keyof typeof BanCommentsStatusEnum];
+/**
+ * @export
+ */
+export const QueriesCopilotStatusEnum = {
+    Private: 'PRIVATE',
+    Public: 'PUBLIC'
+} as const;
+export type QueriesCopilotStatusEnum = typeof QueriesCopilotStatusEnum[keyof typeof QueriesCopilotStatusEnum];
