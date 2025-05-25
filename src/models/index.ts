@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './ArkLevelInfo';
+export * from './CacheStatInfo';
 export * from './CommentsAddDTO';
 export * from './CommentsAreaInfo';
 export * from './CommentsDeleteDTO';
@@ -36,6 +37,7 @@ export * from './MaaResultLong';
 export * from './MaaResultMaaLoginRsp';
 export * from './MaaResultMaaSystemInfo';
 export * from './MaaResultMaaUserInfo';
+export * from './MaaResultMapStringCacheStatInfo';
 export * from './MaaResultString';
 export * from './MaaResultUnit';
 export * from './MaaResultUploadAbility';

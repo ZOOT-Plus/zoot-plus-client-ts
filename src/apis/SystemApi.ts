@@ -17,18 +17,49 @@ import * as runtime from '../runtime';
 import type {
   MaaResult,
   MaaResultMaaSystemInfo,
+  MaaResultMapStringCacheStatInfo,
 } from '../models/index';
 import {
     MaaResultFromJSON,
     MaaResultToJSON,
     MaaResultMaaSystemInfoFromJSON,
     MaaResultMaaSystemInfoToJSON,
+    MaaResultMapStringCacheStatInfoFromJSON,
+    MaaResultMapStringCacheStatInfoToJSON,
 } from '../models/index';
 
 /**
  * 
  */
 export class SystemApi extends runtime.BaseAPI {
+
+    /**
+     * 返回进程内缓存统计信息
+     * 返回进程内缓存统计信息
+     */
+    async getIntraProcessCacheStatRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMapStringCacheStatInfo>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/cache/stat`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMapStringCacheStatInfoFromJSON(jsonValue));
+    }
+
+    /**
+     * 返回进程内缓存统计信息
+     * 返回进程内缓存统计信息
+     */
+    async getIntraProcessCacheStat(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultMapStringCacheStatInfo> {
+        const response = await this.getIntraProcessCacheStatRaw(initOverrides);
+        return await response.value();
+    }
 
     /**
      * Gets the current version of the server.
