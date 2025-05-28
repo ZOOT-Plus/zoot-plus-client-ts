@@ -48,9 +48,9 @@ export interface ModifyStatus1Request {
 
 export interface QueriesCommentsAreaRequest {
     copilotId: number;
-    page?: number;
-    limit?: number;
-    desc?: boolean;
+    page: number;
+    limit: number;
+    desc: boolean;
     orderBy?: string;
     justSeeId?: string;
 }
@@ -180,6 +180,27 @@ export class CommentAreaApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'copilotId',
                 'Required parameter "copilotId" was null or undefined when calling queriesCommentsArea().'
+            );
+        }
+
+        if (requestParameters['page'] == null) {
+            throw new runtime.RequiredError(
+                'page',
+                'Required parameter "page" was null or undefined when calling queriesCommentsArea().'
+            );
+        }
+
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError(
+                'limit',
+                'Required parameter "limit" was null or undefined when calling queriesCommentsArea().'
+            );
+        }
+
+        if (requestParameters['desc'] == null) {
+            throw new runtime.RequiredError(
+                'desc',
+                'Required parameter "desc" was null or undefined when calling queriesCommentsArea().'
             );
         }
 

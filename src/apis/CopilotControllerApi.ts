@@ -59,14 +59,14 @@ export interface ModifyStatusRequest {
 }
 
 export interface QueriesCopilotRequest {
-    page?: number;
-    limit?: number;
+    page: number;
+    limit: number;
+    desc: boolean;
     levelKeyword?: string;
     operator?: string;
     content?: string;
     document?: string;
     uploaderId?: string;
-    desc?: boolean;
     orderBy?: string;
     language?: string;
     copilotIds?: Array<number>;
@@ -283,6 +283,27 @@ export class CopilotControllerApi extends runtime.BaseAPI {
      * 分页查询作业，提供登录凭据时查询用户自己的作业
      */
     async queriesCopilotRaw(requestParameters: QueriesCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotPageInfo>> {
+        if (requestParameters['page'] == null) {
+            throw new runtime.RequiredError(
+                'page',
+                'Required parameter "page" was null or undefined when calling queriesCopilot().'
+            );
+        }
+
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError(
+                'limit',
+                'Required parameter "limit" was null or undefined when calling queriesCopilot().'
+            );
+        }
+
+        if (requestParameters['desc'] == null) {
+            throw new runtime.RequiredError(
+                'desc',
+                'Required parameter "desc" was null or undefined when calling queriesCopilot().'
+            );
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -348,7 +369,7 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     /**
      * 分页查询作业，提供登录凭据时查询用户自己的作业
      */
-    async queriesCopilot(requestParameters: QueriesCopilotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultCopilotPageInfo> {
+    async queriesCopilot(requestParameters: QueriesCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultCopilotPageInfo> {
         const response = await this.queriesCopilotRaw(requestParameters, initOverrides);
         return await response.value();
     }
