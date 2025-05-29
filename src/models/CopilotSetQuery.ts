@@ -45,6 +45,12 @@ export interface CopilotSetQuery {
     creatorId?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof CopilotSetQuery
+     */
+    onlyFollowing: boolean;
+    /**
+     * 
      * @type {Array<number>}
      * @memberof CopilotSetQuery
      */
@@ -57,6 +63,7 @@ export interface CopilotSetQuery {
 export function instanceOfCopilotSetQuery(value: object): value is CopilotSetQuery {
     if (!('page' in value) || value['page'] === undefined) return false;
     if (!('limit' in value) || value['limit'] === undefined) return false;
+    if (!('onlyFollowing' in value) || value['onlyFollowing'] === undefined) return false;
     return true;
 }
 
@@ -74,6 +81,7 @@ export function CopilotSetQueryFromJSONTyped(json: any, ignoreDiscriminator: boo
         'limit': json['limit'],
         'keyword': json['keyword'] == null ? undefined : json['keyword'],
         'creatorId': json['creator_id'] == null ? undefined : json['creator_id'],
+        'onlyFollowing': json['only_following'],
         'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
     };
 }
@@ -93,6 +101,7 @@ export function CopilotSetQueryToJSONTyped(value?: CopilotSetQuery | null, ignor
         'limit': value['limit'],
         'keyword': value['keyword'],
         'creator_id': value['creatorId'],
+        'only_following': value['onlyFollowing'],
         'copilot_ids': value['copilotIds'],
     };
 }
