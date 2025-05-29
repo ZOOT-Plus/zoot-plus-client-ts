@@ -15,12 +15,12 @@
 
 import * as runtime from '../runtime';
 import type {
-  MaaResultPageMaaUserInfo,
+  MaaResultPagedDTOMaaUserInfo,
   MaaResultUnit,
 } from '../models/index';
 import {
-    MaaResultPageMaaUserInfoFromJSON,
-    MaaResultPageMaaUserInfoToJSON,
+    MaaResultPagedDTOMaaUserInfoFromJSON,
+    MaaResultPagedDTOMaaUserInfoToJSON,
     MaaResultUnitFromJSON,
     MaaResultUnitToJSON,
 } from '../models/index';
@@ -92,7 +92,7 @@ export class UserFollowApi extends runtime.BaseAPI {
     /**
      * 获取粉丝列表
      */
-    async getFansListRaw(requestParameters: GetFansListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPageMaaUserInfo>> {
+    async getFansListRaw(requestParameters: GetFansListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPagedDTOMaaUserInfo>> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -120,13 +120,13 @@ export class UserFollowApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultPageMaaUserInfoFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultPagedDTOMaaUserInfoFromJSON(jsonValue));
     }
 
     /**
      * 获取粉丝列表
      */
-    async getFansList(requestParameters: GetFansListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultPageMaaUserInfo> {
+    async getFansList(requestParameters: GetFansListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultPagedDTOMaaUserInfo> {
         const response = await this.getFansListRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -134,7 +134,7 @@ export class UserFollowApi extends runtime.BaseAPI {
     /**
      * 获取关注列表
      */
-    async getFollowingListRaw(requestParameters: GetFollowingListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPageMaaUserInfo>> {
+    async getFollowingListRaw(requestParameters: GetFollowingListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPagedDTOMaaUserInfo>> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -162,13 +162,13 @@ export class UserFollowApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultPageMaaUserInfoFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultPagedDTOMaaUserInfoFromJSON(jsonValue));
     }
 
     /**
      * 获取关注列表
      */
-    async getFollowingList(requestParameters: GetFollowingListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultPageMaaUserInfo> {
+    async getFollowingList(requestParameters: GetFollowingListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultPagedDTOMaaUserInfo> {
         const response = await this.getFollowingListRaw(requestParameters, initOverrides);
         return await response.value();
     }
