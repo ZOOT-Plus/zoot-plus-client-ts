@@ -7,4 +7,3 @@ export * from './CopilotSetApi';
 export * from './CopilotUserApi';
 export * from './FileControllerApi';
 export * from './SystemApi';
-export * from './UserFollowApi';

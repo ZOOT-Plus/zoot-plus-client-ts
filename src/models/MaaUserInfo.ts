@@ -37,18 +37,6 @@ export interface MaaUserInfo {
      * @memberof MaaUserInfo
      */
     activated: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof MaaUserInfo
-     */
-    followingCount: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MaaUserInfo
-     */
-    fansCount: number;
 }
 
 /**
@@ -58,8 +46,6 @@ export function instanceOfMaaUserInfo(value: object): value is MaaUserInfo {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('userName' in value) || value['userName'] === undefined) return false;
     if (!('activated' in value) || value['activated'] === undefined) return false;
-    if (!('followingCount' in value) || value['followingCount'] === undefined) return false;
-    if (!('fansCount' in value) || value['fansCount'] === undefined) return false;
     return true;
 }
 
@@ -76,8 +62,6 @@ export function MaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'id': json['id'],
         'userName': json['user_name'],
         'activated': json['activated'],
-        'followingCount': json['following_count'],
-        'fansCount': json['fans_count'],
     };
 }
 
@@ -95,8 +79,6 @@ export function MaaUserInfoToJSONTyped(value?: MaaUserInfo | null, ignoreDiscrim
         'id': value['id'],
         'user_name': value['userName'],
         'activated': value['activated'],
-        'following_count': value['followingCount'],
-        'fans_count': value['fansCount'],
     };
 }
 
