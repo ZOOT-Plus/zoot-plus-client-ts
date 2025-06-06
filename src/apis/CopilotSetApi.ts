@@ -20,9 +20,9 @@ import type {
   CopilotSetModCopilotsReq,
   CopilotSetQuery,
   CopilotSetUpdateReq,
-  MaaResultCopilotSetPageRes,
   MaaResultCopilotSetRes,
   MaaResultLong,
+  MaaResultPagedDTOCopilotSetListRes,
   MaaResultUnit,
 } from '../models/index';
 import {
@@ -36,12 +36,12 @@ import {
     CopilotSetQueryToJSON,
     CopilotSetUpdateReqFromJSON,
     CopilotSetUpdateReqToJSON,
-    MaaResultCopilotSetPageResFromJSON,
-    MaaResultCopilotSetPageResToJSON,
     MaaResultCopilotSetResFromJSON,
     MaaResultCopilotSetResToJSON,
     MaaResultLongFromJSON,
     MaaResultLongToJSON,
+    MaaResultPagedDTOCopilotSetListResFromJSON,
+    MaaResultPagedDTOCopilotSetListResToJSON,
     MaaResultUnitFromJSON,
     MaaResultUnitToJSON,
 } from '../models/index';
@@ -251,7 +251,7 @@ export class CopilotSetApi extends runtime.BaseAPI {
     /**
      * 查询作业集列表
      */
-    async querySetsRaw(requestParameters: QuerySetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotSetPageRes>> {
+    async querySetsRaw(requestParameters: QuerySetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPagedDTOCopilotSetListRes>> {
         if (requestParameters['copilotSetQuery'] == null) {
             throw new runtime.RequiredError(
                 'copilotSetQuery',
@@ -273,13 +273,13 @@ export class CopilotSetApi extends runtime.BaseAPI {
             body: CopilotSetQueryToJSON(requestParameters['copilotSetQuery']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultCopilotSetPageResFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultPagedDTOCopilotSetListResFromJSON(jsonValue));
     }
 
     /**
      * 查询作业集列表
      */
-    async querySets(requestParameters: QuerySetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultCopilotSetPageRes> {
+    async querySets(requestParameters: QuerySetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultPagedDTOCopilotSetListRes> {
         const response = await this.querySetsRaw(requestParameters, initOverrides);
         return await response.value();
     }

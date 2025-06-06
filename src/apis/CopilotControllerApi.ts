@@ -62,6 +62,7 @@ export interface QueriesCopilotRequest {
     page: number;
     limit: number;
     desc: boolean;
+    onlyFollowing: boolean;
     levelKeyword?: string;
     operator?: string;
     content?: string;
@@ -304,6 +305,13 @@ export class CopilotControllerApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['onlyFollowing'] == null) {
+            throw new runtime.RequiredError(
+                'onlyFollowing',
+                'Required parameter "onlyFollowing" was null or undefined when calling queriesCopilot().'
+            );
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -352,6 +360,10 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         if (requestParameters['status'] != null) {
             queryParameters['status'] = requestParameters['status'];
+        }
+
+        if (requestParameters['onlyFollowing'] != null) {
+            queryParameters['onlyFollowing'] = requestParameters['onlyFollowing'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
