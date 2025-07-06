@@ -8,3 +8,4 @@ export * from './CopilotUserApi';
 export * from './FileControllerApi';
 export * from './SystemApi';
 export * from './UserFollowApi';
+export * from './WebhookApi';
