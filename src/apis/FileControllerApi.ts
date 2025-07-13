@@ -94,8 +94,11 @@ export class FileControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/file/disable`;
+
         const response = await this.request({
-            path: `/file/disable`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -138,8 +141,11 @@ export class FileControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/file/download`;
+
         const response = await this.request({
-            path: `/file/download`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -199,8 +205,11 @@ export class FileControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/file/download`;
+
         const response = await this.request({
-            path: `/file/download`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -242,8 +251,11 @@ export class FileControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/file/enable`;
+
         const response = await this.request({
-            path: `/file/enable`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -277,8 +289,11 @@ export class FileControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/file/upload_ability`;
+
         const response = await this.request({
-            path: `/file/upload_ability`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -320,8 +335,11 @@ export class FileControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/file/upload_ability`;
+
         const response = await this.request({
-            path: `/file/upload_ability`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -405,8 +423,11 @@ export class FileControllerApi extends runtime.BaseAPI {
             formParams.append('label', requestParameters['label'] as any);
         }
 
+
+        let urlPath = `/file/upload`;
+
         const response = await this.request({
-            path: `/file/upload`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

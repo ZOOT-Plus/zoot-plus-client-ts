@@ -31,8 +31,11 @@ export class WebhookApi extends runtime.BaseAPI {
             headerParameters["X-API-Key"] = await this.configuration.apiKey("X-API-Key"); // API_Key authentication
         }
 
+
+        let urlPath = `/webhook/levels/open-status/sync`;
+
         const response = await this.request({
-            path: `/webhook/levels/open-status/sync`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -58,8 +61,11 @@ export class WebhookApi extends runtime.BaseAPI {
             headerParameters["X-API-Key"] = await this.configuration.apiKey("X-API-Key"); // API_Key authentication
         }
 
+
+        let urlPath = `/webhook/levels/sync`;
+
         const response = await this.request({
-            path: `/webhook/levels/sync`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

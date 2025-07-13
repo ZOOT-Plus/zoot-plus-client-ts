@@ -97,8 +97,11 @@ export class CommentAreaApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/comments/delete`;
+
         const response = await this.request({
-            path: `/comments/delete`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -154,8 +157,11 @@ export class CommentAreaApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/comments/status`;
+
         const response = await this.request({
-            path: `/comments/status`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -232,8 +238,11 @@ export class CommentAreaApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/comments/query`;
+
         const response = await this.request({
-            path: `/comments/query`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -275,8 +284,11 @@ export class CommentAreaApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/comments/rating`;
+
         const response = await this.request({
-            path: `/comments/rating`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -319,8 +331,11 @@ export class CommentAreaApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/comments/add`;
+
         const response = await this.request({
-            path: `/comments/add`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -363,8 +378,11 @@ export class CommentAreaApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/comments/topping`;
+
         const response = await this.request({
-            path: `/comments/topping`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

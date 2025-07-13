@@ -104,8 +104,11 @@ export class CopilotSetApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/set/add`;
+
         const response = await this.request({
-            path: `/set/add`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -148,8 +151,11 @@ export class CopilotSetApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/set/create`;
+
         const response = await this.request({
-            path: `/set/create`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -192,8 +198,11 @@ export class CopilotSetApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/set/delete`;
+
         const response = await this.request({
-            path: `/set/delete`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -230,8 +239,11 @@ export class CopilotSetApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/set/get`;
+
         const response = await this.request({
-            path: `/set/get`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -265,8 +277,11 @@ export class CopilotSetApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/set/query`;
+
         const response = await this.request({
-            path: `/set/query`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -309,8 +324,11 @@ export class CopilotSetApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/set/remove`;
+
         const response = await this.request({
-            path: `/set/remove`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -353,8 +371,11 @@ export class CopilotSetApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/set/update`;
+
         const response = await this.request({
-            path: `/set/update`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

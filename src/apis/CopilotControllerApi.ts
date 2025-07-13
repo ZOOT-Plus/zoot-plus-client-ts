@@ -129,8 +129,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/copilot/ban`;
+
         const response = await this.request({
-            path: `/copilot/ban`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -172,8 +175,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/copilot/delete`;
+
         const response = await this.request({
-            path: `/copilot/delete`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -206,8 +212,12 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/copilot/get/{id}`;
+        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+
         const response = await this.request({
-            path: `/copilot/get/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -262,8 +272,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/copilot/status`;
+
         const response = await this.request({
-            path: `/copilot/status`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -368,8 +381,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/copilot/query`;
+
         const response = await this.request({
-            path: `/copilot/query`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -403,8 +419,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/copilot/rating`;
+
         const response = await this.request({
-            path: `/copilot/rating`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -447,8 +466,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/copilot/update`;
+
         const response = await this.request({
-            path: `/copilot/update`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -491,8 +513,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/copilot/upload`;
+
         const response = await this.request({
-            path: `/copilot/upload`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

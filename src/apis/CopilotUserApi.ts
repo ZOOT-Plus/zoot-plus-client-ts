@@ -122,8 +122,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/user/info`;
+
         const response = await this.request({
-            path: `/user/info`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -159,8 +162,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/user/login`;
+
         const response = await this.request({
-            path: `/user/login`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -197,8 +203,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/user/password/reset`;
+
         const response = await this.request({
-            path: `/user/password/reset`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -235,8 +244,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/user/password/reset_request`;
+
         const response = await this.request({
-            path: `/user/password/reset_request`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -273,8 +285,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/user/refresh`;
+
         const response = await this.request({
-            path: `/user/refresh`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -311,8 +326,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/user/register`;
+
         const response = await this.request({
-            path: `/user/register`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -359,8 +377,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/user/search`;
+
         const response = await this.request({
-            path: `/user/search`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -396,8 +417,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/user/sendRegistrationToken`;
+
         const response = await this.request({
-            path: `/user/sendRegistrationToken`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -442,8 +466,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/user/update/info`;
+
         const response = await this.request({
-            path: `/user/update/info`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -488,8 +515,11 @@ export class CopilotUserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/user/update/password`;
+
         const response = await this.request({
-            path: `/user/update/password`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

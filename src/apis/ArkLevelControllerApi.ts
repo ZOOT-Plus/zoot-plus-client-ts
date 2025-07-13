@@ -35,8 +35,11 @@ export class ArkLevelControllerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/arknights/level`;
+
         const response = await this.request({
-            path: `/arknights/level`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

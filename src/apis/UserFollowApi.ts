@@ -71,8 +71,12 @@ export class UserFollowApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/follow/follow/{followUserId}`;
+        urlPath = urlPath.replace(`{${"followUserId"}}`, encodeURIComponent(String(requestParameters['followUserId'])));
+
         const response = await this.request({
-            path: `/follow/follow/{followUserId}`.replace(`{${"followUserId"}}`, encodeURIComponent(String(requestParameters['followUserId']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -113,8 +117,11 @@ export class UserFollowApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/follow/fansList`;
+
         const response = await this.request({
-            path: `/follow/fansList`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -155,8 +162,11 @@ export class UserFollowApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/follow/followingList`;
+
         const response = await this.request({
-            path: `/follow/followingList`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -196,8 +206,12 @@ export class UserFollowApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/follow/unfollow/{followUserId}`;
+        urlPath = urlPath.replace(`{${"followUserId"}}`, encodeURIComponent(String(requestParameters['followUserId'])));
+
         const response = await this.request({
-            path: `/follow/unfollow/{followUserId}`.replace(`{${"followUserId"}}`, encodeURIComponent(String(requestParameters['followUserId']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

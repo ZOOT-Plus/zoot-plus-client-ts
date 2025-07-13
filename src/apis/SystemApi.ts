@@ -42,8 +42,11 @@ export class SystemApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/cache/stat`;
+
         const response = await this.request({
-            path: `/cache/stat`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -70,8 +73,11 @@ export class SystemApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/version`;
+
         const response = await this.request({
-            path: `/version`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -98,8 +104,11 @@ export class SystemApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/`;
+
         const response = await this.request({
-            path: `/`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
