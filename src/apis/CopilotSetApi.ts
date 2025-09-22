@@ -221,7 +221,7 @@ export class CopilotSetApi extends runtime.BaseAPI {
     }
 
     /**
-     * 查询作业集列表
+     * 查询作业集详情
      */
     async getSetRaw(requestParameters: GetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotSetRes>> {
         if (requestParameters['id'] == null) {
@@ -253,7 +253,7 @@ export class CopilotSetApi extends runtime.BaseAPI {
     }
 
     /**
-     * 查询作业集列表
+     * 查询作业集详情
      */
     async getSet(requestParameters: GetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultCopilotSetRes> {
         const response = await this.getSetRaw(requestParameters, initOverrides);
