@@ -26,7 +26,7 @@ import {
 } from '../models/index';
 
 export interface FollowRequest {
-    followUserId: string;
+    followUserId: number;
 }
 
 export interface GetFansListRequest {
@@ -40,7 +40,7 @@ export interface GetFollowingListRequest {
 }
 
 export interface UnfollowRequest {
-    followUserId: string;
+    followUserId: number;
 }
 
 /**

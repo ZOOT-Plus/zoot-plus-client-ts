@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface SubCommentsInfo {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof SubCommentsInfo
      */
-    commentId: string;
+    commentId: number;
     /**
      * 
      * @type {string}
@@ -63,16 +63,16 @@ export interface SubCommentsInfo {
     dislike: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof SubCommentsInfo
      */
-    fromCommentId: string;
+    fromCommentId: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof SubCommentsInfo
      */
-    mainCommentId: string;
+    mainCommentId: number;
     /**
      * 
      * @type {boolean}

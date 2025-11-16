@@ -33,10 +33,10 @@ export interface CommentsAddDTO {
     copilotId: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CommentsAddDTO
      */
-    fromCommentId?: string;
+    fromCommentId?: number;
     /**
      * 
      * @type {boolean}

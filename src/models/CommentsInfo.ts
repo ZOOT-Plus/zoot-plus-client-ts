@@ -29,10 +29,10 @@ import {
 export interface CommentsInfo {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CommentsInfo
      */
-    commentId: string;
+    commentId: number;
     /**
      * 
      * @type {string}

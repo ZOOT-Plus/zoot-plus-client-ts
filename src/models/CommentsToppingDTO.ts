@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface CommentsToppingDTO {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CommentsToppingDTO
      */
-    commentId: string;
+    commentId: number;
     /**
      * 
      * @type {boolean}

@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface CommentsDeleteDTO {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CommentsDeleteDTO
      */
-    commentId: string;
+    commentId: number;
 }
 
 /**

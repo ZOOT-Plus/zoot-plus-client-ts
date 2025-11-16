@@ -42,7 +42,7 @@ export interface DeleteCommentsRequest {
 }
 
 export interface ModifyStatus1Request {
-    id: string;
+    id: number;
     status: boolean;
 }
 
@@ -52,7 +52,7 @@ export interface QueriesCommentsAreaRequest {
     limit: number;
     desc: boolean;
     orderBy?: string;
-    justSeeId?: string;
+    justSeeId?: number;
 }
 
 export interface RatesCommentsRequest {
