@@ -1,6 +1,6 @@
 {
   "name": "maa-copilot-client",
-  "version": "0.1.0",
+  "version": "0.1.0-SNAPSHOT.958.sha.50c7313",
   "description": "OpenAPI client for maa-copilot-client",
   "author": "OpenAPI-Generator",
   "repository": {
