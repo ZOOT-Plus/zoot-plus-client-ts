@@ -24,56 +24,49 @@ export interface CacheStatInfo {
      * @type {number}
      * @memberof CacheStatInfo
      */
-    hitRate: number;
+    hitRate?: number;
     /**
      * 
      * @type {number}
      * @memberof CacheStatInfo
      */
-    missRate: number;
+    missRate?: number;
     /**
      * 
      * @type {number}
      * @memberof CacheStatInfo
      */
-    hitCount: number;
+    hitCount?: number;
     /**
      * 
      * @type {number}
      * @memberof CacheStatInfo
      */
-    missCount: number;
+    missCount?: number;
     /**
      * 
      * @type {number}
      * @memberof CacheStatInfo
      */
-    loadCount: number;
+    loadCount?: number;
     /**
      * 
      * @type {number}
      * @memberof CacheStatInfo
      */
-    evictionCount: number;
+    evictionCount?: number;
     /**
      * 
      * @type {number}
      * @memberof CacheStatInfo
      */
-    averageLoadPenalty: number;
+    averageLoadPenalty?: number;
 }
 
 /**
  * Check if a given object implements the CacheStatInfo interface.
  */
 export function instanceOfCacheStatInfo(value: object): value is CacheStatInfo {
-    if (!('hitRate' in value) || value['hitRate'] === undefined) return false;
-    if (!('missRate' in value) || value['missRate'] === undefined) return false;
-    if (!('hitCount' in value) || value['hitCount'] === undefined) return false;
-    if (!('missCount' in value) || value['missCount'] === undefined) return false;
-    if (!('loadCount' in value) || value['loadCount'] === undefined) return false;
-    if (!('evictionCount' in value) || value['evictionCount'] === undefined) return false;
-    if (!('averageLoadPenalty' in value) || value['averageLoadPenalty'] === undefined) return false;
     return true;
 }
 
@@ -87,13 +80,13 @@ export function CacheStatInfoFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'hitRate': json['hit_rate'],
-        'missRate': json['miss_rate'],
-        'hitCount': json['hit_count'],
-        'missCount': json['miss_count'],
-        'loadCount': json['load_count'],
-        'evictionCount': json['eviction_count'],
-        'averageLoadPenalty': json['average_load_penalty'],
+        'hitRate': json['hitRate'] == null ? undefined : json['hitRate'],
+        'missRate': json['missRate'] == null ? undefined : json['missRate'],
+        'hitCount': json['hitCount'] == null ? undefined : json['hitCount'],
+        'missCount': json['missCount'] == null ? undefined : json['missCount'],
+        'loadCount': json['loadCount'] == null ? undefined : json['loadCount'],
+        'evictionCount': json['evictionCount'] == null ? undefined : json['evictionCount'],
+        'averageLoadPenalty': json['averageLoadPenalty'] == null ? undefined : json['averageLoadPenalty'],
     };
 }
 
@@ -108,13 +101,13 @@ export function CacheStatInfoToJSONTyped(value?: CacheStatInfo | null, ignoreDis
 
     return {
         
-        'hit_rate': value['hitRate'],
-        'miss_rate': value['missRate'],
-        'hit_count': value['hitCount'],
-        'miss_count': value['missCount'],
-        'load_count': value['loadCount'],
-        'eviction_count': value['evictionCount'],
-        'average_load_penalty': value['averageLoadPenalty'],
+        'hitRate': value['hitRate'],
+        'missRate': value['missRate'],
+        'hitCount': value['hitCount'],
+        'missCount': value['missCount'],
+        'loadCount': value['loadCount'],
+        'evictionCount': value['evictionCount'],
+        'averageLoadPenalty': value['averageLoadPenalty'],
     };
 }
 

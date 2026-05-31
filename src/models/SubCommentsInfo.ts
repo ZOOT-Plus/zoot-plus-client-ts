@@ -24,77 +24,67 @@ export interface SubCommentsInfo {
      * @type {number}
      * @memberof SubCommentsInfo
      */
-    commentId: number;
+    commentId?: number;
     /**
      * 
      * @type {string}
      * @memberof SubCommentsInfo
      */
-    uploader: string;
+    uploader?: string;
     /**
      * 
      * @type {string}
      * @memberof SubCommentsInfo
      */
-    uploaderId: string;
+    uploaderId?: string;
     /**
      * 
      * @type {string}
      * @memberof SubCommentsInfo
      */
-    message: string;
+    message?: string;
     /**
      * 
      * @type {Date}
      * @memberof SubCommentsInfo
      */
-    uploadTime: Date;
+    uploadTime?: Date;
     /**
      * 
      * @type {number}
      * @memberof SubCommentsInfo
      */
-    like: number;
+    like?: number;
     /**
      * 
      * @type {number}
      * @memberof SubCommentsInfo
      */
-    dislike: number;
+    dislike?: number;
     /**
      * 
      * @type {number}
      * @memberof SubCommentsInfo
      */
-    fromCommentId: number;
+    fromCommentId?: number;
     /**
      * 
      * @type {number}
      * @memberof SubCommentsInfo
      */
-    mainCommentId: number;
+    mainCommentId?: number;
     /**
      * 
      * @type {boolean}
      * @memberof SubCommentsInfo
      */
-    deleted: boolean;
+    deleted?: boolean;
 }
 
 /**
  * Check if a given object implements the SubCommentsInfo interface.
  */
 export function instanceOfSubCommentsInfo(value: object): value is SubCommentsInfo {
-    if (!('commentId' in value) || value['commentId'] === undefined) return false;
-    if (!('uploader' in value) || value['uploader'] === undefined) return false;
-    if (!('uploaderId' in value) || value['uploaderId'] === undefined) return false;
-    if (!('message' in value) || value['message'] === undefined) return false;
-    if (!('uploadTime' in value) || value['uploadTime'] === undefined) return false;
-    if (!('like' in value) || value['like'] === undefined) return false;
-    if (!('dislike' in value) || value['dislike'] === undefined) return false;
-    if (!('fromCommentId' in value) || value['fromCommentId'] === undefined) return false;
-    if (!('mainCommentId' in value) || value['mainCommentId'] === undefined) return false;
-    if (!('deleted' in value) || value['deleted'] === undefined) return false;
     return true;
 }
 
@@ -108,16 +98,16 @@ export function SubCommentsInfoFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'commentId': json['comment_id'],
-        'uploader': json['uploader'],
-        'uploaderId': json['uploader_id'],
-        'message': json['message'],
-        'uploadTime': (new Date(json['upload_time'])),
-        'like': json['like'],
-        'dislike': json['dislike'],
-        'fromCommentId': json['from_comment_id'],
-        'mainCommentId': json['main_comment_id'],
-        'deleted': json['deleted'],
+        'commentId': json['commentId'] == null ? undefined : json['commentId'],
+        'uploader': json['uploader'] == null ? undefined : json['uploader'],
+        'uploaderId': json['uploaderId'] == null ? undefined : json['uploaderId'],
+        'message': json['message'] == null ? undefined : json['message'],
+        'uploadTime': json['uploadTime'] == null ? undefined : (new Date(json['uploadTime'])),
+        'like': json['like'] == null ? undefined : json['like'],
+        'dislike': json['dislike'] == null ? undefined : json['dislike'],
+        'fromCommentId': json['fromCommentId'] == null ? undefined : json['fromCommentId'],
+        'mainCommentId': json['mainCommentId'] == null ? undefined : json['mainCommentId'],
+        'deleted': json['deleted'] == null ? undefined : json['deleted'],
     };
 }
 
@@ -132,15 +122,15 @@ export function SubCommentsInfoToJSONTyped(value?: SubCommentsInfo | null, ignor
 
     return {
         
-        'comment_id': value['commentId'],
+        'commentId': value['commentId'],
         'uploader': value['uploader'],
-        'uploader_id': value['uploaderId'],
+        'uploaderId': value['uploaderId'],
         'message': value['message'],
-        'upload_time': ((value['uploadTime']).toISOString()),
+        'uploadTime': value['uploadTime'] == null ? value['uploadTime'] : value['uploadTime'].toISOString(),
         'like': value['like'],
         'dislike': value['dislike'],
-        'from_comment_id': value['fromCommentId'],
-        'main_comment_id': value['mainCommentId'],
+        'fromCommentId': value['fromCommentId'],
+        'mainCommentId': value['mainCommentId'],
         'deleted': value['deleted'],
     };
 }

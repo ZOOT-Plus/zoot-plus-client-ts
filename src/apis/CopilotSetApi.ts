@@ -12,39 +12,52 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  CommonIdReqLong,
-  CopilotSetCreateReq,
-  CopilotSetModCopilotsReq,
-  CopilotSetQuery,
-  CopilotSetUpdateReq,
-  MaaResultCopilotSetRes,
-  MaaResultLong,
-  MaaResultPagedDTOCopilotSetListRes,
-  MaaResultUnit,
-} from '../models/index';
 import {
+    type CommonIdReqLong,
     CommonIdReqLongFromJSON,
     CommonIdReqLongToJSON,
+} from '../models/CommonIdReqLong';
+import {
+    type CopilotSetCreateReq,
     CopilotSetCreateReqFromJSON,
     CopilotSetCreateReqToJSON,
+} from '../models/CopilotSetCreateReq';
+import {
+    type CopilotSetModCopilotsReq,
     CopilotSetModCopilotsReqFromJSON,
     CopilotSetModCopilotsReqToJSON,
+} from '../models/CopilotSetModCopilotsReq';
+import {
+    type CopilotSetQuery,
     CopilotSetQueryFromJSON,
     CopilotSetQueryToJSON,
+} from '../models/CopilotSetQuery';
+import {
+    type CopilotSetUpdateReq,
     CopilotSetUpdateReqFromJSON,
     CopilotSetUpdateReqToJSON,
+} from '../models/CopilotSetUpdateReq';
+import {
+    type MaaResultCopilotSetRes,
     MaaResultCopilotSetResFromJSON,
     MaaResultCopilotSetResToJSON,
+} from '../models/MaaResultCopilotSetRes';
+import {
+    type MaaResultLong,
     MaaResultLongFromJSON,
     MaaResultLongToJSON,
+} from '../models/MaaResultLong';
+import {
+    type MaaResultPagedDTOCopilotSetListRes,
     MaaResultPagedDTOCopilotSetListResFromJSON,
     MaaResultPagedDTOCopilotSetListResToJSON,
+} from '../models/MaaResultPagedDTOCopilotSetListRes';
+import {
+    type MaaResultUnit,
     MaaResultUnitFromJSON,
     MaaResultUnitToJSON,
-} from '../models/index';
+} from '../models/MaaResultUnit';
 
 export interface AddCopilotIdsRequest {
     copilotSetModCopilotsReq: CopilotSetModCopilotsReq;
@@ -80,9 +93,9 @@ export interface UpdateCopilotSetRequest {
 export class CopilotSetApi extends runtime.BaseAPI {
 
     /**
-     * 添加作业集作业列表
+     * Creates request options for addCopilotIds without sending the request
      */
-    async addCopilotIdsRaw(requestParameters: AddCopilotIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async addCopilotIdsRequestOpts(requestParameters: AddCopilotIdsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotSetModCopilotsReq'] == null) {
             throw new runtime.RequiredError(
                 'copilotSetModCopilotsReq',
@@ -107,13 +120,21 @@ export class CopilotSetApi extends runtime.BaseAPI {
 
         let urlPath = `/set/add`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CopilotSetModCopilotsReqToJSON(requestParameters['copilotSetModCopilotsReq']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 添加作业集作业列表
+     */
+    async addCopilotIdsRaw(requestParameters: AddCopilotIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.addCopilotIdsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }
@@ -127,9 +148,9 @@ export class CopilotSetApi extends runtime.BaseAPI {
     }
 
     /**
-     * 创建作业集
+     * Creates request options for createSet without sending the request
      */
-    async createSetRaw(requestParameters: CreateSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultLong>> {
+    async createSetRequestOpts(requestParameters: CreateSetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotSetCreateReq'] == null) {
             throw new runtime.RequiredError(
                 'copilotSetCreateReq',
@@ -154,13 +175,21 @@ export class CopilotSetApi extends runtime.BaseAPI {
 
         let urlPath = `/set/create`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CopilotSetCreateReqToJSON(requestParameters['copilotSetCreateReq']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 创建作业集
+     */
+    async createSetRaw(requestParameters: CreateSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultLong>> {
+        const requestOptions = await this.createSetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultLongFromJSON(jsonValue));
     }
@@ -174,9 +203,9 @@ export class CopilotSetApi extends runtime.BaseAPI {
     }
 
     /**
-     * 删除作业集
+     * Creates request options for deleteCopilotSet without sending the request
      */
-    async deleteCopilotSetRaw(requestParameters: DeleteCopilotSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async deleteCopilotSetRequestOpts(requestParameters: DeleteCopilotSetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['commonIdReqLong'] == null) {
             throw new runtime.RequiredError(
                 'commonIdReqLong',
@@ -201,13 +230,21 @@ export class CopilotSetApi extends runtime.BaseAPI {
 
         let urlPath = `/set/delete`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CommonIdReqLongToJSON(requestParameters['commonIdReqLong']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 删除作业集
+     */
+    async deleteCopilotSetRaw(requestParameters: DeleteCopilotSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.deleteCopilotSetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }
@@ -221,9 +258,9 @@ export class CopilotSetApi extends runtime.BaseAPI {
     }
 
     /**
-     * 查询作业集详情
+     * Creates request options for getSet without sending the request
      */
-    async getSetRaw(requestParameters: GetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotSetRes>> {
+    async getSetRequestOpts(requestParameters: GetSetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -242,12 +279,20 @@ export class CopilotSetApi extends runtime.BaseAPI {
 
         let urlPath = `/set/get`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 查询作业集详情
+     */
+    async getSetRaw(requestParameters: GetSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotSetRes>> {
+        const requestOptions = await this.getSetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultCopilotSetResFromJSON(jsonValue));
     }
@@ -261,9 +306,9 @@ export class CopilotSetApi extends runtime.BaseAPI {
     }
 
     /**
-     * 查询作业集列表
+     * Creates request options for querySets without sending the request
      */
-    async querySetsRaw(requestParameters: QuerySetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPagedDTOCopilotSetListRes>> {
+    async querySetsRequestOpts(requestParameters: QuerySetsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotSetQuery'] == null) {
             throw new runtime.RequiredError(
                 'copilotSetQuery',
@@ -280,13 +325,21 @@ export class CopilotSetApi extends runtime.BaseAPI {
 
         let urlPath = `/set/query`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CopilotSetQueryToJSON(requestParameters['copilotSetQuery']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 查询作业集列表
+     */
+    async querySetsRaw(requestParameters: QuerySetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPagedDTOCopilotSetListRes>> {
+        const requestOptions = await this.querySetsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultPagedDTOCopilotSetListResFromJSON(jsonValue));
     }
@@ -300,9 +353,9 @@ export class CopilotSetApi extends runtime.BaseAPI {
     }
 
     /**
-     * 添加作业集作业列表
+     * Creates request options for removeCopilotIds without sending the request
      */
-    async removeCopilotIdsRaw(requestParameters: RemoveCopilotIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async removeCopilotIdsRequestOpts(requestParameters: RemoveCopilotIdsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotSetModCopilotsReq'] == null) {
             throw new runtime.RequiredError(
                 'copilotSetModCopilotsReq',
@@ -327,13 +380,21 @@ export class CopilotSetApi extends runtime.BaseAPI {
 
         let urlPath = `/set/remove`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CopilotSetModCopilotsReqToJSON(requestParameters['copilotSetModCopilotsReq']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 添加作业集作业列表
+     */
+    async removeCopilotIdsRaw(requestParameters: RemoveCopilotIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.removeCopilotIdsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }
@@ -347,9 +408,9 @@ export class CopilotSetApi extends runtime.BaseAPI {
     }
 
     /**
-     * 更新作业集信息
+     * Creates request options for updateCopilotSet without sending the request
      */
-    async updateCopilotSetRaw(requestParameters: UpdateCopilotSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async updateCopilotSetRequestOpts(requestParameters: UpdateCopilotSetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotSetUpdateReq'] == null) {
             throw new runtime.RequiredError(
                 'copilotSetUpdateReq',
@@ -374,13 +435,21 @@ export class CopilotSetApi extends runtime.BaseAPI {
 
         let urlPath = `/set/update`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CopilotSetUpdateReqToJSON(requestParameters['copilotSetUpdateReq']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 更新作业集信息
+     */
+    async updateCopilotSetRaw(requestParameters: UpdateCopilotSetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.updateCopilotSetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }

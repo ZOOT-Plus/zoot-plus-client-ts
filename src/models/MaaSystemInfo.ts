@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { GitProperties } from './GitProperties';
+import type { GitInfo } from './GitInfo';
 import {
-    GitPropertiesFromJSON,
-    GitPropertiesFromJSONTyped,
-    GitPropertiesToJSON,
-    GitPropertiesToJSONTyped,
-} from './GitProperties';
+    GitInfoFromJSON,
+    GitInfoFromJSONTyped,
+    GitInfoToJSON,
+    GitInfoToJSONTyped,
+} from './GitInfo';
 
 /**
  * 
@@ -32,35 +32,31 @@ export interface MaaSystemInfo {
      * @type {string}
      * @memberof MaaSystemInfo
      */
-    title: string;
+    title?: string;
     /**
      * 
      * @type {string}
      * @memberof MaaSystemInfo
      */
-    description: string;
+    description?: string;
     /**
      * 
      * @type {string}
      * @memberof MaaSystemInfo
      */
-    version: string;
+    version?: string;
     /**
      * 
-     * @type {GitProperties}
+     * @type {GitInfo}
      * @memberof MaaSystemInfo
      */
-    git: GitProperties;
+    git?: GitInfo;
 }
 
 /**
  * Check if a given object implements the MaaSystemInfo interface.
  */
 export function instanceOfMaaSystemInfo(value: object): value is MaaSystemInfo {
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('version' in value) || value['version'] === undefined) return false;
-    if (!('git' in value) || value['git'] === undefined) return false;
     return true;
 }
 
@@ -74,10 +70,10 @@ export function MaaSystemInfoFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'title': json['title'],
-        'description': json['description'],
-        'version': json['version'],
-        'git': GitPropertiesFromJSON(json['git']),
+        'title': json['title'] == null ? undefined : json['title'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'version': json['version'] == null ? undefined : json['version'],
+        'git': json['git'] == null ? undefined : GitInfoFromJSON(json['git']),
     };
 }
 
@@ -95,7 +91,7 @@ export function MaaSystemInfoToJSONTyped(value?: MaaSystemInfo | null, ignoreDis
         'title': value['title'],
         'description': value['description'],
         'version': value['version'],
-        'git': GitPropertiesToJSON(value['git']),
+        'git': GitInfoToJSON(value['git']),
     };
 }
 

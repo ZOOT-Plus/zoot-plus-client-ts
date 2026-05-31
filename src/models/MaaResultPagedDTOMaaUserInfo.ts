@@ -32,26 +32,25 @@ export interface MaaResultPagedDTOMaaUserInfo {
      * @type {number}
      * @memberof MaaResultPagedDTOMaaUserInfo
      */
-    statusCode: number;
+    statusCode?: number;
     /**
      * 
      * @type {string}
      * @memberof MaaResultPagedDTOMaaUserInfo
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
      * @type {PagedDTOMaaUserInfo}
      * @memberof MaaResultPagedDTOMaaUserInfo
      */
-    data?: PagedDTOMaaUserInfo;
+    data?: PagedDTOMaaUserInfo | null;
 }
 
 /**
  * Check if a given object implements the MaaResultPagedDTOMaaUserInfo interface.
  */
 export function instanceOfMaaResultPagedDTOMaaUserInfo(value: object): value is MaaResultPagedDTOMaaUserInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function MaaResultPagedDTOMaaUserInfoFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'statusCode': json['status_code'],
+        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : PagedDTOMaaUserInfoFromJSON(json['data']),
     };
@@ -82,7 +81,7 @@ export function MaaResultPagedDTOMaaUserInfoToJSONTyped(value?: MaaResultPagedDT
 
     return {
         
-        'status_code': value['statusCode'],
+        'statusCode': value['statusCode'],
         'message': value['message'],
         'data': PagedDTOMaaUserInfoToJSON(value['data']),
     };

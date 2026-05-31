@@ -1,6 +1,6 @@
 {
   "name": "maa-copilot-client",
-  "version": "0.1.0",
+  "version": "0.1.0-SNAPSHOT.990.sha.114ef87",
   "description": "OpenAPI client for maa-copilot-client",
   "author": "OpenAPI-Generator",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
   },
   "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "module": "./dist/esm/index.js",
   "sideEffects": false,
   "scripts": {

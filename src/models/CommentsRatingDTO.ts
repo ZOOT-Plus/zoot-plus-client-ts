@@ -52,7 +52,7 @@ export function CommentsRatingDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'commentId': json['comment_id'],
+        'commentId': json['commentId'],
         'rating': json['rating'],
     };
 }
@@ -68,7 +68,7 @@ export function CommentsRatingDTOToJSONTyped(value?: CommentsRatingDTO | null, i
 
     return {
         
-        'comment_id': value['commentId'],
+        'commentId': value['commentId'],
         'rating': value['rating'],
     };
 }

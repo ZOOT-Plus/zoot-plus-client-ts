@@ -32,55 +32,55 @@ export interface CopilotSetRes {
      * @type {number}
      * @memberof CopilotSetRes
      */
-    id: number;
+    id?: number;
     /**
      * 
      * @type {string}
      * @memberof CopilotSetRes
      */
-    name: string;
+    name?: string;
     /**
      * 
      * @type {string}
      * @memberof CopilotSetRes
      */
-    description: string;
+    description?: string;
     /**
      * 
      * @type {Array<number>}
      * @memberof CopilotSetRes
      */
-    copilotIds: Array<number>;
+    copilotIds?: Array<number>;
     /**
      * 
      * @type {string}
      * @memberof CopilotSetRes
      */
-    creatorId: string;
+    creatorId?: string;
     /**
      * 
      * @type {string}
      * @memberof CopilotSetRes
      */
-    creator: string;
+    creator?: string;
     /**
      * 
      * @type {Date}
      * @memberof CopilotSetRes
      */
-    createTime: Date;
+    createTime?: Date;
     /**
      * 
      * @type {Date}
      * @memberof CopilotSetRes
      */
-    updateTime: Date;
+    updateTime?: Date;
     /**
      * 
      * @type {CopilotSetStatus}
      * @memberof CopilotSetRes
      */
-    status: CopilotSetStatus;
+    status?: CopilotSetStatus;
 }
 
 
@@ -89,15 +89,6 @@ export interface CopilotSetRes {
  * Check if a given object implements the CopilotSetRes interface.
  */
 export function instanceOfCopilotSetRes(value: object): value is CopilotSetRes {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('copilotIds' in value) || value['copilotIds'] === undefined) return false;
-    if (!('creatorId' in value) || value['creatorId'] === undefined) return false;
-    if (!('creator' in value) || value['creator'] === undefined) return false;
-    if (!('createTime' in value) || value['createTime'] === undefined) return false;
-    if (!('updateTime' in value) || value['updateTime'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
 
@@ -111,15 +102,15 @@ export function CopilotSetResFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'id': json['id'],
-        'name': json['name'],
-        'description': json['description'],
-        'copilotIds': json['copilot_ids'],
-        'creatorId': json['creator_id'],
-        'creator': json['creator'],
-        'createTime': (new Date(json['create_time'])),
-        'updateTime': (new Date(json['update_time'])),
-        'status': CopilotSetStatusFromJSON(json['status']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'copilotIds': json['copilotIds'] == null ? undefined : json['copilotIds'],
+        'creatorId': json['creatorId'] == null ? undefined : json['creatorId'],
+        'creator': json['creator'] == null ? undefined : json['creator'],
+        'createTime': json['createTime'] == null ? undefined : (new Date(json['createTime'])),
+        'updateTime': json['updateTime'] == null ? undefined : (new Date(json['updateTime'])),
+        'status': json['status'] == null ? undefined : CopilotSetStatusFromJSON(json['status']),
     };
 }
 
@@ -137,11 +128,11 @@ export function CopilotSetResToJSONTyped(value?: CopilotSetRes | null, ignoreDis
         'id': value['id'],
         'name': value['name'],
         'description': value['description'],
-        'copilot_ids': value['copilotIds'],
-        'creator_id': value['creatorId'],
+        'copilotIds': value['copilotIds'],
+        'creatorId': value['creatorId'],
         'creator': value['creator'],
-        'create_time': ((value['createTime']).toISOString()),
-        'update_time': ((value['updateTime']).toISOString()),
+        'createTime': value['createTime'] == null ? value['createTime'] : value['createTime'].toISOString(),
+        'updateTime': value['updateTime'] == null ? value['updateTime'] : value['updateTime'].toISOString(),
         'status': CopilotSetStatusToJSON(value['status']),
     };
 }

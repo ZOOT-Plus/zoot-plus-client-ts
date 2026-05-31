@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
 
 /**
@@ -21,8 +20,9 @@ import * as runtime from '../runtime';
 export class WebhookApi extends runtime.BaseAPI {
 
     /**
+     * Creates request options for levelOpenStatusUpdate without sending the request
      */
-    async levelOpenStatusUpdateRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async levelOpenStatusUpdateRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -34,12 +34,19 @@ export class WebhookApi extends runtime.BaseAPI {
 
         let urlPath = `/webhook/levels/open-status/sync`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async levelOpenStatusUpdateRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.levelOpenStatusUpdateRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -51,8 +58,9 @@ export class WebhookApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for levelsUpdate without sending the request
      */
-    async levelsUpdateRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async levelsUpdateRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -64,12 +72,19 @@ export class WebhookApi extends runtime.BaseAPI {
 
         let urlPath = `/webhook/levels/sync`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async levelsUpdateRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.levelsUpdateRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }

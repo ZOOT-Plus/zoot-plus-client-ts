@@ -32,26 +32,25 @@ export interface MaaResultPagedDTOCopilotSetListRes {
      * @type {number}
      * @memberof MaaResultPagedDTOCopilotSetListRes
      */
-    statusCode: number;
+    statusCode?: number;
     /**
      * 
      * @type {string}
      * @memberof MaaResultPagedDTOCopilotSetListRes
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
      * @type {PagedDTOCopilotSetListRes}
      * @memberof MaaResultPagedDTOCopilotSetListRes
      */
-    data?: PagedDTOCopilotSetListRes;
+    data?: PagedDTOCopilotSetListRes | null;
 }
 
 /**
  * Check if a given object implements the MaaResultPagedDTOCopilotSetListRes interface.
  */
 export function instanceOfMaaResultPagedDTOCopilotSetListRes(value: object): value is MaaResultPagedDTOCopilotSetListRes {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function MaaResultPagedDTOCopilotSetListResFromJSONTyped(json: any, ignor
     }
     return {
         
-        'statusCode': json['status_code'],
+        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : PagedDTOCopilotSetListResFromJSON(json['data']),
     };
@@ -82,7 +81,7 @@ export function MaaResultPagedDTOCopilotSetListResToJSONTyped(value?: MaaResultP
 
     return {
         
-        'status_code': value['statusCode'],
+        'statusCode': value['statusCode'],
         'message': value['message'],
         'data': PagedDTOCopilotSetListResToJSON(value['data']),
     };

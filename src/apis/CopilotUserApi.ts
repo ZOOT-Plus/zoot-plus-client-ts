@@ -12,48 +12,71 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  LoginDTO,
-  MaaResultListMaaUserInfo,
-  MaaResultMaaLoginRsp,
-  MaaResultMaaUserInfo,
-  MaaResultUnit,
-  PasswordResetDTO,
-  PasswordResetVCodeDTO,
-  PasswordUpdateDTO,
-  RefreshReq,
-  RegisterDTO,
-  SendRegistrationTokenDTO,
-  UserInfoUpdateDTO,
-} from '../models/index';
 import {
+    type LoginDTO,
     LoginDTOFromJSON,
     LoginDTOToJSON,
+} from '../models/LoginDTO';
+import {
+    type MaaResultListMaaUserInfo,
     MaaResultListMaaUserInfoFromJSON,
     MaaResultListMaaUserInfoToJSON,
+} from '../models/MaaResultListMaaUserInfo';
+import {
+    type MaaResultMaaLoginRsp,
     MaaResultMaaLoginRspFromJSON,
     MaaResultMaaLoginRspToJSON,
+} from '../models/MaaResultMaaLoginRsp';
+import {
+    type MaaResultMaaUserInfo,
     MaaResultMaaUserInfoFromJSON,
     MaaResultMaaUserInfoToJSON,
+} from '../models/MaaResultMaaUserInfo';
+import {
+    type MaaResultUnit,
     MaaResultUnitFromJSON,
     MaaResultUnitToJSON,
+} from '../models/MaaResultUnit';
+import {
+    type PasswordResetDTO,
     PasswordResetDTOFromJSON,
     PasswordResetDTOToJSON,
+} from '../models/PasswordResetDTO';
+import {
+    type PasswordResetVCodeDTO,
     PasswordResetVCodeDTOFromJSON,
     PasswordResetVCodeDTOToJSON,
+} from '../models/PasswordResetVCodeDTO';
+import {
+    type PasswordUpdateDTO,
     PasswordUpdateDTOFromJSON,
     PasswordUpdateDTOToJSON,
+} from '../models/PasswordUpdateDTO';
+import {
+    type RefreshReq,
     RefreshReqFromJSON,
     RefreshReqToJSON,
+} from '../models/RefreshReq';
+import {
+    type RegisterDTO,
     RegisterDTOFromJSON,
     RegisterDTOToJSON,
+} from '../models/RegisterDTO';
+import {
+    type SendRegistrationTokenDTO,
     SendRegistrationTokenDTOFromJSON,
     SendRegistrationTokenDTOToJSON,
+} from '../models/SendRegistrationTokenDTO';
+import {
+    type UserInfoUpdateDTO,
     UserInfoUpdateDTOFromJSON,
     UserInfoUpdateDTOToJSON,
-} from '../models/index';
+} from '../models/UserInfoUpdateDTO';
+
+export interface GetBatchUserInfoRequest {
+    ids: Array<number>;
+}
 
 export interface GetUserInfoRequest {
     userId: string;
@@ -103,10 +126,106 @@ export interface UpdatePasswordRequest {
 export class CopilotUserApi extends runtime.BaseAPI {
 
     /**
-     * 查询用户信息
-     * 查询用户信息
+     * Creates request options for getBatchUserInfo without sending the request
      */
-    async getUserInfoRaw(requestParameters: GetUserInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaUserInfo>> {
+    async getBatchUserInfoRequestOpts(requestParameters: GetBatchUserInfoRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['ids'] == null) {
+            throw new runtime.RequiredError(
+                'ids',
+                'Required parameter "ids" was null or undefined when calling getBatchUserInfo().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/user/batch`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 批量获取用户信息
+     * 批量获取用户信息
+     */
+    async getBatchUserInfoRaw(requestParameters: GetBatchUserInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultListMaaUserInfo>> {
+        const requestOptions = await this.getBatchUserInfoRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultListMaaUserInfoFromJSON(jsonValue));
+    }
+
+    /**
+     * 批量获取用户信息
+     * 批量获取用户信息
+     */
+    async getBatchUserInfo(requestParameters: GetBatchUserInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultListMaaUserInfo> {
+        const response = await this.getBatchUserInfoRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getMe without sending the request
+     */
+    async getMeRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("Jwt", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/user/me`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 获取当前登录用户信息
+     * 获取当前登录用户信息
+     */
+    async getMeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaUserInfo>> {
+        const requestOptions = await this.getMeRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMaaUserInfoFromJSON(jsonValue));
+    }
+
+    /**
+     * 获取当前登录用户信息
+     * 获取当前登录用户信息
+     */
+    async getMe(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultMaaUserInfo> {
+        const response = await this.getMeRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getUserInfo without sending the request
+     */
+    async getUserInfoRequestOpts(requestParameters: GetUserInfoRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -125,18 +244,27 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/info`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 查询用户信息（附带与当前用户的关系）
+     * 查询用户信息
+     */
+    async getUserInfoRaw(requestParameters: GetUserInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaUserInfo>> {
+        const requestOptions = await this.getUserInfoRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMaaUserInfoFromJSON(jsonValue));
     }
 
     /**
-     * 查询用户信息
+     * 查询用户信息（附带与当前用户的关系）
      * 查询用户信息
      */
     async getUserInfo(requestParameters: GetUserInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultMaaUserInfo> {
@@ -145,10 +273,9 @@ export class CopilotUserApi extends runtime.BaseAPI {
     }
 
     /**
-     * 用户登录
-     * 用户登录
+     * Creates request options for login without sending the request
      */
-    async loginRaw(requestParameters: LoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaLoginRsp>> {
+    async loginRequestOpts(requestParameters: LoginRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['loginDTO'] == null) {
             throw new runtime.RequiredError(
                 'loginDTO',
@@ -165,13 +292,22 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/login`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: LoginDTOToJSON(requestParameters['loginDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 用户登录
+     * 用户登录
+     */
+    async loginRaw(requestParameters: LoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaLoginRsp>> {
+        const requestOptions = await this.loginRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMaaLoginRspFromJSON(jsonValue));
     }
@@ -186,10 +322,9 @@ export class CopilotUserApi extends runtime.BaseAPI {
     }
 
     /**
-     * 邮箱重设密码
-     * 重置密码
+     * Creates request options for passwordReset without sending the request
      */
-    async passwordResetRaw(requestParameters: PasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async passwordResetRequestOpts(requestParameters: PasswordResetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['passwordResetDTO'] == null) {
             throw new runtime.RequiredError(
                 'passwordResetDTO',
@@ -206,19 +341,28 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/password/reset`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: PasswordResetDTOToJSON(requestParameters['passwordResetDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 邮箱重置密码
+     * 重置密码
+     */
+    async passwordResetRaw(requestParameters: PasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.passwordResetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }
 
     /**
-     * 邮箱重设密码
+     * 邮箱重置密码
      * 重置密码
      */
     async passwordReset(requestParameters: PasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultUnit> {
@@ -227,10 +371,9 @@ export class CopilotUserApi extends runtime.BaseAPI {
     }
 
     /**
-     * 验证码重置密码功能：  发送验证码用于重置
-     * 发送用于重置密码的验证码
+     * Creates request options for passwordResetRequest without sending the request
      */
-    async passwordResetRequestRaw(requestParameters: PasswordResetRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async passwordResetRequestRequestOpts(requestParameters: PasswordResetRequestRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['passwordResetVCodeDTO'] == null) {
             throw new runtime.RequiredError(
                 'passwordResetVCodeDTO',
@@ -247,13 +390,22 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/password/reset_request`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: PasswordResetVCodeDTOToJSON(requestParameters['passwordResetVCodeDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 验证码重置密码功能：  发送验证码用于重置
+     * 发送用于重置密码的验证码
+     */
+    async passwordResetRequestRaw(requestParameters: PasswordResetRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.passwordResetRequestRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }
@@ -268,10 +420,9 @@ export class CopilotUserApi extends runtime.BaseAPI {
     }
 
     /**
-     * 刷新token
-     * 刷新token
+     * Creates request options for refresh without sending the request
      */
-    async refreshRaw(requestParameters: RefreshRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaLoginRsp>> {
+    async refreshRequestOpts(requestParameters: RefreshRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['refreshReq'] == null) {
             throw new runtime.RequiredError(
                 'refreshReq',
@@ -288,13 +439,22 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/refresh`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: RefreshReqToJSON(requestParameters['refreshReq']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 刷新token
+     * 刷新token
+     */
+    async refreshRaw(requestParameters: RefreshRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaLoginRsp>> {
+        const requestOptions = await this.refreshRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMaaLoginRspFromJSON(jsonValue));
     }
@@ -309,10 +469,9 @@ export class CopilotUserApi extends runtime.BaseAPI {
     }
 
     /**
-     * 用户注册
-     * 用户注册
+     * Creates request options for register without sending the request
      */
-    async registerRaw(requestParameters: RegisterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaUserInfo>> {
+    async registerRequestOpts(requestParameters: RegisterRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['registerDTO'] == null) {
             throw new runtime.RequiredError(
                 'registerDTO',
@@ -329,13 +488,22 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/register`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: RegisterDTOToJSON(requestParameters['registerDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 用户注册
+     * 用户注册
+     */
+    async registerRaw(requestParameters: RegisterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaUserInfo>> {
+        const requestOptions = await this.registerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMaaUserInfoFromJSON(jsonValue));
     }
@@ -350,10 +518,9 @@ export class CopilotUserApi extends runtime.BaseAPI {
     }
 
     /**
-     * 用户模糊搜索
-     * 用户模糊搜索
+     * Creates request options for searchUsers without sending the request
      */
-    async searchUsersRaw(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultListMaaUserInfo>> {
+    async searchUsersRequestOpts(requestParameters: SearchUsersRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userName'] == null) {
             throw new runtime.RequiredError(
                 'userName',
@@ -380,12 +547,21 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/search`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 用户模糊搜索
+     * 用户模糊搜索
+     */
+    async searchUsersRaw(requestParameters: SearchUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultListMaaUserInfo>> {
+        const requestOptions = await this.searchUsersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultListMaaUserInfoFromJSON(jsonValue));
     }
@@ -400,10 +576,9 @@ export class CopilotUserApi extends runtime.BaseAPI {
     }
 
     /**
-     * 获得注册时的验证码
-     * 注册时发送验证码
+     * Creates request options for sendRegistrationToken without sending the request
      */
-    async sendRegistrationTokenRaw(requestParameters: SendRegistrationTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async sendRegistrationTokenRequestOpts(requestParameters: SendRegistrationTokenRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['sendRegistrationTokenDTO'] == null) {
             throw new runtime.RequiredError(
                 'sendRegistrationTokenDTO',
@@ -420,13 +595,22 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/sendRegistrationToken`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: SendRegistrationTokenDTOToJSON(requestParameters['sendRegistrationTokenDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 获得注册时的验证码
+     * 注册时发送验证码
+     */
+    async sendRegistrationTokenRaw(requestParameters: SendRegistrationTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.sendRegistrationTokenRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }
@@ -441,10 +625,9 @@ export class CopilotUserApi extends runtime.BaseAPI {
     }
 
     /**
-     * 更新用户详细信息
-     * 更新用户详细信息
+     * Creates request options for updateInfo without sending the request
      */
-    async updateInfoRaw(requestParameters: UpdateInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async updateInfoRequestOpts(requestParameters: UpdateInfoRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userInfoUpdateDTO'] == null) {
             throw new runtime.RequiredError(
                 'userInfoUpdateDTO',
@@ -469,13 +652,22 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/update/info`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UserInfoUpdateDTOToJSON(requestParameters['userInfoUpdateDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 更新用户详细信息
+     * 更新用户详细信息
+     */
+    async updateInfoRaw(requestParameters: UpdateInfoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.updateInfoRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }
@@ -490,10 +682,9 @@ export class CopilotUserApi extends runtime.BaseAPI {
     }
 
     /**
-     * 根据原密码
-     * 修改当前用户密码
+     * Creates request options for updatePassword without sending the request
      */
-    async updatePasswordRaw(requestParameters: UpdatePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async updatePasswordRequestOpts(requestParameters: UpdatePasswordRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['passwordUpdateDTO'] == null) {
             throw new runtime.RequiredError(
                 'passwordUpdateDTO',
@@ -518,13 +709,22 @@ export class CopilotUserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/update/password`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: PasswordUpdateDTOToJSON(requestParameters['passwordUpdateDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 根据原密码
+     * 修改当前用户密码
+     */
+    async updatePasswordRaw(requestParameters: UpdatePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.updatePasswordRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }

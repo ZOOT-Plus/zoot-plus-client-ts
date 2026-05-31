@@ -32,26 +32,25 @@ export interface MaaResultMaaLoginRsp {
      * @type {number}
      * @memberof MaaResultMaaLoginRsp
      */
-    statusCode: number;
+    statusCode?: number;
     /**
      * 
      * @type {string}
      * @memberof MaaResultMaaLoginRsp
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
      * @type {MaaLoginRsp}
      * @memberof MaaResultMaaLoginRsp
      */
-    data?: MaaLoginRsp;
+    data?: MaaLoginRsp | null;
 }
 
 /**
  * Check if a given object implements the MaaResultMaaLoginRsp interface.
  */
 export function instanceOfMaaResultMaaLoginRsp(value: object): value is MaaResultMaaLoginRsp {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function MaaResultMaaLoginRspFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'statusCode': json['status_code'],
+        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : MaaLoginRspFromJSON(json['data']),
     };
@@ -82,7 +81,7 @@ export function MaaResultMaaLoginRspToJSONTyped(value?: MaaResultMaaLoginRsp | n
 
     return {
         
-        'status_code': value['statusCode'],
+        'statusCode': value['statusCode'],
         'message': value['message'],
         'data': MaaLoginRspToJSON(value['data']),
     };

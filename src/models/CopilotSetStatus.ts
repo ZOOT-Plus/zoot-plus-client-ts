@@ -14,7 +14,8 @@
 
 
 /**
- * 
+ * 作业/作业集的公开程度
+ *  命名失误，已经改不了嘞
  * @export
  */
 export const CopilotSetStatus = {

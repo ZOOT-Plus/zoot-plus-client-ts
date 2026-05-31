@@ -32,35 +32,31 @@ export interface CommentsAreaInfo {
      * @type {boolean}
      * @memberof CommentsAreaInfo
      */
-    hasNext: boolean;
+    hasNext?: boolean;
     /**
-     * 
+     * Total number of pages
      * @type {number}
      * @memberof CommentsAreaInfo
      */
-    page: number;
+    page?: number;
     /**
-     * 
+     * Total number of elements
      * @type {number}
      * @memberof CommentsAreaInfo
      */
-    total: number;
+    total?: number;
     /**
      * 
      * @type {Array<CommentsInfo>}
      * @memberof CommentsAreaInfo
      */
-    data: Array<CommentsInfo>;
+    data?: Array<CommentsInfo>;
 }
 
 /**
  * Check if a given object implements the CommentsAreaInfo interface.
  */
 export function instanceOfCommentsAreaInfo(value: object): value is CommentsAreaInfo {
-    if (!('hasNext' in value) || value['hasNext'] === undefined) return false;
-    if (!('page' in value) || value['page'] === undefined) return false;
-    if (!('total' in value) || value['total'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }
 
@@ -74,10 +70,10 @@ export function CommentsAreaInfoFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'hasNext': json['has_next'],
-        'page': json['page'],
-        'total': json['total'],
-        'data': ((json['data'] as Array<any>).map(CommentsInfoFromJSON)),
+        'hasNext': json['hasNext'] == null ? undefined : json['hasNext'],
+        'page': json['page'] == null ? undefined : json['page'],
+        'total': json['total'] == null ? undefined : json['total'],
+        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(CommentsInfoFromJSON)),
     };
 }
 
@@ -92,10 +88,10 @@ export function CommentsAreaInfoToJSONTyped(value?: CommentsAreaInfo | null, ign
 
     return {
         
-        'has_next': value['hasNext'],
+        'hasNext': value['hasNext'],
         'page': value['page'],
         'total': value['total'],
-        'data': ((value['data'] as Array<any>).map(CommentsInfoToJSON)),
+        'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(CommentsInfoToJSON)),
     };
 }
 

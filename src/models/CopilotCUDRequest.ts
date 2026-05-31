@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CopilotSetStatus } from './CopilotSetStatus';
+import {
+    CopilotSetStatusFromJSON,
+    CopilotSetStatusFromJSONTyped,
+    CopilotSetStatusToJSON,
+    CopilotSetStatusToJSONTyped,
+} from './CopilotSetStatus';
+
 /**
  * 
  * @export
@@ -30,24 +38,15 @@ export interface CopilotCUDRequest {
      * @type {number}
      * @memberof CopilotCUDRequest
      */
-    id?: number;
+    id?: number | null;
     /**
      * 
-     * @type {string}
+     * @type {CopilotSetStatus}
      * @memberof CopilotCUDRequest
      */
-    status: CopilotCUDRequestStatusEnum;
+    status?: CopilotSetStatus;
 }
 
-
-/**
- * @export
- */
-export const CopilotCUDRequestStatusEnum = {
-    Private: 'PRIVATE',
-    Public: 'PUBLIC'
-} as const;
-export type CopilotCUDRequestStatusEnum = typeof CopilotCUDRequestStatusEnum[keyof typeof CopilotCUDRequestStatusEnum];
 
 
 /**
@@ -55,7 +54,6 @@ export type CopilotCUDRequestStatusEnum = typeof CopilotCUDRequestStatusEnum[key
  */
 export function instanceOfCopilotCUDRequest(value: object): value is CopilotCUDRequest {
     if (!('content' in value) || value['content'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
 
@@ -71,7 +69,7 @@ export function CopilotCUDRequestFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'content': json['content'],
         'id': json['id'] == null ? undefined : json['id'],
-        'status': json['status'],
+        'status': json['status'] == null ? undefined : CopilotSetStatusFromJSON(json['status']),
     };
 }
 
@@ -88,7 +86,7 @@ export function CopilotCUDRequestToJSONTyped(value?: CopilotCUDRequest | null, i
         
         'content': value['content'],
         'id': value['id'],
-        'status': value['status'],
+        'status': CopilotSetStatusToJSON(value['status']),
     };
 }
 

@@ -45,7 +45,7 @@ export function CommentsDeleteDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'commentId': json['comment_id'],
+        'commentId': json['commentId'],
     };
 }
 
@@ -60,7 +60,7 @@ export function CommentsDeleteDTOToJSONTyped(value?: CommentsDeleteDTO | null, i
 
     return {
         
-        'comment_id': value['commentId'],
+        'commentId': value['commentId'],
     };
 }
 

@@ -32,26 +32,25 @@ export interface MaaResultListArkLevelInfo {
      * @type {number}
      * @memberof MaaResultListArkLevelInfo
      */
-    statusCode: number;
+    statusCode?: number;
     /**
      * 
      * @type {string}
      * @memberof MaaResultListArkLevelInfo
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
      * @type {Array<ArkLevelInfo>}
      * @memberof MaaResultListArkLevelInfo
      */
-    data?: Array<ArkLevelInfo>;
+    data?: Array<ArkLevelInfo> | null;
 }
 
 /**
  * Check if a given object implements the MaaResultListArkLevelInfo interface.
  */
 export function instanceOfMaaResultListArkLevelInfo(value: object): value is MaaResultListArkLevelInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function MaaResultListArkLevelInfoFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'statusCode': json['status_code'],
+        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(ArkLevelInfoFromJSON)),
     };
@@ -82,7 +81,7 @@ export function MaaResultListArkLevelInfoToJSONTyped(value?: MaaResultListArkLev
 
     return {
         
-        'status_code': value['statusCode'],
+        'statusCode': value['statusCode'],
         'message': value['message'],
         'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(ArkLevelInfoToJSON)),
     };

@@ -24,63 +24,55 @@ export interface ArkLevelInfo {
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    levelId: string;
+    levelId?: string;
     /**
      * 
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    stageId: string;
+    stageId?: string;
     /**
      * 
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    catOne: string;
+    catOne?: string;
     /**
      * 
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    catTwo: string;
+    catTwo?: string;
     /**
      * 
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    catThree: string;
+    catThree?: string;
     /**
      * 
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    name: string;
+    name?: string;
     /**
      * 
      * @type {number}
      * @memberof ArkLevelInfo
      */
-    width: number;
+    width?: number;
     /**
      * 
      * @type {number}
      * @memberof ArkLevelInfo
      */
-    height: number;
+    height?: number;
 }
 
 /**
  * Check if a given object implements the ArkLevelInfo interface.
  */
 export function instanceOfArkLevelInfo(value: object): value is ArkLevelInfo {
-    if (!('levelId' in value) || value['levelId'] === undefined) return false;
-    if (!('stageId' in value) || value['stageId'] === undefined) return false;
-    if (!('catOne' in value) || value['catOne'] === undefined) return false;
-    if (!('catTwo' in value) || value['catTwo'] === undefined) return false;
-    if (!('catThree' in value) || value['catThree'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('width' in value) || value['width'] === undefined) return false;
-    if (!('height' in value) || value['height'] === undefined) return false;
     return true;
 }
 
@@ -94,14 +86,14 @@ export function ArkLevelInfoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'levelId': json['level_id'],
-        'stageId': json['stage_id'],
-        'catOne': json['cat_one'],
-        'catTwo': json['cat_two'],
-        'catThree': json['cat_three'],
-        'name': json['name'],
-        'width': json['width'],
-        'height': json['height'],
+        'levelId': json['levelId'] == null ? undefined : json['levelId'],
+        'stageId': json['stageId'] == null ? undefined : json['stageId'],
+        'catOne': json['catOne'] == null ? undefined : json['catOne'],
+        'catTwo': json['catTwo'] == null ? undefined : json['catTwo'],
+        'catThree': json['catThree'] == null ? undefined : json['catThree'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'width': json['width'] == null ? undefined : json['width'],
+        'height': json['height'] == null ? undefined : json['height'],
     };
 }
 
@@ -116,11 +108,11 @@ export function ArkLevelInfoToJSONTyped(value?: ArkLevelInfo | null, ignoreDiscr
 
     return {
         
-        'level_id': value['levelId'],
-        'stage_id': value['stageId'],
-        'cat_one': value['catOne'],
-        'cat_two': value['catTwo'],
-        'cat_three': value['catThree'],
+        'levelId': value['levelId'],
+        'stageId': value['stageId'],
+        'catOne': value['catOne'],
+        'catTwo': value['catTwo'],
+        'catThree': value['catThree'],
         'name': value['name'],
         'width': value['width'],
         'height': value['height'],

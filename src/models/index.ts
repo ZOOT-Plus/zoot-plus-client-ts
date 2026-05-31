@@ -20,7 +20,7 @@ export * from './CopilotSetQuery';
 export * from './CopilotSetRes';
 export * from './CopilotSetStatus';
 export * from './CopilotSetUpdateReq';
-export * from './GitProperties';
+export * from './GitInfo';
 export * from './LoginDTO';
 export * from './MaaLoginRsp';
 export * from './MaaResult';

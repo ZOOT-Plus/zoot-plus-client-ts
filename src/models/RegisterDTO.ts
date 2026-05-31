@@ -67,9 +67,9 @@ export function RegisterDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'email': json['email'],
-        'userName': json['user_name'],
+        'userName': json['userName'],
         'password': json['password'],
-        'registrationToken': json['registration_token'],
+        'registrationToken': json['registrationToken'],
     };
 }
 
@@ -85,9 +85,9 @@ export function RegisterDTOToJSONTyped(value?: RegisterDTO | null, ignoreDiscrim
     return {
         
         'email': value['email'],
-        'user_name': value['userName'],
+        'userName': value['userName'],
         'password': value['password'],
-        'registration_token': value['registrationToken'],
+        'registrationToken': value['registrationToken'],
     };
 }
 

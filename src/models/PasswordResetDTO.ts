@@ -14,25 +14,25 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * 通过邮件修改密码请求
  * @export
  * @interface PasswordResetDTO
  */
 export interface PasswordResetDTO {
     /**
-     * 
+     * 邮箱
      * @type {string}
      * @memberof PasswordResetDTO
      */
     email: string;
     /**
-     * 
+     * 验证码
      * @type {string}
      * @memberof PasswordResetDTO
      */
     activeCode: string;
     /**
-     * 
+     * 修改后的密码
      * @type {string}
      * @memberof PasswordResetDTO
      */
@@ -60,7 +60,7 @@ export function PasswordResetDTOFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'email': json['email'],
-        'activeCode': json['active_code'],
+        'activeCode': json['activeCode'],
         'password': json['password'],
     };
 }
@@ -77,7 +77,7 @@ export function PasswordResetDTOToJSONTyped(value?: PasswordResetDTO | null, ign
     return {
         
         'email': value['email'],
-        'active_code': value['activeCode'],
+        'activeCode': value['activeCode'],
         'password': value['password'],
     };
 }

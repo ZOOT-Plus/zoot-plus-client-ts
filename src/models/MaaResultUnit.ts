@@ -24,20 +24,19 @@ export interface MaaResultUnit {
      * @type {number}
      * @memberof MaaResultUnit
      */
-    statusCode: number;
+    statusCode?: number;
     /**
      * 
      * @type {string}
      * @memberof MaaResultUnit
      */
-    message?: string;
+    message?: string | null;
 }
 
 /**
  * Check if a given object implements the MaaResultUnit interface.
  */
 export function instanceOfMaaResultUnit(value: object): value is MaaResultUnit {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +50,7 @@ export function MaaResultUnitFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'statusCode': json['status_code'],
+        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
     };
 }
@@ -67,7 +66,7 @@ export function MaaResultUnitToJSONTyped(value?: MaaResultUnit | null, ignoreDis
 
     return {
         
-        'status_code': value['statusCode'],
+        'statusCode': value['statusCode'],
         'message': value['message'],
     };
 }

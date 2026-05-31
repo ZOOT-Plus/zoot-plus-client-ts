@@ -12,18 +12,17 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  MaaResultPagedDTOMaaUserInfo,
-  MaaResultUnit,
-} from '../models/index';
 import {
+    type MaaResultPagedDTOMaaUserInfo,
     MaaResultPagedDTOMaaUserInfoFromJSON,
     MaaResultPagedDTOMaaUserInfoToJSON,
+} from '../models/MaaResultPagedDTOMaaUserInfo';
+import {
+    type MaaResultUnit,
     MaaResultUnitFromJSON,
     MaaResultUnitToJSON,
-} from '../models/index';
+} from '../models/MaaResultUnit';
 
 export interface FollowRequest {
     followUserId: number;
@@ -49,9 +48,9 @@ export interface UnfollowRequest {
 export class UserFollowApi extends runtime.BaseAPI {
 
     /**
-     * 关注用户
+     * Creates request options for follow without sending the request
      */
-    async followRaw(requestParameters: FollowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async followRequestOpts(requestParameters: FollowRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['followUserId'] == null) {
             throw new runtime.RequiredError(
                 'followUserId',
@@ -73,14 +72,22 @@ export class UserFollowApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/follow/follow/{followUserId}`;
-        urlPath = urlPath.replace(`{${"followUserId"}}`, encodeURIComponent(String(requestParameters['followUserId'])));
+        urlPath = urlPath.replace('{followUserId}', encodeURIComponent(String(requestParameters['followUserId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 关注用户
+     */
+    async followRaw(requestParameters: FollowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.followRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }
@@ -94,9 +101,9 @@ export class UserFollowApi extends runtime.BaseAPI {
     }
 
     /**
-     * 获取粉丝列表
+     * Creates request options for getFansList without sending the request
      */
-    async getFansListRaw(requestParameters: GetFansListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPagedDTOMaaUserInfo>> {
+    async getFansListRequestOpts(requestParameters: GetFansListRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -120,12 +127,20 @@ export class UserFollowApi extends runtime.BaseAPI {
 
         let urlPath = `/follow/fansList`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 获取粉丝列表
+     */
+    async getFansListRaw(requestParameters: GetFansListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPagedDTOMaaUserInfo>> {
+        const requestOptions = await this.getFansListRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultPagedDTOMaaUserInfoFromJSON(jsonValue));
     }
@@ -139,9 +154,9 @@ export class UserFollowApi extends runtime.BaseAPI {
     }
 
     /**
-     * 获取关注列表
+     * Creates request options for getFollowingList without sending the request
      */
-    async getFollowingListRaw(requestParameters: GetFollowingListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPagedDTOMaaUserInfo>> {
+    async getFollowingListRequestOpts(requestParameters: GetFollowingListRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -165,12 +180,20 @@ export class UserFollowApi extends runtime.BaseAPI {
 
         let urlPath = `/follow/followingList`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 获取关注列表
+     */
+    async getFollowingListRaw(requestParameters: GetFollowingListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultPagedDTOMaaUserInfo>> {
+        const requestOptions = await this.getFollowingListRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultPagedDTOMaaUserInfoFromJSON(jsonValue));
     }
@@ -184,9 +207,9 @@ export class UserFollowApi extends runtime.BaseAPI {
     }
 
     /**
-     * 取消关注
+     * Creates request options for unfollow without sending the request
      */
-    async unfollowRaw(requestParameters: UnfollowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async unfollowRequestOpts(requestParameters: UnfollowRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['followUserId'] == null) {
             throw new runtime.RequiredError(
                 'followUserId',
@@ -208,14 +231,22 @@ export class UserFollowApi extends runtime.BaseAPI {
         }
 
         let urlPath = `/follow/unfollow/{followUserId}`;
-        urlPath = urlPath.replace(`{${"followUserId"}}`, encodeURIComponent(String(requestParameters['followUserId'])));
+        urlPath = urlPath.replace('{followUserId}', encodeURIComponent(String(requestParameters['followUserId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 取消关注
+     */
+    async unfollowRaw(requestParameters: UnfollowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.unfollowRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }

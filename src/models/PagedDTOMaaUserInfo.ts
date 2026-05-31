@@ -32,35 +32,31 @@ export interface PagedDTOMaaUserInfo {
      * @type {boolean}
      * @memberof PagedDTOMaaUserInfo
      */
-    hasNext: boolean;
+    hasNext?: boolean;
     /**
      * 
      * @type {number}
      * @memberof PagedDTOMaaUserInfo
      */
-    page: number;
+    page?: number;
     /**
      * 
      * @type {number}
      * @memberof PagedDTOMaaUserInfo
      */
-    total: number;
+    total?: number;
     /**
      * 
      * @type {Array<MaaUserInfo>}
      * @memberof PagedDTOMaaUserInfo
      */
-    data: Array<MaaUserInfo>;
+    data?: Array<MaaUserInfo>;
 }
 
 /**
  * Check if a given object implements the PagedDTOMaaUserInfo interface.
  */
 export function instanceOfPagedDTOMaaUserInfo(value: object): value is PagedDTOMaaUserInfo {
-    if (!('hasNext' in value) || value['hasNext'] === undefined) return false;
-    if (!('page' in value) || value['page'] === undefined) return false;
-    if (!('total' in value) || value['total'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }
 
@@ -74,10 +70,10 @@ export function PagedDTOMaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'hasNext': json['has_next'],
-        'page': json['page'],
-        'total': json['total'],
-        'data': ((json['data'] as Array<any>).map(MaaUserInfoFromJSON)),
+        'hasNext': json['hasNext'] == null ? undefined : json['hasNext'],
+        'page': json['page'] == null ? undefined : json['page'],
+        'total': json['total'] == null ? undefined : json['total'],
+        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(MaaUserInfoFromJSON)),
     };
 }
 
@@ -92,10 +88,10 @@ export function PagedDTOMaaUserInfoToJSONTyped(value?: PagedDTOMaaUserInfo | nul
 
     return {
         
-        'has_next': value['hasNext'],
+        'hasNext': value['hasNext'],
         'page': value['page'],
         'total': value['total'],
-        'data': ((value['data'] as Array<any>).map(MaaUserInfoToJSON)),
+        'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(MaaUserInfoToJSON)),
     };
 }
 

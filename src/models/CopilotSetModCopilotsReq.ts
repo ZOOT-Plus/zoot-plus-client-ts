@@ -53,7 +53,7 @@ export function CopilotSetModCopilotsReqFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'id': json['id'],
-        'copilotIds': json['copilot_ids'],
+        'copilotIds': json['copilotIds'],
     };
 }
 
@@ -69,7 +69,7 @@ export function CopilotSetModCopilotsReqToJSONTyped(value?: CopilotSetModCopilot
     return {
         
         'id': value['id'],
-        'copilot_ids': value['copilotIds'],
+        'copilotIds': value['copilotIds'],
     };
 }
 

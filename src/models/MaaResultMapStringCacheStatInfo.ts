@@ -32,13 +32,13 @@ export interface MaaResultMapStringCacheStatInfo {
      * @type {number}
      * @memberof MaaResultMapStringCacheStatInfo
      */
-    statusCode: number;
+    statusCode?: number;
     /**
      * 
      * @type {string}
      * @memberof MaaResultMapStringCacheStatInfo
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
      * @type {{ [key: string]: CacheStatInfo; }}
@@ -51,7 +51,6 @@ export interface MaaResultMapStringCacheStatInfo {
  * Check if a given object implements the MaaResultMapStringCacheStatInfo interface.
  */
 export function instanceOfMaaResultMapStringCacheStatInfo(value: object): value is MaaResultMapStringCacheStatInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function MaaResultMapStringCacheStatInfoFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'statusCode': json['status_code'],
+        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : (mapValues(json['data'], CacheStatInfoFromJSON)),
     };
@@ -82,7 +81,7 @@ export function MaaResultMapStringCacheStatInfoToJSONTyped(value?: MaaResultMapS
 
     return {
         
-        'status_code': value['statusCode'],
+        'statusCode': value['statusCode'],
         'message': value['message'],
         'data': value['data'] == null ? undefined : (mapValues(value['data'], CacheStatInfoToJSON)),
     };

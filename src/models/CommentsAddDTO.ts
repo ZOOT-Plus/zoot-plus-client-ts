@@ -20,35 +20,37 @@ import { mapValues } from '../runtime';
  */
 export interface CommentsAddDTO {
     /**
-     * 
+     * 评论内容
+     *  500字长度为对作者的限制，对于非作者限制为150字
+     *  在业务层中实现
      * @type {string}
      * @memberof CommentsAddDTO
      */
     message: string;
     /**
-     * 
+     * 评论所在作业的 id
      * @type {number}
      * @memberof CommentsAddDTO
      */
-    copilotId: number;
+    copilotId?: number;
     /**
-     * 
+     * 被回复评论的 id
      * @type {number}
      * @memberof CommentsAddDTO
      */
-    fromCommentId?: number;
+    fromCommentId?: number | null;
     /**
-     * 
+     * 是否接收通知
      * @type {boolean}
      * @memberof CommentsAddDTO
      */
-    notification: boolean;
+    notification?: boolean;
     /**
-     * 
-     * @type {string}
+     * 是否允许评论
+     * @type {CommentsAddDTOCommentStatusEnum}
      * @memberof CommentsAddDTO
      */
-    commentStatus: CommentsAddDTOCommentStatusEnum;
+    commentStatus?: CommentsAddDTOCommentStatusEnum;
 }
 
 
@@ -67,9 +69,6 @@ export type CommentsAddDTOCommentStatusEnum = typeof CommentsAddDTOCommentStatus
  */
 export function instanceOfCommentsAddDTO(value: object): value is CommentsAddDTO {
     if (!('message' in value) || value['message'] === undefined) return false;
-    if (!('copilotId' in value) || value['copilotId'] === undefined) return false;
-    if (!('notification' in value) || value['notification'] === undefined) return false;
-    if (!('commentStatus' in value) || value['commentStatus'] === undefined) return false;
     return true;
 }
 
@@ -84,10 +83,10 @@ export function CommentsAddDTOFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'message': json['message'],
-        'copilotId': json['copilot_id'],
-        'fromCommentId': json['from_comment_id'] == null ? undefined : json['from_comment_id'],
-        'notification': json['notification'],
-        'commentStatus': json['comment_status'],
+        'copilotId': json['copilotId'] == null ? undefined : json['copilotId'],
+        'fromCommentId': json['fromCommentId'] == null ? undefined : json['fromCommentId'],
+        'notification': json['notification'] == null ? undefined : json['notification'],
+        'commentStatus': json['commentStatus'] == null ? undefined : json['commentStatus'],
     };
 }
 
@@ -103,10 +102,10 @@ export function CommentsAddDTOToJSONTyped(value?: CommentsAddDTO | null, ignoreD
     return {
         
         'message': value['message'],
-        'copilot_id': value['copilotId'],
-        'from_comment_id': value['fromCommentId'],
+        'copilotId': value['copilotId'],
+        'fromCommentId': value['fromCommentId'],
         'notification': value['notification'],
-        'comment_status': value['commentStatus'],
+        'commentStatus': value['commentStatus'],
     };
 }
 

@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CopilotSetStatus } from './CopilotSetStatus';
+import {
+    CopilotSetStatusFromJSON,
+    CopilotSetStatusFromJSONTyped,
+    CopilotSetStatusToJSON,
+    CopilotSetStatusToJSONTyped,
+} from './CopilotSetStatus';
+
 /**
  * 
  * @export
@@ -24,103 +32,103 @@ export interface CopilotInfo {
      * @type {number}
      * @memberof CopilotInfo
      */
-    id: number;
+    id?: number;
     /**
      * 
      * @type {Date}
      * @memberof CopilotInfo
      */
-    uploadTime: Date;
+    uploadTime?: Date;
     /**
      * 
      * @type {string}
      * @memberof CopilotInfo
      */
-    uploaderId: string;
+    uploaderId?: string;
     /**
      * 
      * @type {string}
      * @memberof CopilotInfo
      */
-    uploader: string;
+    uploader?: string;
     /**
      * 
      * @type {number}
      * @memberof CopilotInfo
      */
-    views: number;
+    views?: number;
     /**
      * 
      * @type {number}
      * @memberof CopilotInfo
      */
-    hotScore: number;
+    hotScore?: number;
     /**
      * 
      * @type {boolean}
      * @memberof CopilotInfo
      */
-    available: boolean;
+    available?: boolean;
     /**
      * 
      * @type {number}
      * @memberof CopilotInfo
      */
-    ratingLevel: number;
+    ratingLevel?: number;
     /**
      * 
      * @type {boolean}
      * @memberof CopilotInfo
      */
-    notEnoughRating: boolean;
+    notEnoughRating?: boolean;
     /**
      * 
      * @type {number}
      * @memberof CopilotInfo
      */
-    ratingRatio: number;
+    ratingRatio?: number;
     /**
      * 
      * @type {number}
      * @memberof CopilotInfo
      */
-    ratingType: number;
+    ratingType?: number;
     /**
      * 
      * @type {number}
      * @memberof CopilotInfo
      */
-    commentsCount: number;
+    commentsCount?: number;
     /**
      * 
      * @type {string}
      * @memberof CopilotInfo
      */
-    content: string;
+    content?: string;
     /**
      * 
      * @type {number}
      * @memberof CopilotInfo
      */
-    like: number;
+    like?: number;
     /**
      * 
      * @type {number}
      * @memberof CopilotInfo
      */
-    dislike: number;
+    dislike?: number;
     /**
      * 
-     * @type {string}
+     * @type {CopilotInfoCommentStatusEnum}
      * @memberof CopilotInfo
      */
-    commentStatus: CopilotInfoCommentStatusEnum;
+    commentStatus?: CopilotInfoCommentStatusEnum;
     /**
      * 
-     * @type {string}
+     * @type {CopilotSetStatus}
      * @memberof CopilotInfo
      */
-    status: CopilotInfoStatusEnum;
+    status?: CopilotSetStatus;
 }
 
 
@@ -133,37 +141,11 @@ export const CopilotInfoCommentStatusEnum = {
 } as const;
 export type CopilotInfoCommentStatusEnum = typeof CopilotInfoCommentStatusEnum[keyof typeof CopilotInfoCommentStatusEnum];
 
-/**
- * @export
- */
-export const CopilotInfoStatusEnum = {
-    Private: 'PRIVATE',
-    Public: 'PUBLIC'
-} as const;
-export type CopilotInfoStatusEnum = typeof CopilotInfoStatusEnum[keyof typeof CopilotInfoStatusEnum];
-
 
 /**
  * Check if a given object implements the CopilotInfo interface.
  */
 export function instanceOfCopilotInfo(value: object): value is CopilotInfo {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('uploadTime' in value) || value['uploadTime'] === undefined) return false;
-    if (!('uploaderId' in value) || value['uploaderId'] === undefined) return false;
-    if (!('uploader' in value) || value['uploader'] === undefined) return false;
-    if (!('views' in value) || value['views'] === undefined) return false;
-    if (!('hotScore' in value) || value['hotScore'] === undefined) return false;
-    if (!('available' in value) || value['available'] === undefined) return false;
-    if (!('ratingLevel' in value) || value['ratingLevel'] === undefined) return false;
-    if (!('notEnoughRating' in value) || value['notEnoughRating'] === undefined) return false;
-    if (!('ratingRatio' in value) || value['ratingRatio'] === undefined) return false;
-    if (!('ratingType' in value) || value['ratingType'] === undefined) return false;
-    if (!('commentsCount' in value) || value['commentsCount'] === undefined) return false;
-    if (!('content' in value) || value['content'] === undefined) return false;
-    if (!('like' in value) || value['like'] === undefined) return false;
-    if (!('dislike' in value) || value['dislike'] === undefined) return false;
-    if (!('commentStatus' in value) || value['commentStatus'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
 
@@ -177,23 +159,23 @@ export function CopilotInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'id': json['id'],
-        'uploadTime': (new Date(json['upload_time'])),
-        'uploaderId': json['uploader_id'],
-        'uploader': json['uploader'],
-        'views': json['views'],
-        'hotScore': json['hot_score'],
-        'available': json['available'],
-        'ratingLevel': json['rating_level'],
-        'notEnoughRating': json['not_enough_rating'],
-        'ratingRatio': json['rating_ratio'],
-        'ratingType': json['rating_type'],
-        'commentsCount': json['comments_count'],
-        'content': json['content'],
-        'like': json['like'],
-        'dislike': json['dislike'],
-        'commentStatus': json['comment_status'],
-        'status': json['status'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'uploadTime': json['uploadTime'] == null ? undefined : (new Date(json['uploadTime'])),
+        'uploaderId': json['uploaderId'] == null ? undefined : json['uploaderId'],
+        'uploader': json['uploader'] == null ? undefined : json['uploader'],
+        'views': json['views'] == null ? undefined : json['views'],
+        'hotScore': json['hotScore'] == null ? undefined : json['hotScore'],
+        'available': json['available'] == null ? undefined : json['available'],
+        'ratingLevel': json['ratingLevel'] == null ? undefined : json['ratingLevel'],
+        'notEnoughRating': json['notEnoughRating'] == null ? undefined : json['notEnoughRating'],
+        'ratingRatio': json['ratingRatio'] == null ? undefined : json['ratingRatio'],
+        'ratingType': json['ratingType'] == null ? undefined : json['ratingType'],
+        'commentsCount': json['commentsCount'] == null ? undefined : json['commentsCount'],
+        'content': json['content'] == null ? undefined : json['content'],
+        'like': json['like'] == null ? undefined : json['like'],
+        'dislike': json['dislike'] == null ? undefined : json['dislike'],
+        'commentStatus': json['commentStatus'] == null ? undefined : json['commentStatus'],
+        'status': json['status'] == null ? undefined : CopilotSetStatusFromJSON(json['status']),
     };
 }
 
@@ -209,22 +191,22 @@ export function CopilotInfoToJSONTyped(value?: CopilotInfo | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'upload_time': ((value['uploadTime']).toISOString()),
-        'uploader_id': value['uploaderId'],
+        'uploadTime': value['uploadTime'] == null ? value['uploadTime'] : value['uploadTime'].toISOString(),
+        'uploaderId': value['uploaderId'],
         'uploader': value['uploader'],
         'views': value['views'],
-        'hot_score': value['hotScore'],
+        'hotScore': value['hotScore'],
         'available': value['available'],
-        'rating_level': value['ratingLevel'],
-        'not_enough_rating': value['notEnoughRating'],
-        'rating_ratio': value['ratingRatio'],
-        'rating_type': value['ratingType'],
-        'comments_count': value['commentsCount'],
+        'ratingLevel': value['ratingLevel'],
+        'notEnoughRating': value['notEnoughRating'],
+        'ratingRatio': value['ratingRatio'],
+        'ratingType': value['ratingType'],
+        'commentsCount': value['commentsCount'],
         'content': value['content'],
         'like': value['like'],
         'dislike': value['dislike'],
-        'comment_status': value['commentStatus'],
-        'status': value['status'],
+        'commentStatus': value['commentStatus'],
+        'status': CopilotSetStatusToJSON(value['status']),
     };
 }
 

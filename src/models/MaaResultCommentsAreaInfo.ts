@@ -32,26 +32,25 @@ export interface MaaResultCommentsAreaInfo {
      * @type {number}
      * @memberof MaaResultCommentsAreaInfo
      */
-    statusCode: number;
+    statusCode?: number;
     /**
      * 
      * @type {string}
      * @memberof MaaResultCommentsAreaInfo
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
      * @type {CommentsAreaInfo}
      * @memberof MaaResultCommentsAreaInfo
      */
-    data?: CommentsAreaInfo;
+    data?: CommentsAreaInfo | null;
 }
 
 /**
  * Check if a given object implements the MaaResultCommentsAreaInfo interface.
  */
 export function instanceOfMaaResultCommentsAreaInfo(value: object): value is MaaResultCommentsAreaInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function MaaResultCommentsAreaInfoFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'statusCode': json['status_code'],
+        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : CommentsAreaInfoFromJSON(json['data']),
     };
@@ -82,7 +81,7 @@ export function MaaResultCommentsAreaInfoToJSONTyped(value?: MaaResultCommentsAr
 
     return {
         
-        'status_code': value['statusCode'],
+        'statusCode': value['statusCode'],
         'message': value['message'],
         'data': CommentsAreaInfoToJSON(value['data']),
     };

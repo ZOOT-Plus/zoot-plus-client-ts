@@ -24,59 +24,55 @@ export interface CopilotSetQuery {
      * @type {number}
      * @memberof CopilotSetQuery
      */
-    page: number;
+    page?: number;
     /**
      * 
      * @type {number}
      * @memberof CopilotSetQuery
      */
-    limit: number;
+    limit?: number;
     /**
      * 
      * @type {string}
      * @memberof CopilotSetQuery
      */
-    keyword?: string;
+    keyword?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CopilotSetQuery
      */
-    creatorId?: string;
+    creatorId?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof CopilotSetQuery
      */
-    onlyFollowing: boolean;
+    onlyFollowing?: boolean;
     /**
      * 
      * @type {Array<number>}
      * @memberof CopilotSetQuery
      */
-    copilotIds?: Array<number>;
+    copilotIds?: Array<number> | null;
     /**
      * 
      * @type {boolean}
      * @memberof CopilotSetQuery
      */
-    desc: boolean;
+    desc?: boolean;
     /**
      * 
      * @type {string}
      * @memberof CopilotSetQuery
      */
-    orderBy?: string;
+    orderBy?: string | null;
 }
 
 /**
  * Check if a given object implements the CopilotSetQuery interface.
  */
 export function instanceOfCopilotSetQuery(value: object): value is CopilotSetQuery {
-    if (!('page' in value) || value['page'] === undefined) return false;
-    if (!('limit' in value) || value['limit'] === undefined) return false;
-    if (!('onlyFollowing' in value) || value['onlyFollowing'] === undefined) return false;
-    if (!('desc' in value) || value['desc'] === undefined) return false;
     return true;
 }
 
@@ -90,14 +86,14 @@ export function CopilotSetQueryFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'page': json['page'],
-        'limit': json['limit'],
+        'page': json['page'] == null ? undefined : json['page'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
         'keyword': json['keyword'] == null ? undefined : json['keyword'],
-        'creatorId': json['creator_id'] == null ? undefined : json['creator_id'],
-        'onlyFollowing': json['only_following'],
-        'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
-        'desc': json['desc'],
-        'orderBy': json['order_by'] == null ? undefined : json['order_by'],
+        'creatorId': json['creatorId'] == null ? undefined : json['creatorId'],
+        'onlyFollowing': json['onlyFollowing'] == null ? undefined : json['onlyFollowing'],
+        'copilotIds': json['copilotIds'] == null ? undefined : json['copilotIds'],
+        'desc': json['desc'] == null ? undefined : json['desc'],
+        'orderBy': json['orderBy'] == null ? undefined : json['orderBy'],
     };
 }
 
@@ -115,11 +111,11 @@ export function CopilotSetQueryToJSONTyped(value?: CopilotSetQuery | null, ignor
         'page': value['page'],
         'limit': value['limit'],
         'keyword': value['keyword'],
-        'creator_id': value['creatorId'],
-        'only_following': value['onlyFollowing'],
-        'copilot_ids': value['copilotIds'],
+        'creatorId': value['creatorId'],
+        'onlyFollowing': value['onlyFollowing'],
+        'copilotIds': value['copilotIds'],
         'desc': value['desc'],
-        'order_by': value['orderBy'],
+        'orderBy': value['orderBy'],
     };
 }
 

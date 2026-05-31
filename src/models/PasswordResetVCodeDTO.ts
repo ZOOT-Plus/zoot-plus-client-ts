@@ -14,13 +14,13 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * 通过邮件修改密码发送验证码请求
  * @export
  * @interface PasswordResetVCodeDTO
  */
 export interface PasswordResetVCodeDTO {
     /**
-     * 
+     * 邮箱
      * @type {string}
      * @memberof PasswordResetVCodeDTO
      */

@@ -52,8 +52,8 @@ export function PasswordUpdateDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'originalPassword': json['original_password'],
-        'newPassword': json['new_password'],
+        'originalPassword': json['originalPassword'],
+        'newPassword': json['newPassword'],
     };
 }
 
@@ -68,8 +68,8 @@ export function PasswordUpdateDTOToJSONTyped(value?: PasswordUpdateDTO | null, i
 
     return {
         
-        'original_password': value['originalPassword'],
-        'new_password': value['newPassword'],
+        'originalPassword': value['originalPassword'],
+        'newPassword': value['newPassword'],
     };
 }
 

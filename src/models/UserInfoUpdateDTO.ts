@@ -45,7 +45,7 @@ export function UserInfoUpdateDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'userName': json['user_name'],
+        'userName': json['userName'],
     };
 }
 
@@ -60,7 +60,7 @@ export function UserInfoUpdateDTOToJSONTyped(value?: UserInfoUpdateDTO | null, i
 
     return {
         
-        'user_name': value['userName'],
+        'userName': value['userName'],
     };
 }
 

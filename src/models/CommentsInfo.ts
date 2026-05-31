@@ -32,70 +32,61 @@ export interface CommentsInfo {
      * @type {number}
      * @memberof CommentsInfo
      */
-    commentId: number;
+    commentId?: number;
     /**
      * 
      * @type {string}
      * @memberof CommentsInfo
      */
-    uploader: string;
+    uploader?: string;
     /**
      * 
      * @type {string}
      * @memberof CommentsInfo
      */
-    uploaderId: string;
+    uploaderId?: string;
     /**
      * 
      * @type {string}
      * @memberof CommentsInfo
      */
-    message: string;
+    message?: string;
     /**
      * 
      * @type {Date}
      * @memberof CommentsInfo
      */
-    uploadTime: Date;
+    uploadTime?: Date;
     /**
      * 
      * @type {number}
      * @memberof CommentsInfo
      */
-    like: number;
+    like?: number;
     /**
      * 
      * @type {number}
      * @memberof CommentsInfo
      */
-    dislike: number;
+    dislike?: number;
     /**
      * 
      * @type {boolean}
      * @memberof CommentsInfo
      */
-    topping: boolean;
+    topping?: boolean;
     /**
      * 
      * @type {Array<SubCommentsInfo>}
      * @memberof CommentsInfo
      */
-    subCommentsInfos: Array<SubCommentsInfo>;
+    subCommentsInfos?: Array<SubCommentsInfo>;
 }
 
 /**
  * Check if a given object implements the CommentsInfo interface.
  */
 export function instanceOfCommentsInfo(value: object): value is CommentsInfo {
-    if (!('commentId' in value) || value['commentId'] === undefined) return false;
-    if (!('uploader' in value) || value['uploader'] === undefined) return false;
-    if (!('uploaderId' in value) || value['uploaderId'] === undefined) return false;
-    if (!('message' in value) || value['message'] === undefined) return false;
-    if (!('uploadTime' in value) || value['uploadTime'] === undefined) return false;
-    if (!('like' in value) || value['like'] === undefined) return false;
-    if (!('dislike' in value) || value['dislike'] === undefined) return false;
-    if (!('topping' in value) || value['topping'] === undefined) return false;
-    if (!('subCommentsInfos' in value) || value['subCommentsInfos'] === undefined) return false;
     return true;
 }
 
@@ -109,15 +100,15 @@ export function CommentsInfoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'commentId': json['comment_id'],
-        'uploader': json['uploader'],
-        'uploaderId': json['uploader_id'],
-        'message': json['message'],
-        'uploadTime': (new Date(json['upload_time'])),
-        'like': json['like'],
-        'dislike': json['dislike'],
-        'topping': json['topping'],
-        'subCommentsInfos': ((json['sub_comments_infos'] as Array<any>).map(SubCommentsInfoFromJSON)),
+        'commentId': json['commentId'] == null ? undefined : json['commentId'],
+        'uploader': json['uploader'] == null ? undefined : json['uploader'],
+        'uploaderId': json['uploaderId'] == null ? undefined : json['uploaderId'],
+        'message': json['message'] == null ? undefined : json['message'],
+        'uploadTime': json['uploadTime'] == null ? undefined : (new Date(json['uploadTime'])),
+        'like': json['like'] == null ? undefined : json['like'],
+        'dislike': json['dislike'] == null ? undefined : json['dislike'],
+        'topping': json['topping'] == null ? undefined : json['topping'],
+        'subCommentsInfos': json['subCommentsInfos'] == null ? undefined : ((json['subCommentsInfos'] as Array<any>).map(SubCommentsInfoFromJSON)),
     };
 }
 
@@ -132,15 +123,15 @@ export function CommentsInfoToJSONTyped(value?: CommentsInfo | null, ignoreDiscr
 
     return {
         
-        'comment_id': value['commentId'],
+        'commentId': value['commentId'],
         'uploader': value['uploader'],
-        'uploader_id': value['uploaderId'],
+        'uploaderId': value['uploaderId'],
         'message': value['message'],
-        'upload_time': ((value['uploadTime']).toISOString()),
+        'uploadTime': value['uploadTime'] == null ? value['uploadTime'] : value['uploadTime'].toISOString(),
         'like': value['like'],
         'dislike': value['dislike'],
         'topping': value['topping'],
-        'sub_comments_infos': ((value['subCommentsInfos'] as Array<any>).map(SubCommentsInfoToJSON)),
+        'subCommentsInfos': value['subCommentsInfos'] == null ? undefined : ((value['subCommentsInfos'] as Array<any>).map(SubCommentsInfoToJSON)),
     };
 }
 

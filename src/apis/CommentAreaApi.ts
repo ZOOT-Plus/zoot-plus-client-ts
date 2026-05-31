@@ -12,30 +12,37 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  CommentsAddDTO,
-  CommentsDeleteDTO,
-  CommentsRatingDTO,
-  CommentsToppingDTO,
-  MaaResultCommentsAreaInfo,
-  MaaResultString,
-} from '../models/index';
 import {
+    type CommentsAddDTO,
     CommentsAddDTOFromJSON,
     CommentsAddDTOToJSON,
+} from '../models/CommentsAddDTO';
+import {
+    type CommentsDeleteDTO,
     CommentsDeleteDTOFromJSON,
     CommentsDeleteDTOToJSON,
+} from '../models/CommentsDeleteDTO';
+import {
+    type CommentsRatingDTO,
     CommentsRatingDTOFromJSON,
     CommentsRatingDTOToJSON,
+} from '../models/CommentsRatingDTO';
+import {
+    type CommentsToppingDTO,
     CommentsToppingDTOFromJSON,
     CommentsToppingDTOToJSON,
+} from '../models/CommentsToppingDTO';
+import {
+    type MaaResultCommentsAreaInfo,
     MaaResultCommentsAreaInfoFromJSON,
     MaaResultCommentsAreaInfoToJSON,
+} from '../models/MaaResultCommentsAreaInfo';
+import {
+    type MaaResultString,
     MaaResultStringFromJSON,
     MaaResultStringToJSON,
-} from '../models/index';
+} from '../models/MaaResultString';
 
 export interface DeleteCommentsRequest {
     commentsDeleteDTO: CommentsDeleteDTO;
@@ -48,9 +55,9 @@ export interface ModifyStatus1Request {
 
 export interface QueriesCommentsAreaRequest {
     copilotId: number;
-    page: number;
-    limit: number;
-    desc: boolean;
+    page?: number;
+    limit?: number;
+    desc?: boolean;
     orderBy?: string;
     justSeeId?: number;
 }
@@ -73,9 +80,9 @@ export interface ToppingCommentsRequest {
 export class CommentAreaApi extends runtime.BaseAPI {
 
     /**
-     * 删除评论
+     * Creates request options for deleteComments without sending the request
      */
-    async deleteCommentsRaw(requestParameters: DeleteCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+    async deleteCommentsRequestOpts(requestParameters: DeleteCommentsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['commentsDeleteDTO'] == null) {
             throw new runtime.RequiredError(
                 'commentsDeleteDTO',
@@ -100,13 +107,21 @@ export class CommentAreaApi extends runtime.BaseAPI {
 
         let urlPath = `/comments/delete`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CommentsDeleteDTOToJSON(requestParameters['commentsDeleteDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 删除评论
+     */
+    async deleteCommentsRaw(requestParameters: DeleteCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+        const requestOptions = await this.deleteCommentsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
     }
@@ -120,9 +135,9 @@ export class CommentAreaApi extends runtime.BaseAPI {
     }
 
     /**
-     * 设置通知接收状态
+     * Creates request options for modifyStatus1 without sending the request
      */
-    async modifyStatus1Raw(requestParameters: ModifyStatus1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+    async modifyStatus1RequestOpts(requestParameters: ModifyStatus1Request): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -160,12 +175,20 @@ export class CommentAreaApi extends runtime.BaseAPI {
 
         let urlPath = `/comments/status`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 设置通知接收状态
+     */
+    async modifyStatus1Raw(requestParameters: ModifyStatus1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+        const requestOptions = await this.modifyStatus1RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
     }
@@ -179,34 +202,13 @@ export class CommentAreaApi extends runtime.BaseAPI {
     }
 
     /**
-     * 分页查询评论
+     * Creates request options for queriesCommentsArea without sending the request
      */
-    async queriesCommentsAreaRaw(requestParameters: QueriesCommentsAreaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCommentsAreaInfo>> {
+    async queriesCommentsAreaRequestOpts(requestParameters: QueriesCommentsAreaRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotId'] == null) {
             throw new runtime.RequiredError(
                 'copilotId',
                 'Required parameter "copilotId" was null or undefined when calling queriesCommentsArea().'
-            );
-        }
-
-        if (requestParameters['page'] == null) {
-            throw new runtime.RequiredError(
-                'page',
-                'Required parameter "page" was null or undefined when calling queriesCommentsArea().'
-            );
-        }
-
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError(
-                'limit',
-                'Required parameter "limit" was null or undefined when calling queriesCommentsArea().'
-            );
-        }
-
-        if (requestParameters['desc'] == null) {
-            throw new runtime.RequiredError(
-                'desc',
-                'Required parameter "desc" was null or undefined when calling queriesCommentsArea().'
             );
         }
 
@@ -241,12 +243,20 @@ export class CommentAreaApi extends runtime.BaseAPI {
 
         let urlPath = `/comments/query`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 分页查询评论
+     */
+    async queriesCommentsAreaRaw(requestParameters: QueriesCommentsAreaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCommentsAreaInfo>> {
+        const requestOptions = await this.queriesCommentsAreaRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultCommentsAreaInfoFromJSON(jsonValue));
     }
@@ -260,9 +270,9 @@ export class CommentAreaApi extends runtime.BaseAPI {
     }
 
     /**
-     * 为评论点赞
+     * Creates request options for ratesComments without sending the request
      */
-    async ratesCommentsRaw(requestParameters: RatesCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+    async ratesCommentsRequestOpts(requestParameters: RatesCommentsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['commentsRatingDTO'] == null) {
             throw new runtime.RequiredError(
                 'commentsRatingDTO',
@@ -287,13 +297,21 @@ export class CommentAreaApi extends runtime.BaseAPI {
 
         let urlPath = `/comments/rating`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CommentsRatingDTOToJSON(requestParameters['commentsRatingDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 为评论点赞
+     */
+    async ratesCommentsRaw(requestParameters: RatesCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+        const requestOptions = await this.ratesCommentsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
     }
@@ -307,9 +325,9 @@ export class CommentAreaApi extends runtime.BaseAPI {
     }
 
     /**
-     * 发送评论
+     * Creates request options for sendComments without sending the request
      */
-    async sendCommentsRaw(requestParameters: SendCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+    async sendCommentsRequestOpts(requestParameters: SendCommentsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['commentsAddDTO'] == null) {
             throw new runtime.RequiredError(
                 'commentsAddDTO',
@@ -334,13 +352,21 @@ export class CommentAreaApi extends runtime.BaseAPI {
 
         let urlPath = `/comments/add`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CommentsAddDTOToJSON(requestParameters['commentsAddDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 发送评论
+     */
+    async sendCommentsRaw(requestParameters: SendCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+        const requestOptions = await this.sendCommentsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
     }
@@ -354,9 +380,9 @@ export class CommentAreaApi extends runtime.BaseAPI {
     }
 
     /**
-     * 为评论置顶/取消置顶
+     * Creates request options for toppingComments without sending the request
      */
-    async toppingCommentsRaw(requestParameters: ToppingCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+    async toppingCommentsRequestOpts(requestParameters: ToppingCommentsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['commentsToppingDTO'] == null) {
             throw new runtime.RequiredError(
                 'commentsToppingDTO',
@@ -381,13 +407,21 @@ export class CommentAreaApi extends runtime.BaseAPI {
 
         let urlPath = `/comments/topping`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CommentsToppingDTOToJSON(requestParameters['commentsToppingDTO']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 为评论置顶/取消置顶
+     */
+    async toppingCommentsRaw(requestParameters: ToppingCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+        const requestOptions = await this.toppingCommentsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
     }

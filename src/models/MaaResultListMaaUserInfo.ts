@@ -32,26 +32,25 @@ export interface MaaResultListMaaUserInfo {
      * @type {number}
      * @memberof MaaResultListMaaUserInfo
      */
-    statusCode: number;
+    statusCode?: number;
     /**
      * 
      * @type {string}
      * @memberof MaaResultListMaaUserInfo
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
      * @type {Array<MaaUserInfo>}
      * @memberof MaaResultListMaaUserInfo
      */
-    data?: Array<MaaUserInfo>;
+    data?: Array<MaaUserInfo> | null;
 }
 
 /**
  * Check if a given object implements the MaaResultListMaaUserInfo interface.
  */
 export function instanceOfMaaResultListMaaUserInfo(value: object): value is MaaResultListMaaUserInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function MaaResultListMaaUserInfoFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'statusCode': json['status_code'],
+        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(MaaUserInfoFromJSON)),
     };
@@ -82,7 +81,7 @@ export function MaaResultListMaaUserInfoToJSONTyped(value?: MaaResultListMaaUser
 
     return {
         
-        'status_code': value['statusCode'],
+        'statusCode': value['statusCode'],
         'message': value['message'],
         'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(MaaUserInfoToJSON)),
     };

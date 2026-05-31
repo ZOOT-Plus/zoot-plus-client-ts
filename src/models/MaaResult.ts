@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Null } from './Null';
+import {
+    NullFromJSON,
+    NullFromJSONTyped,
+    NullToJSON,
+    NullToJSONTyped,
+} from './Null';
+
 /**
  * 
  * @export
@@ -24,26 +32,25 @@ export interface MaaResult {
      * @type {number}
      * @memberof MaaResult
      */
-    statusCode: number;
+    statusCode?: number;
     /**
      * 
      * @type {string}
      * @memberof MaaResult
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
-     * @type {object}
+     * @type {Null}
      * @memberof MaaResult
      */
-    data?: object;
+    data?: Null;
 }
 
 /**
  * Check if a given object implements the MaaResult interface.
  */
 export function instanceOfMaaResult(value: object): value is MaaResult {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -57,9 +64,9 @@ export function MaaResultFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'statusCode': json['status_code'],
+        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
-        'data': json['data'] == null ? undefined : json['data'],
+        'data': json['data'] == null ? undefined : NullFromJSON(json['data']),
     };
 }
 
@@ -74,9 +81,9 @@ export function MaaResultToJSONTyped(value?: MaaResult | null, ignoreDiscriminat
 
     return {
         
-        'status_code': value['statusCode'],
+        'statusCode': value['statusCode'],
         'message': value['message'],
-        'data': value['data'],
+        'data': NullToJSON(value['data']),
     };
 }
 

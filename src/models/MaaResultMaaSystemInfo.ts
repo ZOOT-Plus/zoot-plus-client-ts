@@ -32,26 +32,25 @@ export interface MaaResultMaaSystemInfo {
      * @type {number}
      * @memberof MaaResultMaaSystemInfo
      */
-    statusCode: number;
+    statusCode?: number;
     /**
      * 
      * @type {string}
      * @memberof MaaResultMaaSystemInfo
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
      * @type {MaaSystemInfo}
      * @memberof MaaResultMaaSystemInfo
      */
-    data?: MaaSystemInfo;
+    data?: MaaSystemInfo | null;
 }
 
 /**
  * Check if a given object implements the MaaResultMaaSystemInfo interface.
  */
 export function instanceOfMaaResultMaaSystemInfo(value: object): value is MaaResultMaaSystemInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -65,7 +64,7 @@ export function MaaResultMaaSystemInfoFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'statusCode': json['status_code'],
+        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : MaaSystemInfoFromJSON(json['data']),
     };
@@ -82,7 +81,7 @@ export function MaaResultMaaSystemInfoToJSONTyped(value?: MaaResultMaaSystemInfo
 
     return {
         
-        'status_code': value['statusCode'],
+        'statusCode': value['statusCode'],
         'message': value['message'],
         'data': MaaSystemInfoToJSON(value['data']),
     };

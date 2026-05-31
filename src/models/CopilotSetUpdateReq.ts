@@ -38,25 +38,25 @@ export interface CopilotSetUpdateReq {
      * @type {string}
      * @memberof CopilotSetUpdateReq
      */
-    name?: string;
+    name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CopilotSetUpdateReq
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {CopilotSetStatus}
      * @memberof CopilotSetUpdateReq
      */
-    status?: CopilotSetStatus;
+    status?: CopilotSetStatus | null;
     /**
      * 
      * @type {Array<number>}
      * @memberof CopilotSetUpdateReq
      */
-    copilotIds?: Array<number>;
+    copilotIds?: Array<number> | null;
 }
 
 
@@ -83,7 +83,7 @@ export function CopilotSetUpdateReqFromJSONTyped(json: any, ignoreDiscriminator:
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'status': json['status'] == null ? undefined : CopilotSetStatusFromJSON(json['status']),
-        'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
+        'copilotIds': json['copilotIds'] == null ? undefined : json['copilotIds'],
     };
 }
 
@@ -102,7 +102,7 @@ export function CopilotSetUpdateReqToJSONTyped(value?: CopilotSetUpdateReq | nul
         'name': value['name'],
         'description': value['description'],
         'status': CopilotSetStatusToJSON(value['status']),
-        'copilot_ids': value['copilotIds'],
+        'copilotIds': value['copilotIds'],
     };
 }
 

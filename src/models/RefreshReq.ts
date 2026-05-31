@@ -24,14 +24,13 @@ export interface RefreshReq {
      * @type {string}
      * @memberof RefreshReq
      */
-    refreshToken: string;
+    refreshToken?: string;
 }
 
 /**
  * Check if a given object implements the RefreshReq interface.
  */
 export function instanceOfRefreshReq(value: object): value is RefreshReq {
-    if (!('refreshToken' in value) || value['refreshToken'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function RefreshReqFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'refreshToken': json['refresh_token'],
+        'refreshToken': json['refreshToken'] == null ? undefined : json['refreshToken'],
     };
 }
 
@@ -60,7 +59,7 @@ export function RefreshReqToJSONTyped(value?: RefreshReq | null, ignoreDiscrimin
 
     return {
         
-        'refresh_token': value['refreshToken'],
+        'refreshToken': value['refreshToken'],
     };
 }
 

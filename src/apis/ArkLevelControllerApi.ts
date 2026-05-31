@@ -12,15 +12,12 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  MaaResultListArkLevelInfo,
-} from '../models/index';
 import {
+    type MaaResultListArkLevelInfo,
     MaaResultListArkLevelInfoFromJSON,
     MaaResultListArkLevelInfoToJSON,
-} from '../models/index';
+} from '../models/MaaResultListArkLevelInfo';
 
 /**
  * 
@@ -28,9 +25,9 @@ import {
 export class ArkLevelControllerApi extends runtime.BaseAPI {
 
     /**
-     * 获取关卡数据
+     * Creates request options for getLevels without sending the request
      */
-    async getLevelsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultListArkLevelInfo>> {
+    async getLevelsRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -38,12 +35,20 @@ export class ArkLevelControllerApi extends runtime.BaseAPI {
 
         let urlPath = `/arknights/level`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 获取关卡数据
+     */
+    async getLevelsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultListArkLevelInfo>> {
+        const requestOptions = await this.getLevelsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultListArkLevelInfoFromJSON(jsonValue));
     }

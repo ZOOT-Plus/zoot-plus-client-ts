@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * 用户可对外公开的信息
  * @export
  * @interface MaaUserInfo
  */
@@ -24,42 +24,63 @@ export interface MaaUserInfo {
      * @type {string}
      * @memberof MaaUserInfo
      */
-    id: string;
+    id?: string;
     /**
      * 
      * @type {string}
      * @memberof MaaUserInfo
      */
-    userName: string;
+    userName?: string;
     /**
      * 
      * @type {boolean}
      * @memberof MaaUserInfo
      */
-    activated: boolean;
+    activated?: boolean;
     /**
      * 
      * @type {number}
      * @memberof MaaUserInfo
      */
-    followingCount: number;
+    followingCount?: number;
     /**
      * 
      * @type {number}
      * @memberof MaaUserInfo
      */
-    fansCount: number;
+    fansCount?: number;
+    /**
+     * 
+     * @type {MaaUserInfoRelationEnum}
+     * @memberof MaaUserInfo
+     */
+    relation?: MaaUserInfoRelationEnum | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof MaaUserInfo
+     */
+    followedAt?: Date | null;
 }
+
+
+/**
+ * @export
+ */
+export const MaaUserInfoRelationEnum = {
+    Self: 'SELF',
+    None: 'NONE',
+    Following: 'FOLLOWING',
+    FollowedBy: 'FOLLOWED_BY',
+    Mutual: 'MUTUAL'
+} as const;
+export type MaaUserInfoRelationEnum = typeof MaaUserInfoRelationEnum[keyof typeof MaaUserInfoRelationEnum];
+
 
 /**
  * Check if a given object implements the MaaUserInfo interface.
  */
 export function instanceOfMaaUserInfo(value: object): value is MaaUserInfo {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('userName' in value) || value['userName'] === undefined) return false;
-    if (!('activated' in value) || value['activated'] === undefined) return false;
-    if (!('followingCount' in value) || value['followingCount'] === undefined) return false;
-    if (!('fansCount' in value) || value['fansCount'] === undefined) return false;
     return true;
 }
 
@@ -73,11 +94,13 @@ export function MaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'id': json['id'],
-        'userName': json['user_name'],
-        'activated': json['activated'],
-        'followingCount': json['following_count'],
-        'fansCount': json['fans_count'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'userName': json['userName'] == null ? undefined : json['userName'],
+        'activated': json['activated'] == null ? undefined : json['activated'],
+        'followingCount': json['followingCount'] == null ? undefined : json['followingCount'],
+        'fansCount': json['fansCount'] == null ? undefined : json['fansCount'],
+        'relation': json['relation'] == null ? undefined : json['relation'],
+        'followedAt': json['followedAt'] == null ? undefined : (new Date(json['followedAt'])),
     };
 }
 
@@ -93,10 +116,12 @@ export function MaaUserInfoToJSONTyped(value?: MaaUserInfo | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'user_name': value['userName'],
+        'userName': value['userName'],
         'activated': value['activated'],
-        'following_count': value['followingCount'],
-        'fans_count': value['fansCount'],
+        'followingCount': value['followingCount'],
+        'fansCount': value['fansCount'],
+        'relation': value['relation'],
+        'followedAt': value['followedAt'] == null ? value['followedAt'] : value['followedAt'].toISOString(),
     };
 }
 

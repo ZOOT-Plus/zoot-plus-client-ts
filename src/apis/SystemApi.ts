@@ -12,21 +12,22 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  MaaResult,
-  MaaResultMaaSystemInfo,
-  MaaResultMapStringCacheStatInfo,
-} from '../models/index';
 import {
+    type MaaResult,
     MaaResultFromJSON,
     MaaResultToJSON,
+} from '../models/MaaResult';
+import {
+    type MaaResultMaaSystemInfo,
     MaaResultMaaSystemInfoFromJSON,
     MaaResultMaaSystemInfoToJSON,
+} from '../models/MaaResultMaaSystemInfo';
+import {
+    type MaaResultMapStringCacheStatInfo,
     MaaResultMapStringCacheStatInfoFromJSON,
     MaaResultMapStringCacheStatInfoToJSON,
-} from '../models/index';
+} from '../models/MaaResultMapStringCacheStatInfo';
 
 /**
  * 
@@ -34,10 +35,9 @@ import {
 export class SystemApi extends runtime.BaseAPI {
 
     /**
-     * 返回进程内缓存统计信息
-     * 返回进程内缓存统计信息
+     * Creates request options for getIntraProcessCacheStat without sending the request
      */
-    async getIntraProcessCacheStatRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMapStringCacheStatInfo>> {
+    async getIntraProcessCacheStatRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -45,12 +45,21 @@ export class SystemApi extends runtime.BaseAPI {
 
         let urlPath = `/cache/stat`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 返回进程内缓存统计信息
+     * 返回进程内缓存统计信息
+     */
+    async getIntraProcessCacheStatRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMapStringCacheStatInfo>> {
+        const requestOptions = await this.getIntraProcessCacheStatRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMapStringCacheStatInfoFromJSON(jsonValue));
     }
@@ -65,10 +74,9 @@ export class SystemApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gets the current version of the server.
-     * Gets the current version of the server.
+     * Creates request options for getSystemVersion without sending the request
      */
-    async getSystemVersionRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaSystemInfo>> {
+    async getSystemVersionRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -76,12 +84,21 @@ export class SystemApi extends runtime.BaseAPI {
 
         let urlPath = `/version`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Gets the current version of the server.
+     * Gets the current version of the server.
+     */
+    async getSystemVersionRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultMaaSystemInfo>> {
+        const requestOptions = await this.getSystemVersionRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultMaaSystemInfoFromJSON(jsonValue));
     }
@@ -96,10 +113,9 @@ export class SystemApi extends runtime.BaseAPI {
     }
 
     /**
-     * Tests if the server is ready.
-     * Tests if the server is ready.
+     * Creates request options for test without sending the request
      */
-    async testRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResult>> {
+    async testRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -107,12 +123,21 @@ export class SystemApi extends runtime.BaseAPI {
 
         let urlPath = `/`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Tests if the server is ready.
+     * Tests if the server is ready.
+     */
+    async testRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResult>> {
+        const requestOptions = await this.testRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultFromJSON(jsonValue));
     }

@@ -12,33 +12,42 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  CopilotCUDRequest,
-  CopilotRatingReq,
-  MaaResultCopilotInfo,
-  MaaResultCopilotPageInfo,
-  MaaResultLong,
-  MaaResultString,
-  MaaResultUnit,
-} from '../models/index';
 import {
+    type CopilotCUDRequest,
     CopilotCUDRequestFromJSON,
     CopilotCUDRequestToJSON,
+} from '../models/CopilotCUDRequest';
+import {
+    type CopilotRatingReq,
     CopilotRatingReqFromJSON,
     CopilotRatingReqToJSON,
+} from '../models/CopilotRatingReq';
+import {
+    type MaaResultCopilotInfo,
     MaaResultCopilotInfoFromJSON,
     MaaResultCopilotInfoToJSON,
+} from '../models/MaaResultCopilotInfo';
+import {
+    type MaaResultCopilotPageInfo,
     MaaResultCopilotPageInfoFromJSON,
     MaaResultCopilotPageInfoToJSON,
+} from '../models/MaaResultCopilotPageInfo';
+import {
+    type MaaResultLong,
     MaaResultLongFromJSON,
     MaaResultLongToJSON,
+} from '../models/MaaResultLong';
+import {
+    type MaaResultString,
     MaaResultStringFromJSON,
     MaaResultStringToJSON,
+} from '../models/MaaResultString';
+import {
+    type MaaResultUnit,
     MaaResultUnitFromJSON,
     MaaResultUnitToJSON,
-} from '../models/index';
+} from '../models/MaaResultUnit';
 
 export interface BanCommentsRequest {
     copilotId: number;
@@ -59,19 +68,19 @@ export interface ModifyStatusRequest {
 }
 
 export interface QueriesCopilotRequest {
-    page: number;
-    limit: number;
-    desc: boolean;
-    onlyFollowing: boolean;
+    page?: number;
+    limit?: number;
     levelKeyword?: string;
     operator?: string;
     content?: string;
     document?: string;
     uploaderId?: string;
+    desc?: boolean;
     orderBy?: string;
     language?: string;
     copilotIds?: Array<number>;
     status?: QueriesCopilotStatusEnum;
+    onlyFollowing?: boolean;
 }
 
 export interface RatesCopilotOperationRequest {
@@ -92,9 +101,9 @@ export interface UploadCopilotRequest {
 export class CopilotControllerApi extends runtime.BaseAPI {
 
     /**
-     * 禁用评论区/开启评论区
+     * Creates request options for banComments without sending the request
      */
-    async banCommentsRaw(requestParameters: BanCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+    async banCommentsRequestOpts(requestParameters: BanCommentsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotId'] == null) {
             throw new runtime.RequiredError(
                 'copilotId',
@@ -132,12 +141,20 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         let urlPath = `/copilot/ban`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 禁用评论区/开启评论区
+     */
+    async banCommentsRaw(requestParameters: BanCommentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+        const requestOptions = await this.banCommentsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
     }
@@ -151,9 +168,9 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     }
 
     /**
-     * 删除作业
+     * Creates request options for deleteCopilot without sending the request
      */
-    async deleteCopilotRaw(requestParameters: DeleteCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async deleteCopilotRequestOpts(requestParameters: DeleteCopilotRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotCUDRequest'] == null) {
             throw new runtime.RequiredError(
                 'copilotCUDRequest',
@@ -178,13 +195,21 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         let urlPath = `/copilot/delete`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CopilotCUDRequestToJSON(requestParameters['copilotCUDRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 删除作业
+     */
+    async deleteCopilotRaw(requestParameters: DeleteCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.deleteCopilotRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }
@@ -198,9 +223,9 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     }
 
     /**
-     * 获取作业
+     * Creates request options for getCopilotById without sending the request
      */
-    async getCopilotByIdRaw(requestParameters: GetCopilotByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotInfo>> {
+    async getCopilotByIdRequestOpts(requestParameters: GetCopilotByIdRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -214,14 +239,22 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/copilot/get/{id}`;
-        urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
+        urlPath = urlPath.replace('{id}', encodeURIComponent(String(requestParameters['id'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 获取作业
+     */
+    async getCopilotByIdRaw(requestParameters: GetCopilotByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotInfo>> {
+        const requestOptions = await this.getCopilotByIdRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultCopilotInfoFromJSON(jsonValue));
     }
@@ -235,9 +268,9 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     }
 
     /**
-     * 修改通知状态
+     * Creates request options for modifyStatus without sending the request
      */
-    async modifyStatusRaw(requestParameters: ModifyStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+    async modifyStatusRequestOpts(requestParameters: ModifyStatusRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -275,12 +308,20 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         let urlPath = `/copilot/status`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 修改通知状态
+     */
+    async modifyStatusRaw(requestParameters: ModifyStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+        const requestOptions = await this.modifyStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
     }
@@ -294,37 +335,9 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     }
 
     /**
-     * 分页查询作业，提供登录凭据时查询用户自己的作业
+     * Creates request options for queriesCopilot without sending the request
      */
-    async queriesCopilotRaw(requestParameters: QueriesCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotPageInfo>> {
-        if (requestParameters['page'] == null) {
-            throw new runtime.RequiredError(
-                'page',
-                'Required parameter "page" was null or undefined when calling queriesCopilot().'
-            );
-        }
-
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError(
-                'limit',
-                'Required parameter "limit" was null or undefined when calling queriesCopilot().'
-            );
-        }
-
-        if (requestParameters['desc'] == null) {
-            throw new runtime.RequiredError(
-                'desc',
-                'Required parameter "desc" was null or undefined when calling queriesCopilot().'
-            );
-        }
-
-        if (requestParameters['onlyFollowing'] == null) {
-            throw new runtime.RequiredError(
-                'onlyFollowing',
-                'Required parameter "onlyFollowing" was null or undefined when calling queriesCopilot().'
-            );
-        }
-
+    async queriesCopilotRequestOpts(requestParameters: QueriesCopilotRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['page'] != null) {
@@ -384,12 +397,20 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         let urlPath = `/copilot/query`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 分页查询作业，提供登录凭据时查询用户自己的作业
+     */
+    async queriesCopilotRaw(requestParameters: QueriesCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultCopilotPageInfo>> {
+        const requestOptions = await this.queriesCopilotRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultCopilotPageInfoFromJSON(jsonValue));
     }
@@ -397,15 +418,15 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     /**
      * 分页查询作业，提供登录凭据时查询用户自己的作业
      */
-    async queriesCopilot(requestParameters: QueriesCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultCopilotPageInfo> {
+    async queriesCopilot(requestParameters: QueriesCopilotRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultCopilotPageInfo> {
         const response = await this.queriesCopilotRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * 为作业评分
+     * Creates request options for ratesCopilotOperation without sending the request
      */
-    async ratesCopilotOperationRaw(requestParameters: RatesCopilotOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+    async ratesCopilotOperationRequestOpts(requestParameters: RatesCopilotOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotRatingReq'] == null) {
             throw new runtime.RequiredError(
                 'copilotRatingReq',
@@ -422,13 +443,21 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         let urlPath = `/copilot/rating`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CopilotRatingReqToJSON(requestParameters['copilotRatingReq']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 为作业评分
+     */
+    async ratesCopilotOperationRaw(requestParameters: RatesCopilotOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultString>> {
+        const requestOptions = await this.ratesCopilotOperationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultStringFromJSON(jsonValue));
     }
@@ -442,9 +471,9 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     }
 
     /**
-     * 更新作业
+     * Creates request options for updateCopilot without sending the request
      */
-    async updateCopilotRaw(requestParameters: UpdateCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+    async updateCopilotRequestOpts(requestParameters: UpdateCopilotRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotCUDRequest'] == null) {
             throw new runtime.RequiredError(
                 'copilotCUDRequest',
@@ -469,13 +498,21 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         let urlPath = `/copilot/update`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CopilotCUDRequestToJSON(requestParameters['copilotCUDRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 更新作业
+     */
+    async updateCopilotRaw(requestParameters: UpdateCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.updateCopilotRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
     }
@@ -489,9 +526,9 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     }
 
     /**
-     * 上传作业
+     * Creates request options for uploadCopilot without sending the request
      */
-    async uploadCopilotRaw(requestParameters: UploadCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultLong>> {
+    async uploadCopilotRequestOpts(requestParameters: UploadCopilotRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['copilotCUDRequest'] == null) {
             throw new runtime.RequiredError(
                 'copilotCUDRequest',
@@ -516,13 +553,21 @@ export class CopilotControllerApi extends runtime.BaseAPI {
 
         let urlPath = `/copilot/upload`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CopilotCUDRequestToJSON(requestParameters['copilotCUDRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * 上传作业
+     */
+    async uploadCopilotRaw(requestParameters: UploadCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultLong>> {
+        const requestOptions = await this.uploadCopilotRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultLongFromJSON(jsonValue));
     }
