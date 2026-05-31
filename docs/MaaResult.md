@@ -8,7 +8,6 @@ Name | Type
 ------------ | -------------
 `statusCode` | number
 `message` | string
-`data` | [Null](Null.md)
 
 ## Example
 
@@ -19,7 +18,6 @@ import type { MaaResult } from 'maa-copilot-client'
 const example = {
   "statusCode": null,
   "message": null,
-  "data": null,
 } satisfies MaaResult
 
 console.log(example)

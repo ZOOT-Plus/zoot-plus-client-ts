@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Null } from './Null';
-import {
-    NullFromJSON,
-    NullFromJSONTyped,
-    NullToJSON,
-    NullToJSONTyped,
-} from './Null';
-
 /**
  * 
  * @export
@@ -39,12 +31,6 @@ export interface MaaResult {
      * @memberof MaaResult
      */
     message?: string | null;
-    /**
-     * 
-     * @type {Null}
-     * @memberof MaaResult
-     */
-    data?: Null;
 }
 
 /**
@@ -66,7 +52,6 @@ export function MaaResultFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         
         'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
         'message': json['message'] == null ? undefined : json['message'],
-        'data': json['data'] == null ? undefined : NullFromJSON(json['data']),
     };
 }
 
@@ -83,7 +68,6 @@ export function MaaResultToJSONTyped(value?: MaaResult | null, ignoreDiscriminat
         
         'statusCode': value['statusCode'],
         'message': value['message'],
-        'data': NullToJSON(value['data']),
     };
 }
 
