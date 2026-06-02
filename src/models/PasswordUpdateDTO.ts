@@ -24,21 +24,19 @@ export interface PasswordUpdateDTO {
      * @type {string}
      * @memberof PasswordUpdateDTO
      */
-    originalPassword: string;
+    originalPassword?: string;
     /**
      * 
      * @type {string}
      * @memberof PasswordUpdateDTO
      */
-    newPassword: string;
+    newPassword?: string;
 }
 
 /**
  * Check if a given object implements the PasswordUpdateDTO interface.
  */
 export function instanceOfPasswordUpdateDTO(value: object): value is PasswordUpdateDTO {
-    if (!('originalPassword' in value) || value['originalPassword'] === undefined) return false;
-    if (!('newPassword' in value) || value['newPassword'] === undefined) return false;
     return true;
 }
 
@@ -52,8 +50,8 @@ export function PasswordUpdateDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'originalPassword': json['originalPassword'],
-        'newPassword': json['newPassword'],
+        'originalPassword': json['original_password'] == null ? undefined : json['original_password'],
+        'newPassword': json['new_password'] == null ? undefined : json['new_password'],
     };
 }
 
@@ -68,8 +66,8 @@ export function PasswordUpdateDTOToJSONTyped(value?: PasswordUpdateDTO | null, i
 
     return {
         
-        'originalPassword': value['originalPassword'],
-        'newPassword': value['newPassword'],
+        'original_password': value['originalPassword'],
+        'new_password': value['newPassword'],
     };
 }
 

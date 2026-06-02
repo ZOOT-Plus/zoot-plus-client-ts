@@ -89,11 +89,11 @@ export function CopilotSetQueryFromJSONTyped(json: any, ignoreDiscriminator: boo
         'page': json['page'] == null ? undefined : json['page'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'keyword': json['keyword'] == null ? undefined : json['keyword'],
-        'creatorId': json['creatorId'] == null ? undefined : json['creatorId'],
-        'onlyFollowing': json['onlyFollowing'] == null ? undefined : json['onlyFollowing'],
-        'copilotIds': json['copilotIds'] == null ? undefined : json['copilotIds'],
+        'creatorId': json['creator_id'] == null ? undefined : json['creator_id'],
+        'onlyFollowing': json['only_following'] == null ? undefined : json['only_following'],
+        'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
         'desc': json['desc'] == null ? undefined : json['desc'],
-        'orderBy': json['orderBy'] == null ? undefined : json['orderBy'],
+        'orderBy': json['order_by'] == null ? undefined : json['order_by'],
     };
 }
 
@@ -111,11 +111,11 @@ export function CopilotSetQueryToJSONTyped(value?: CopilotSetQuery | null, ignor
         'page': value['page'],
         'limit': value['limit'],
         'keyword': value['keyword'],
-        'creatorId': value['creatorId'],
-        'onlyFollowing': value['onlyFollowing'],
-        'copilotIds': value['copilotIds'],
+        'creator_id': value['creatorId'],
+        'only_following': value['onlyFollowing'],
+        'copilot_ids': value['copilotIds'],
         'desc': value['desc'],
-        'orderBy': value['orderBy'],
+        'order_by': value['orderBy'],
     };
 }
 

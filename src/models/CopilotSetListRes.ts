@@ -105,12 +105,12 @@ export function CopilotSetListResFromJSONTyped(json: any, ignoreDiscriminator: b
         'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'creatorId': json['creatorId'] == null ? undefined : json['creatorId'],
+        'creatorId': json['creator_id'] == null ? undefined : json['creator_id'],
         'creator': json['creator'] == null ? undefined : json['creator'],
         'status': json['status'] == null ? undefined : CopilotSetStatusFromJSON(json['status']),
-        'createTime': json['createTime'] == null ? undefined : (new Date(json['createTime'])),
-        'updateTime': json['updateTime'] == null ? undefined : (new Date(json['updateTime'])),
-        'copilotIds': json['copilotIds'] == null ? undefined : json['copilotIds'],
+        'createTime': json['create_time'] == null ? undefined : (new Date(json['create_time'])),
+        'updateTime': json['update_time'] == null ? undefined : (new Date(json['update_time'])),
+        'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
     };
 }
 
@@ -128,12 +128,12 @@ export function CopilotSetListResToJSONTyped(value?: CopilotSetListRes | null, i
         'id': value['id'],
         'name': value['name'],
         'description': value['description'],
-        'creatorId': value['creatorId'],
+        'creator_id': value['creatorId'],
         'creator': value['creator'],
         'status': CopilotSetStatusToJSON(value['status']),
-        'createTime': value['createTime'] == null ? value['createTime'] : value['createTime'].toISOString(),
-        'updateTime': value['updateTime'] == null ? value['updateTime'] : value['updateTime'].toISOString(),
-        'copilotIds': value['copilotIds'],
+        'create_time': value['createTime'] == null ? value['createTime'] : value['createTime'].toISOString(),
+        'update_time': value['updateTime'] == null ? value['updateTime'] : value['updateTime'].toISOString(),
+        'copilot_ids': value['copilotIds'],
     };
 }
 

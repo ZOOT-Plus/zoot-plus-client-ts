@@ -63,9 +63,9 @@ export function GitInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): G
     return {
         
         'branch': json['branch'] == null ? undefined : json['branch'],
-        'commitId': json['commitId'] == null ? undefined : json['commitId'],
-        'shortCommitId': json['shortCommitId'] == null ? undefined : json['shortCommitId'],
-        'commitTime': json['commitTime'] == null ? undefined : (new Date(json['commitTime'])),
+        'commitId': json['commit_id'] == null ? undefined : json['commit_id'],
+        'shortCommitId': json['short_commit_id'] == null ? undefined : json['short_commit_id'],
+        'commitTime': json['commit_time'] == null ? undefined : (new Date(json['commit_time'])),
     };
 }
 
@@ -81,9 +81,9 @@ export function GitInfoToJSONTyped(value?: GitInfo | null, ignoreDiscriminator: 
     return {
         
         'branch': value['branch'],
-        'commitId': value['commitId'],
-        'shortCommitId': value['shortCommitId'],
-        'commitTime': value['commitTime'] == null ? value['commitTime'] : value['commitTime'].toISOString(),
+        'commit_id': value['commitId'],
+        'short_commit_id': value['shortCommitId'],
+        'commit_time': value['commitTime'] == null ? value['commitTime'] : value['commitTime'].toISOString(),
     };
 }
 

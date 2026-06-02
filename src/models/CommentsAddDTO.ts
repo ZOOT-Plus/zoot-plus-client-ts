@@ -83,10 +83,10 @@ export function CommentsAddDTOFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'message': json['message'],
-        'copilotId': json['copilotId'] == null ? undefined : json['copilotId'],
-        'fromCommentId': json['fromCommentId'] == null ? undefined : json['fromCommentId'],
+        'copilotId': json['copilot_id'] == null ? undefined : json['copilot_id'],
+        'fromCommentId': json['from_comment_id'] == null ? undefined : json['from_comment_id'],
         'notification': json['notification'] == null ? undefined : json['notification'],
-        'commentStatus': json['commentStatus'] == null ? undefined : json['commentStatus'],
+        'commentStatus': json['comment_status'] == null ? undefined : json['comment_status'],
     };
 }
 
@@ -102,10 +102,10 @@ export function CommentsAddDTOToJSONTyped(value?: CommentsAddDTO | null, ignoreD
     return {
         
         'message': value['message'],
-        'copilotId': value['copilotId'],
-        'fromCommentId': value['fromCommentId'],
+        'copilot_id': value['copilotId'],
+        'from_comment_id': value['fromCommentId'],
         'notification': value['notification'],
-        'commentStatus': value['commentStatus'],
+        'comment_status': value['commentStatus'],
     };
 }
 

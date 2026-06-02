@@ -105,11 +105,11 @@ export function CopilotSetResFromJSONTyped(json: any, ignoreDiscriminator: boole
         'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'copilotIds': json['copilotIds'] == null ? undefined : json['copilotIds'],
-        'creatorId': json['creatorId'] == null ? undefined : json['creatorId'],
+        'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
+        'creatorId': json['creator_id'] == null ? undefined : json['creator_id'],
         'creator': json['creator'] == null ? undefined : json['creator'],
-        'createTime': json['createTime'] == null ? undefined : (new Date(json['createTime'])),
-        'updateTime': json['updateTime'] == null ? undefined : (new Date(json['updateTime'])),
+        'createTime': json['create_time'] == null ? undefined : (new Date(json['create_time'])),
+        'updateTime': json['update_time'] == null ? undefined : (new Date(json['update_time'])),
         'status': json['status'] == null ? undefined : CopilotSetStatusFromJSON(json['status']),
     };
 }
@@ -128,11 +128,11 @@ export function CopilotSetResToJSONTyped(value?: CopilotSetRes | null, ignoreDis
         'id': value['id'],
         'name': value['name'],
         'description': value['description'],
-        'copilotIds': value['copilotIds'],
-        'creatorId': value['creatorId'],
+        'copilot_ids': value['copilotIds'],
+        'creator_id': value['creatorId'],
         'creator': value['creator'],
-        'createTime': value['createTime'] == null ? value['createTime'] : value['createTime'].toISOString(),
-        'updateTime': value['updateTime'] == null ? value['updateTime'] : value['updateTime'].toISOString(),
+        'create_time': value['createTime'] == null ? value['createTime'] : value['createTime'].toISOString(),
+        'update_time': value['updateTime'] == null ? value['updateTime'] : value['updateTime'].toISOString(),
         'status': CopilotSetStatusToJSON(value['status']),
     };
 }

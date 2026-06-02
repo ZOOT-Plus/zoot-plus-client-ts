@@ -86,11 +86,11 @@ export function ArkLevelInfoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'levelId': json['levelId'] == null ? undefined : json['levelId'],
-        'stageId': json['stageId'] == null ? undefined : json['stageId'],
-        'catOne': json['catOne'] == null ? undefined : json['catOne'],
-        'catTwo': json['catTwo'] == null ? undefined : json['catTwo'],
-        'catThree': json['catThree'] == null ? undefined : json['catThree'],
+        'levelId': json['level_id'] == null ? undefined : json['level_id'],
+        'stageId': json['stage_id'] == null ? undefined : json['stage_id'],
+        'catOne': json['cat_one'] == null ? undefined : json['cat_one'],
+        'catTwo': json['cat_two'] == null ? undefined : json['cat_two'],
+        'catThree': json['cat_three'] == null ? undefined : json['cat_three'],
         'name': json['name'] == null ? undefined : json['name'],
         'width': json['width'] == null ? undefined : json['width'],
         'height': json['height'] == null ? undefined : json['height'],
@@ -108,11 +108,11 @@ export function ArkLevelInfoToJSONTyped(value?: ArkLevelInfo | null, ignoreDiscr
 
     return {
         
-        'levelId': value['levelId'],
-        'stageId': value['stageId'],
-        'catOne': value['catOne'],
-        'catTwo': value['catTwo'],
-        'catThree': value['catThree'],
+        'level_id': value['levelId'],
+        'stage_id': value['stageId'],
+        'cat_one': value['catOne'],
+        'cat_two': value['catTwo'],
+        'cat_three': value['catThree'],
         'name': value['name'],
         'width': value['width'],
         'height': value['height'],

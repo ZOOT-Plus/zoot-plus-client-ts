@@ -30,7 +30,7 @@ export interface RegisterDTO {
      * @type {string}
      * @memberof RegisterDTO
      */
-    userName: string;
+    userName?: string;
     /**
      * 
      * @type {string}
@@ -42,7 +42,7 @@ export interface RegisterDTO {
      * @type {string}
      * @memberof RegisterDTO
      */
-    registrationToken: string;
+    registrationToken?: string;
 }
 
 /**
@@ -50,9 +50,7 @@ export interface RegisterDTO {
  */
 export function instanceOfRegisterDTO(value: object): value is RegisterDTO {
     if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('userName' in value) || value['userName'] === undefined) return false;
     if (!('password' in value) || value['password'] === undefined) return false;
-    if (!('registrationToken' in value) || value['registrationToken'] === undefined) return false;
     return true;
 }
 
@@ -67,9 +65,9 @@ export function RegisterDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'email': json['email'],
-        'userName': json['userName'],
+        'userName': json['user_name'] == null ? undefined : json['user_name'],
         'password': json['password'],
-        'registrationToken': json['registrationToken'],
+        'registrationToken': json['registration_token'] == null ? undefined : json['registration_token'],
     };
 }
 
@@ -85,9 +83,9 @@ export function RegisterDTOToJSONTyped(value?: RegisterDTO | null, ignoreDiscrim
     return {
         
         'email': value['email'],
-        'userName': value['userName'],
+        'user_name': value['userName'],
         'password': value['password'],
-        'registrationToken': value['registrationToken'],
+        'registration_token': value['registrationToken'],
     };
 }
 

@@ -24,14 +24,13 @@ export interface UserInfoUpdateDTO {
      * @type {string}
      * @memberof UserInfoUpdateDTO
      */
-    userName: string;
+    userName?: string;
 }
 
 /**
  * Check if a given object implements the UserInfoUpdateDTO interface.
  */
 export function instanceOfUserInfoUpdateDTO(value: object): value is UserInfoUpdateDTO {
-    if (!('userName' in value) || value['userName'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function UserInfoUpdateDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'userName': json['userName'],
+        'userName': json['user_name'] == null ? undefined : json['user_name'],
     };
 }
 
@@ -60,7 +59,7 @@ export function UserInfoUpdateDTOToJSONTyped(value?: UserInfoUpdateDTO | null, i
 
     return {
         
-        'userName': value['userName'],
+        'user_name': value['userName'],
     };
 }
 

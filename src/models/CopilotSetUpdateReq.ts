@@ -83,7 +83,7 @@ export function CopilotSetUpdateReqFromJSONTyped(json: any, ignoreDiscriminator:
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
         'status': json['status'] == null ? undefined : CopilotSetStatusFromJSON(json['status']),
-        'copilotIds': json['copilotIds'] == null ? undefined : json['copilotIds'],
+        'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
     };
 }
 
@@ -102,7 +102,7 @@ export function CopilotSetUpdateReqToJSONTyped(value?: CopilotSetUpdateReq | nul
         'name': value['name'],
         'description': value['description'],
         'status': CopilotSetStatusToJSON(value['status']),
-        'copilotIds': value['copilotIds'],
+        'copilot_ids': value['copilotIds'],
     };
 }
 

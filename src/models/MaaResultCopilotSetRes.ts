@@ -64,7 +64,7 @@ export function MaaResultCopilotSetResFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
+        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : CopilotSetResFromJSON(json['data']),
     };
@@ -81,7 +81,7 @@ export function MaaResultCopilotSetResToJSONTyped(value?: MaaResultCopilotSetRes
 
     return {
         
-        'statusCode': value['statusCode'],
+        'status_code': value['statusCode'],
         'message': value['message'],
         'data': CopilotSetResToJSON(value['data']),
     };

@@ -56,7 +56,7 @@ export function MaaResultStringFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
+        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : json['data'],
     };
@@ -73,7 +73,7 @@ export function MaaResultStringToJSONTyped(value?: MaaResultString | null, ignor
 
     return {
         
-        'statusCode': value['statusCode'],
+        'status_code': value['statusCode'],
         'message': value['message'],
         'data': value['data'],
     };

@@ -70,7 +70,7 @@ export function CopilotPageInfoFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'hasNext': json['hasNext'] == null ? undefined : json['hasNext'],
+        'hasNext': json['has_next'] == null ? undefined : json['has_next'],
         'page': json['page'] == null ? undefined : json['page'],
         'total': json['total'] == null ? undefined : json['total'],
         'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(CopilotInfoFromJSON)),
@@ -88,7 +88,7 @@ export function CopilotPageInfoToJSONTyped(value?: CopilotPageInfo | null, ignor
 
     return {
         
-        'hasNext': value['hasNext'],
+        'has_next': value['hasNext'],
         'page': value['page'],
         'total': value['total'],
         'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(CopilotInfoToJSON)),

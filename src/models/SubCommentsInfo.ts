@@ -98,15 +98,15 @@ export function SubCommentsInfoFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'commentId': json['commentId'] == null ? undefined : json['commentId'],
+        'commentId': json['comment_id'] == null ? undefined : json['comment_id'],
         'uploader': json['uploader'] == null ? undefined : json['uploader'],
-        'uploaderId': json['uploaderId'] == null ? undefined : json['uploaderId'],
+        'uploaderId': json['uploader_id'] == null ? undefined : json['uploader_id'],
         'message': json['message'] == null ? undefined : json['message'],
-        'uploadTime': json['uploadTime'] == null ? undefined : (new Date(json['uploadTime'])),
+        'uploadTime': json['upload_time'] == null ? undefined : (new Date(json['upload_time'])),
         'like': json['like'] == null ? undefined : json['like'],
         'dislike': json['dislike'] == null ? undefined : json['dislike'],
-        'fromCommentId': json['fromCommentId'] == null ? undefined : json['fromCommentId'],
-        'mainCommentId': json['mainCommentId'] == null ? undefined : json['mainCommentId'],
+        'fromCommentId': json['from_comment_id'] == null ? undefined : json['from_comment_id'],
+        'mainCommentId': json['main_comment_id'] == null ? undefined : json['main_comment_id'],
         'deleted': json['deleted'] == null ? undefined : json['deleted'],
     };
 }
@@ -122,15 +122,15 @@ export function SubCommentsInfoToJSONTyped(value?: SubCommentsInfo | null, ignor
 
     return {
         
-        'commentId': value['commentId'],
+        'comment_id': value['commentId'],
         'uploader': value['uploader'],
-        'uploaderId': value['uploaderId'],
+        'uploader_id': value['uploaderId'],
         'message': value['message'],
-        'uploadTime': value['uploadTime'] == null ? value['uploadTime'] : value['uploadTime'].toISOString(),
+        'upload_time': value['uploadTime'] == null ? value['uploadTime'] : value['uploadTime'].toISOString(),
         'like': value['like'],
         'dislike': value['dislike'],
-        'fromCommentId': value['fromCommentId'],
-        'mainCommentId': value['mainCommentId'],
+        'from_comment_id': value['fromCommentId'],
+        'main_comment_id': value['mainCommentId'],
         'deleted': value['deleted'],
     };
 }

@@ -24,7 +24,7 @@ export interface CommentsRatingDTO {
      * @type {number}
      * @memberof CommentsRatingDTO
      */
-    commentId: number;
+    commentId?: number;
     /**
      * 
      * @type {string}
@@ -37,7 +37,6 @@ export interface CommentsRatingDTO {
  * Check if a given object implements the CommentsRatingDTO interface.
  */
 export function instanceOfCommentsRatingDTO(value: object): value is CommentsRatingDTO {
-    if (!('commentId' in value) || value['commentId'] === undefined) return false;
     if (!('rating' in value) || value['rating'] === undefined) return false;
     return true;
 }
@@ -52,7 +51,7 @@ export function CommentsRatingDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'commentId': json['commentId'],
+        'commentId': json['comment_id'] == null ? undefined : json['comment_id'],
         'rating': json['rating'],
     };
 }
@@ -68,7 +67,7 @@ export function CommentsRatingDTOToJSONTyped(value?: CommentsRatingDTO | null, i
 
     return {
         
-        'commentId': value['commentId'],
+        'comment_id': value['commentId'],
         'rating': value['rating'],
     };
 }

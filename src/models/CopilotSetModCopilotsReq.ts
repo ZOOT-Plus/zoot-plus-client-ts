@@ -30,7 +30,7 @@ export interface CopilotSetModCopilotsReq {
      * @type {Array<number>}
      * @memberof CopilotSetModCopilotsReq
      */
-    copilotIds: Array<number>;
+    copilotIds?: Array<number>;
 }
 
 /**
@@ -38,7 +38,6 @@ export interface CopilotSetModCopilotsReq {
  */
 export function instanceOfCopilotSetModCopilotsReq(value: object): value is CopilotSetModCopilotsReq {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('copilotIds' in value) || value['copilotIds'] === undefined) return false;
     return true;
 }
 
@@ -53,7 +52,7 @@ export function CopilotSetModCopilotsReqFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'id': json['id'],
-        'copilotIds': json['copilotIds'],
+        'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
     };
 }
 
@@ -69,7 +68,7 @@ export function CopilotSetModCopilotsReqToJSONTyped(value?: CopilotSetModCopilot
     return {
         
         'id': value['id'],
-        'copilotIds': value['copilotIds'],
+        'copilot_ids': value['copilotIds'],
     };
 }
 

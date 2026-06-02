@@ -89,12 +89,12 @@ export function MaaLoginRspFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'token': json['token'] == null ? undefined : json['token'],
-        'validBefore': json['validBefore'] == null ? undefined : (new Date(json['validBefore'])),
-        'validAfter': json['validAfter'] == null ? undefined : (new Date(json['validAfter'])),
-        'refreshToken': json['refreshToken'] == null ? undefined : json['refreshToken'],
-        'refreshTokenValidBefore': json['refreshTokenValidBefore'] == null ? undefined : (new Date(json['refreshTokenValidBefore'])),
-        'refreshTokenValidAfter': json['refreshTokenValidAfter'] == null ? undefined : (new Date(json['refreshTokenValidAfter'])),
-        'userInfo': json['userInfo'] == null ? undefined : MaaUserInfoFromJSON(json['userInfo']),
+        'validBefore': json['valid_before'] == null ? undefined : (new Date(json['valid_before'])),
+        'validAfter': json['valid_after'] == null ? undefined : (new Date(json['valid_after'])),
+        'refreshToken': json['refresh_token'] == null ? undefined : json['refresh_token'],
+        'refreshTokenValidBefore': json['refresh_token_valid_before'] == null ? undefined : (new Date(json['refresh_token_valid_before'])),
+        'refreshTokenValidAfter': json['refresh_token_valid_after'] == null ? undefined : (new Date(json['refresh_token_valid_after'])),
+        'userInfo': json['user_info'] == null ? undefined : MaaUserInfoFromJSON(json['user_info']),
     };
 }
 
@@ -110,12 +110,12 @@ export function MaaLoginRspToJSONTyped(value?: MaaLoginRsp | null, ignoreDiscrim
     return {
         
         'token': value['token'],
-        'validBefore': value['validBefore'] == null ? value['validBefore'] : value['validBefore'].toISOString(),
-        'validAfter': value['validAfter'] == null ? value['validAfter'] : value['validAfter'].toISOString(),
-        'refreshToken': value['refreshToken'],
-        'refreshTokenValidBefore': value['refreshTokenValidBefore'] == null ? value['refreshTokenValidBefore'] : value['refreshTokenValidBefore'].toISOString(),
-        'refreshTokenValidAfter': value['refreshTokenValidAfter'] == null ? value['refreshTokenValidAfter'] : value['refreshTokenValidAfter'].toISOString(),
-        'userInfo': MaaUserInfoToJSON(value['userInfo']),
+        'valid_before': value['validBefore'] == null ? value['validBefore'] : value['validBefore'].toISOString(),
+        'valid_after': value['validAfter'] == null ? value['validAfter'] : value['validAfter'].toISOString(),
+        'refresh_token': value['refreshToken'],
+        'refresh_token_valid_before': value['refreshTokenValidBefore'] == null ? value['refreshTokenValidBefore'] : value['refreshTokenValidBefore'].toISOString(),
+        'refresh_token_valid_after': value['refreshTokenValidAfter'] == null ? value['refreshTokenValidAfter'] : value['refreshTokenValidAfter'].toISOString(),
+        'user_info': MaaUserInfoToJSON(value['userInfo']),
     };
 }
 

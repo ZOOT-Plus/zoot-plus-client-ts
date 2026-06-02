@@ -44,7 +44,7 @@ export function RefreshReqFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'refreshToken': json['refreshToken'] == null ? undefined : json['refreshToken'],
+        'refreshToken': json['refresh_token'] == null ? undefined : json['refresh_token'],
     };
 }
 
@@ -59,7 +59,7 @@ export function RefreshReqToJSONTyped(value?: RefreshReq | null, ignoreDiscrimin
 
     return {
         
-        'refreshToken': value['refreshToken'],
+        'refresh_token': value['refreshToken'],
     };
 }
 

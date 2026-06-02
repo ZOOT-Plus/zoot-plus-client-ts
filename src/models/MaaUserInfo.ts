@@ -95,12 +95,12 @@ export function MaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'] == null ? undefined : json['id'],
-        'userName': json['userName'] == null ? undefined : json['userName'],
+        'userName': json['user_name'] == null ? undefined : json['user_name'],
         'activated': json['activated'] == null ? undefined : json['activated'],
-        'followingCount': json['followingCount'] == null ? undefined : json['followingCount'],
-        'fansCount': json['fansCount'] == null ? undefined : json['fansCount'],
+        'followingCount': json['following_count'] == null ? undefined : json['following_count'],
+        'fansCount': json['fans_count'] == null ? undefined : json['fans_count'],
         'relation': json['relation'] == null ? undefined : json['relation'],
-        'followedAt': json['followedAt'] == null ? undefined : (new Date(json['followedAt'])),
+        'followedAt': json['followed_at'] == null ? undefined : (new Date(json['followed_at'])),
     };
 }
 
@@ -116,12 +116,12 @@ export function MaaUserInfoToJSONTyped(value?: MaaUserInfo | null, ignoreDiscrim
     return {
         
         'id': value['id'],
-        'userName': value['userName'],
+        'user_name': value['userName'],
         'activated': value['activated'],
-        'followingCount': value['followingCount'],
-        'fansCount': value['fansCount'],
+        'following_count': value['followingCount'],
+        'fans_count': value['fansCount'],
         'relation': value['relation'],
-        'followedAt': value['followedAt'] == null ? value['followedAt'] : value['followedAt'].toISOString(),
+        'followed_at': value['followedAt'] == null ? value['followedAt'] : value['followedAt'].toISOString(),
     };
 }
 

@@ -80,13 +80,13 @@ export function CacheStatInfoFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'hitRate': json['hitRate'] == null ? undefined : json['hitRate'],
-        'missRate': json['missRate'] == null ? undefined : json['missRate'],
-        'hitCount': json['hitCount'] == null ? undefined : json['hitCount'],
-        'missCount': json['missCount'] == null ? undefined : json['missCount'],
-        'loadCount': json['loadCount'] == null ? undefined : json['loadCount'],
-        'evictionCount': json['evictionCount'] == null ? undefined : json['evictionCount'],
-        'averageLoadPenalty': json['averageLoadPenalty'] == null ? undefined : json['averageLoadPenalty'],
+        'hitRate': json['hit_rate'] == null ? undefined : json['hit_rate'],
+        'missRate': json['miss_rate'] == null ? undefined : json['miss_rate'],
+        'hitCount': json['hit_count'] == null ? undefined : json['hit_count'],
+        'missCount': json['miss_count'] == null ? undefined : json['miss_count'],
+        'loadCount': json['load_count'] == null ? undefined : json['load_count'],
+        'evictionCount': json['eviction_count'] == null ? undefined : json['eviction_count'],
+        'averageLoadPenalty': json['average_load_penalty'] == null ? undefined : json['average_load_penalty'],
     };
 }
 
@@ -101,13 +101,13 @@ export function CacheStatInfoToJSONTyped(value?: CacheStatInfo | null, ignoreDis
 
     return {
         
-        'hitRate': value['hitRate'],
-        'missRate': value['missRate'],
-        'hitCount': value['hitCount'],
-        'missCount': value['missCount'],
-        'loadCount': value['loadCount'],
-        'evictionCount': value['evictionCount'],
-        'averageLoadPenalty': value['averageLoadPenalty'],
+        'hit_rate': value['hitRate'],
+        'miss_rate': value['missRate'],
+        'hit_count': value['hitCount'],
+        'miss_count': value['missCount'],
+        'load_count': value['loadCount'],
+        'eviction_count': value['evictionCount'],
+        'average_load_penalty': value['averageLoadPenalty'],
     };
 }
 

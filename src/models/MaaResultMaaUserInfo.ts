@@ -64,7 +64,7 @@ export function MaaResultMaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
+        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : MaaUserInfoFromJSON(json['data']),
     };
@@ -81,7 +81,7 @@ export function MaaResultMaaUserInfoToJSONTyped(value?: MaaResultMaaUserInfo | n
 
     return {
         
-        'statusCode': value['statusCode'],
+        'status_code': value['statusCode'],
         'message': value['message'],
         'data': MaaUserInfoToJSON(value['data']),
     };

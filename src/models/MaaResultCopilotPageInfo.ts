@@ -64,7 +64,7 @@ export function MaaResultCopilotPageInfoFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'statusCode': json['statusCode'] == null ? undefined : json['statusCode'],
+        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : CopilotPageInfoFromJSON(json['data']),
     };
@@ -81,7 +81,7 @@ export function MaaResultCopilotPageInfoToJSONTyped(value?: MaaResultCopilotPage
 
     return {
         
-        'statusCode': value['statusCode'],
+        'status_code': value['statusCode'],
         'message': value['message'],
         'data': CopilotPageInfoToJSON(value['data']),
     };

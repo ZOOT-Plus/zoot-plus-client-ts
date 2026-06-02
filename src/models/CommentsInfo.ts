@@ -100,15 +100,15 @@ export function CommentsInfoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'commentId': json['commentId'] == null ? undefined : json['commentId'],
+        'commentId': json['comment_id'] == null ? undefined : json['comment_id'],
         'uploader': json['uploader'] == null ? undefined : json['uploader'],
-        'uploaderId': json['uploaderId'] == null ? undefined : json['uploaderId'],
+        'uploaderId': json['uploader_id'] == null ? undefined : json['uploader_id'],
         'message': json['message'] == null ? undefined : json['message'],
-        'uploadTime': json['uploadTime'] == null ? undefined : (new Date(json['uploadTime'])),
+        'uploadTime': json['upload_time'] == null ? undefined : (new Date(json['upload_time'])),
         'like': json['like'] == null ? undefined : json['like'],
         'dislike': json['dislike'] == null ? undefined : json['dislike'],
         'topping': json['topping'] == null ? undefined : json['topping'],
-        'subCommentsInfos': json['subCommentsInfos'] == null ? undefined : ((json['subCommentsInfos'] as Array<any>).map(SubCommentsInfoFromJSON)),
+        'subCommentsInfos': json['sub_comments_infos'] == null ? undefined : ((json['sub_comments_infos'] as Array<any>).map(SubCommentsInfoFromJSON)),
     };
 }
 
@@ -123,15 +123,15 @@ export function CommentsInfoToJSONTyped(value?: CommentsInfo | null, ignoreDiscr
 
     return {
         
-        'commentId': value['commentId'],
+        'comment_id': value['commentId'],
         'uploader': value['uploader'],
-        'uploaderId': value['uploaderId'],
+        'uploader_id': value['uploaderId'],
         'message': value['message'],
-        'uploadTime': value['uploadTime'] == null ? value['uploadTime'] : value['uploadTime'].toISOString(),
+        'upload_time': value['uploadTime'] == null ? value['uploadTime'] : value['uploadTime'].toISOString(),
         'like': value['like'],
         'dislike': value['dislike'],
         'topping': value['topping'],
-        'subCommentsInfos': value['subCommentsInfos'] == null ? undefined : ((value['subCommentsInfos'] as Array<any>).map(SubCommentsInfoToJSON)),
+        'sub_comments_infos': value['subCommentsInfos'] == null ? undefined : ((value['subCommentsInfos'] as Array<any>).map(SubCommentsInfoToJSON)),
     };
 }
 

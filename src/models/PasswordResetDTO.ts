@@ -30,7 +30,7 @@ export interface PasswordResetDTO {
      * @type {string}
      * @memberof PasswordResetDTO
      */
-    activeCode: string;
+    activeCode?: string;
     /**
      * 修改后的密码
      * @type {string}
@@ -44,7 +44,6 @@ export interface PasswordResetDTO {
  */
 export function instanceOfPasswordResetDTO(value: object): value is PasswordResetDTO {
     if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('activeCode' in value) || value['activeCode'] === undefined) return false;
     if (!('password' in value) || value['password'] === undefined) return false;
     return true;
 }
@@ -60,7 +59,7 @@ export function PasswordResetDTOFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'email': json['email'],
-        'activeCode': json['activeCode'],
+        'activeCode': json['active_code'] == null ? undefined : json['active_code'],
         'password': json['password'],
     };
 }
@@ -77,7 +76,7 @@ export function PasswordResetDTOToJSONTyped(value?: PasswordResetDTO | null, ign
     return {
         
         'email': value['email'],
-        'activeCode': value['activeCode'],
+        'active_code': value['activeCode'],
         'password': value['password'],
     };
 }
