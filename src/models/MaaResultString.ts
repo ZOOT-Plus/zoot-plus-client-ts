@@ -24,7 +24,7 @@ export interface MaaResultString {
      * @type {number}
      * @memberof MaaResultString
      */
-    statusCode?: number;
+    statusCode: number;
     /**
      * 
      * @type {string}
@@ -43,6 +43,7 @@ export interface MaaResultString {
  * Check if a given object implements the MaaResultString interface.
  */
 export function instanceOfMaaResultString(value: object): value is MaaResultString {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -56,7 +57,7 @@ export function MaaResultStringFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
+        'statusCode': json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : json['data'],
     };

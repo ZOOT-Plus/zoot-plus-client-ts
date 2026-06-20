@@ -24,7 +24,7 @@ export interface MaaResultLong {
      * @type {number}
      * @memberof MaaResultLong
      */
-    statusCode?: number;
+    statusCode: number;
     /**
      * 
      * @type {string}
@@ -43,6 +43,7 @@ export interface MaaResultLong {
  * Check if a given object implements the MaaResultLong interface.
  */
 export function instanceOfMaaResultLong(value: object): value is MaaResultLong {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -56,7 +57,7 @@ export function MaaResultLongFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
+        'statusCode': json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : json['data'],
     };

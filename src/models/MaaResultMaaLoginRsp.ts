@@ -32,7 +32,7 @@ export interface MaaResultMaaLoginRsp {
      * @type {number}
      * @memberof MaaResultMaaLoginRsp
      */
-    statusCode?: number;
+    statusCode: number;
     /**
      * 
      * @type {string}
@@ -51,6 +51,7 @@ export interface MaaResultMaaLoginRsp {
  * Check if a given object implements the MaaResultMaaLoginRsp interface.
  */
 export function instanceOfMaaResultMaaLoginRsp(value: object): value is MaaResultMaaLoginRsp {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -64,7 +65,7 @@ export function MaaResultMaaLoginRspFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
+        'statusCode': json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : MaaLoginRspFromJSON(json['data']),
     };

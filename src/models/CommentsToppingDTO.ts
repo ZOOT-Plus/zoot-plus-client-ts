@@ -24,19 +24,21 @@ export interface CommentsToppingDTO {
      * @type {number}
      * @memberof CommentsToppingDTO
      */
-    commentId?: number;
+    commentId: number;
     /**
      * 
      * @type {boolean}
      * @memberof CommentsToppingDTO
      */
-    topping?: boolean;
+    topping: boolean;
 }
 
 /**
  * Check if a given object implements the CommentsToppingDTO interface.
  */
 export function instanceOfCommentsToppingDTO(value: object): value is CommentsToppingDTO {
+    if (!('commentId' in value) || value['commentId'] === undefined) return false;
+    if (!('topping' in value) || value['topping'] === undefined) return false;
     return true;
 }
 
@@ -50,8 +52,8 @@ export function CommentsToppingDTOFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'commentId': json['comment_id'] == null ? undefined : json['comment_id'],
-        'topping': json['topping'] == null ? undefined : json['topping'],
+        'commentId': json['comment_id'],
+        'topping': json['topping'],
     };
 }
 

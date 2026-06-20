@@ -38,13 +38,13 @@ export interface CopilotSetCreateReq {
      * @type {string}
      * @memberof CopilotSetCreateReq
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {Array<number>}
      * @memberof CopilotSetCreateReq
      */
-    copilotIds?: Array<number>;
+    copilotIds: Array<number>;
     /**
      * 
      * @type {CopilotSetStatus}
@@ -60,6 +60,8 @@ export interface CopilotSetCreateReq {
  */
 export function instanceOfCopilotSetCreateReq(value: object): value is CopilotSetCreateReq {
     if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('copilotIds' in value) || value['copilotIds'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
@@ -75,8 +77,8 @@ export function CopilotSetCreateReqFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'name': json['name'],
-        'description': json['description'] == null ? undefined : json['description'],
-        'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
+        'description': json['description'],
+        'copilotIds': json['copilot_ids'],
         'status': CopilotSetStatusFromJSON(json['status']),
     };
 }

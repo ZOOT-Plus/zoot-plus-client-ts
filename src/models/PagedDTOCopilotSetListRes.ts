@@ -32,31 +32,35 @@ export interface PagedDTOCopilotSetListRes {
      * @type {boolean}
      * @memberof PagedDTOCopilotSetListRes
      */
-    hasNext?: boolean;
+    hasNext: boolean;
     /**
      * 
      * @type {number}
      * @memberof PagedDTOCopilotSetListRes
      */
-    page?: number;
+    page: number;
     /**
      * 
      * @type {number}
      * @memberof PagedDTOCopilotSetListRes
      */
-    total?: number;
+    total: number;
     /**
      * 
      * @type {Array<CopilotSetListRes>}
      * @memberof PagedDTOCopilotSetListRes
      */
-    data?: Array<CopilotSetListRes>;
+    data: Array<CopilotSetListRes>;
 }
 
 /**
  * Check if a given object implements the PagedDTOCopilotSetListRes interface.
  */
 export function instanceOfPagedDTOCopilotSetListRes(value: object): value is PagedDTOCopilotSetListRes {
+    if (!('hasNext' in value) || value['hasNext'] === undefined) return false;
+    if (!('page' in value) || value['page'] === undefined) return false;
+    if (!('total' in value) || value['total'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }
 
@@ -70,10 +74,10 @@ export function PagedDTOCopilotSetListResFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'hasNext': json['has_next'] == null ? undefined : json['has_next'],
-        'page': json['page'] == null ? undefined : json['page'],
-        'total': json['total'] == null ? undefined : json['total'],
-        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(CopilotSetListResFromJSON)),
+        'hasNext': json['has_next'],
+        'page': json['page'],
+        'total': json['total'],
+        'data': ((json['data'] as Array<any>).map(CopilotSetListResFromJSON)),
     };
 }
 
@@ -91,7 +95,7 @@ export function PagedDTOCopilotSetListResToJSONTyped(value?: PagedDTOCopilotSetL
         'has_next': value['hasNext'],
         'page': value['page'],
         'total': value['total'],
-        'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(CopilotSetListResToJSON)),
+        'data': ((value['data'] as Array<any>).map(CopilotSetListResToJSON)),
     };
 }
 

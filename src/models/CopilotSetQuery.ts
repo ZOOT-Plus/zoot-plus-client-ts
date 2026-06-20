@@ -24,13 +24,13 @@ export interface CopilotSetQuery {
      * @type {number}
      * @memberof CopilotSetQuery
      */
-    page?: number;
+    page: number;
     /**
      * 
      * @type {number}
      * @memberof CopilotSetQuery
      */
-    limit?: number;
+    limit: number;
     /**
      * 
      * @type {string}
@@ -48,7 +48,7 @@ export interface CopilotSetQuery {
      * @type {boolean}
      * @memberof CopilotSetQuery
      */
-    onlyFollowing?: boolean;
+    onlyFollowing: boolean;
     /**
      * 
      * @type {Array<number>}
@@ -60,7 +60,7 @@ export interface CopilotSetQuery {
      * @type {boolean}
      * @memberof CopilotSetQuery
      */
-    desc?: boolean;
+    desc: boolean;
     /**
      * 
      * @type {string}
@@ -73,6 +73,10 @@ export interface CopilotSetQuery {
  * Check if a given object implements the CopilotSetQuery interface.
  */
 export function instanceOfCopilotSetQuery(value: object): value is CopilotSetQuery {
+    if (!('page' in value) || value['page'] === undefined) return false;
+    if (!('limit' in value) || value['limit'] === undefined) return false;
+    if (!('onlyFollowing' in value) || value['onlyFollowing'] === undefined) return false;
+    if (!('desc' in value) || value['desc'] === undefined) return false;
     return true;
 }
 
@@ -86,13 +90,13 @@ export function CopilotSetQueryFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'page': json['page'] == null ? undefined : json['page'],
-        'limit': json['limit'] == null ? undefined : json['limit'],
+        'page': json['page'],
+        'limit': json['limit'],
         'keyword': json['keyword'] == null ? undefined : json['keyword'],
         'creatorId': json['creator_id'] == null ? undefined : json['creator_id'],
-        'onlyFollowing': json['only_following'] == null ? undefined : json['only_following'],
+        'onlyFollowing': json['only_following'],
         'copilotIds': json['copilot_ids'] == null ? undefined : json['copilot_ids'],
-        'desc': json['desc'] == null ? undefined : json['desc'],
+        'desc': json['desc'],
         'orderBy': json['order_by'] == null ? undefined : json['order_by'],
     };
 }

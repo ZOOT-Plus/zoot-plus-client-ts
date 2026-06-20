@@ -32,49 +32,56 @@ export interface MaaLoginRsp {
      * @type {string}
      * @memberof MaaLoginRsp
      */
-    token?: string;
+    token: string;
     /**
      * 
      * @type {Date}
      * @memberof MaaLoginRsp
      */
-    validBefore?: Date;
+    validBefore: Date;
     /**
      * 
      * @type {Date}
      * @memberof MaaLoginRsp
      */
-    validAfter?: Date;
+    validAfter: Date;
     /**
      * 
      * @type {string}
      * @memberof MaaLoginRsp
      */
-    refreshToken?: string;
+    refreshToken: string;
     /**
      * 
      * @type {Date}
      * @memberof MaaLoginRsp
      */
-    refreshTokenValidBefore?: Date;
+    refreshTokenValidBefore: Date;
     /**
      * 
      * @type {Date}
      * @memberof MaaLoginRsp
      */
-    refreshTokenValidAfter?: Date;
+    refreshTokenValidAfter: Date;
     /**
      * 
      * @type {MaaUserInfo}
      * @memberof MaaLoginRsp
      */
-    userInfo?: MaaUserInfo;
+    userInfo: MaaUserInfo;
 }
 
 /**
  * Check if a given object implements the MaaLoginRsp interface.
  */
 export function instanceOfMaaLoginRsp(value: object): value is MaaLoginRsp {
+    if (!('token' in value) || value['token'] === undefined) return false;
+    if (!('validBefore' in value) || value['validBefore'] === undefined) return false;
+    if (!('validAfter' in value) || value['validAfter'] === undefined) return false;
+    if (!('refreshToken' in value) || value['refreshToken'] === undefined) return false;
+    if (!('refreshTokenValidBefore' in value) || value['refreshTokenValidBefore'] === undefined) return false;
+    if (!('refreshTokenValidAfter' in value) || value['refreshTokenValidAfter'] === undefined) return false;
+    if (!('userInfo' in value) || value['userInfo'] === undefined) return false;
     return true;
 }
 
@@ -88,13 +95,13 @@ export function MaaLoginRspFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'token': json['token'] == null ? undefined : json['token'],
-        'validBefore': json['valid_before'] == null ? undefined : (new Date(json['valid_before'])),
-        'validAfter': json['valid_after'] == null ? undefined : (new Date(json['valid_after'])),
-        'refreshToken': json['refresh_token'] == null ? undefined : json['refresh_token'],
-        'refreshTokenValidBefore': json['refresh_token_valid_before'] == null ? undefined : (new Date(json['refresh_token_valid_before'])),
-        'refreshTokenValidAfter': json['refresh_token_valid_after'] == null ? undefined : (new Date(json['refresh_token_valid_after'])),
-        'userInfo': json['user_info'] == null ? undefined : MaaUserInfoFromJSON(json['user_info']),
+        'token': json['token'],
+        'validBefore': (new Date(json['valid_before'])),
+        'validAfter': (new Date(json['valid_after'])),
+        'refreshToken': json['refresh_token'],
+        'refreshTokenValidBefore': (new Date(json['refresh_token_valid_before'])),
+        'refreshTokenValidAfter': (new Date(json['refresh_token_valid_after'])),
+        'userInfo': MaaUserInfoFromJSON(json['user_info']),
     };
 }
 
@@ -110,11 +117,11 @@ export function MaaLoginRspToJSONTyped(value?: MaaLoginRsp | null, ignoreDiscrim
     return {
         
         'token': value['token'],
-        'valid_before': value['validBefore'] == null ? value['validBefore'] : value['validBefore'].toISOString(),
-        'valid_after': value['validAfter'] == null ? value['validAfter'] : value['validAfter'].toISOString(),
+        'valid_before': value['validBefore'].toISOString(),
+        'valid_after': value['validAfter'].toISOString(),
         'refresh_token': value['refreshToken'],
-        'refresh_token_valid_before': value['refreshTokenValidBefore'] == null ? value['refreshTokenValidBefore'] : value['refreshTokenValidBefore'].toISOString(),
-        'refresh_token_valid_after': value['refreshTokenValidAfter'] == null ? value['refreshTokenValidAfter'] : value['refreshTokenValidAfter'].toISOString(),
+        'refresh_token_valid_before': value['refreshTokenValidBefore'].toISOString(),
+        'refresh_token_valid_after': value['refreshTokenValidAfter'].toISOString(),
         'user_info': MaaUserInfoToJSON(value['userInfo']),
     };
 }

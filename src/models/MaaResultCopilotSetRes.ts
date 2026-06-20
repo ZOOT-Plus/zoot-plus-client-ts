@@ -32,7 +32,7 @@ export interface MaaResultCopilotSetRes {
      * @type {number}
      * @memberof MaaResultCopilotSetRes
      */
-    statusCode?: number;
+    statusCode: number;
     /**
      * 
      * @type {string}
@@ -51,6 +51,7 @@ export interface MaaResultCopilotSetRes {
  * Check if a given object implements the MaaResultCopilotSetRes interface.
  */
 export function instanceOfMaaResultCopilotSetRes(value: object): value is MaaResultCopilotSetRes {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -64,7 +65,7 @@ export function MaaResultCopilotSetResFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
+        'statusCode': json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : CopilotSetResFromJSON(json['data']),
     };

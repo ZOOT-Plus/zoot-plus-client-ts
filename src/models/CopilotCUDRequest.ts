@@ -44,7 +44,7 @@ export interface CopilotCUDRequest {
      * @type {CopilotSetStatus}
      * @memberof CopilotCUDRequest
      */
-    status?: CopilotSetStatus;
+    status: CopilotSetStatus;
 }
 
 
@@ -54,6 +54,7 @@ export interface CopilotCUDRequest {
  */
 export function instanceOfCopilotCUDRequest(value: object): value is CopilotCUDRequest {
     if (!('content' in value) || value['content'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
 
@@ -69,7 +70,7 @@ export function CopilotCUDRequestFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'content': json['content'],
         'id': json['id'] == null ? undefined : json['id'],
-        'status': json['status'] == null ? undefined : CopilotSetStatusFromJSON(json['status']),
+        'status': CopilotSetStatusFromJSON(json['status']),
     };
 }
 

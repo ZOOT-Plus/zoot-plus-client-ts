@@ -24,31 +24,35 @@ export interface GitInfo {
      * @type {string}
      * @memberof GitInfo
      */
-    branch?: string;
+    branch: string;
     /**
      * 
      * @type {string}
      * @memberof GitInfo
      */
-    commitId?: string;
+    commitId: string;
     /**
      * 
      * @type {string}
      * @memberof GitInfo
      */
-    shortCommitId?: string;
+    shortCommitId: string;
     /**
      * 
      * @type {Date}
      * @memberof GitInfo
      */
-    commitTime?: Date;
+    commitTime: Date;
 }
 
 /**
  * Check if a given object implements the GitInfo interface.
  */
 export function instanceOfGitInfo(value: object): value is GitInfo {
+    if (!('branch' in value) || value['branch'] === undefined) return false;
+    if (!('commitId' in value) || value['commitId'] === undefined) return false;
+    if (!('shortCommitId' in value) || value['shortCommitId'] === undefined) return false;
+    if (!('commitTime' in value) || value['commitTime'] === undefined) return false;
     return true;
 }
 
@@ -62,10 +66,10 @@ export function GitInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): G
     }
     return {
         
-        'branch': json['branch'] == null ? undefined : json['branch'],
-        'commitId': json['commit_id'] == null ? undefined : json['commit_id'],
-        'shortCommitId': json['short_commit_id'] == null ? undefined : json['short_commit_id'],
-        'commitTime': json['commit_time'] == null ? undefined : (new Date(json['commit_time'])),
+        'branch': json['branch'],
+        'commitId': json['commit_id'],
+        'shortCommitId': json['short_commit_id'],
+        'commitTime': (new Date(json['commit_time'])),
     };
 }
 
@@ -83,7 +87,7 @@ export function GitInfoToJSONTyped(value?: GitInfo | null, ignoreDiscriminator: 
         'branch': value['branch'],
         'commit_id': value['commitId'],
         'short_commit_id': value['shortCommitId'],
-        'commit_time': value['commitTime'] == null ? value['commitTime'] : value['commitTime'].toISOString(),
+        'commit_time': value['commitTime'].toISOString(),
     };
 }
 

@@ -24,55 +24,63 @@ export interface ArkLevelInfo {
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    levelId?: string;
+    levelId: string;
     /**
      * 
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    stageId?: string;
+    stageId: string;
     /**
      * 
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    catOne?: string;
+    catOne: string;
     /**
      * 
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    catTwo?: string;
+    catTwo: string;
     /**
      * 
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    catThree?: string;
+    catThree: string;
     /**
      * 
      * @type {string}
      * @memberof ArkLevelInfo
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {number}
      * @memberof ArkLevelInfo
      */
-    width?: number;
+    width: number;
     /**
      * 
      * @type {number}
      * @memberof ArkLevelInfo
      */
-    height?: number;
+    height: number;
 }
 
 /**
  * Check if a given object implements the ArkLevelInfo interface.
  */
 export function instanceOfArkLevelInfo(value: object): value is ArkLevelInfo {
+    if (!('levelId' in value) || value['levelId'] === undefined) return false;
+    if (!('stageId' in value) || value['stageId'] === undefined) return false;
+    if (!('catOne' in value) || value['catOne'] === undefined) return false;
+    if (!('catTwo' in value) || value['catTwo'] === undefined) return false;
+    if (!('catThree' in value) || value['catThree'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('width' in value) || value['width'] === undefined) return false;
+    if (!('height' in value) || value['height'] === undefined) return false;
     return true;
 }
 
@@ -86,14 +94,14 @@ export function ArkLevelInfoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'levelId': json['level_id'] == null ? undefined : json['level_id'],
-        'stageId': json['stage_id'] == null ? undefined : json['stage_id'],
-        'catOne': json['cat_one'] == null ? undefined : json['cat_one'],
-        'catTwo': json['cat_two'] == null ? undefined : json['cat_two'],
-        'catThree': json['cat_three'] == null ? undefined : json['cat_three'],
-        'name': json['name'] == null ? undefined : json['name'],
-        'width': json['width'] == null ? undefined : json['width'],
-        'height': json['height'] == null ? undefined : json['height'],
+        'levelId': json['level_id'],
+        'stageId': json['stage_id'],
+        'catOne': json['cat_one'],
+        'catTwo': json['cat_two'],
+        'catThree': json['cat_three'],
+        'name': json['name'],
+        'width': json['width'],
+        'height': json['height'],
     };
 }
 

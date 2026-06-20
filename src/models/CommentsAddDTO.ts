@@ -32,7 +32,7 @@ export interface CommentsAddDTO {
      * @type {number}
      * @memberof CommentsAddDTO
      */
-    copilotId?: number;
+    copilotId: number;
     /**
      * 被回复评论的 id
      * @type {number}
@@ -44,13 +44,13 @@ export interface CommentsAddDTO {
      * @type {boolean}
      * @memberof CommentsAddDTO
      */
-    notification?: boolean;
+    notification: boolean;
     /**
      * 是否允许评论
      * @type {CommentsAddDTOCommentStatusEnum}
      * @memberof CommentsAddDTO
      */
-    commentStatus?: CommentsAddDTOCommentStatusEnum;
+    commentStatus: CommentsAddDTOCommentStatusEnum;
 }
 
 
@@ -69,6 +69,9 @@ export type CommentsAddDTOCommentStatusEnum = typeof CommentsAddDTOCommentStatus
  */
 export function instanceOfCommentsAddDTO(value: object): value is CommentsAddDTO {
     if (!('message' in value) || value['message'] === undefined) return false;
+    if (!('copilotId' in value) || value['copilotId'] === undefined) return false;
+    if (!('notification' in value) || value['notification'] === undefined) return false;
+    if (!('commentStatus' in value) || value['commentStatus'] === undefined) return false;
     return true;
 }
 
@@ -83,10 +86,10 @@ export function CommentsAddDTOFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'message': json['message'],
-        'copilotId': json['copilot_id'] == null ? undefined : json['copilot_id'],
+        'copilotId': json['copilot_id'],
         'fromCommentId': json['from_comment_id'] == null ? undefined : json['from_comment_id'],
-        'notification': json['notification'] == null ? undefined : json['notification'],
-        'commentStatus': json['comment_status'] == null ? undefined : json['comment_status'],
+        'notification': json['notification'],
+        'commentStatus': json['comment_status'],
     };
 }
 

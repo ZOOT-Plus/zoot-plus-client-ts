@@ -32,7 +32,7 @@ export interface MaaResultPagedDTOCopilotSetListRes {
      * @type {number}
      * @memberof MaaResultPagedDTOCopilotSetListRes
      */
-    statusCode?: number;
+    statusCode: number;
     /**
      * 
      * @type {string}
@@ -51,6 +51,7 @@ export interface MaaResultPagedDTOCopilotSetListRes {
  * Check if a given object implements the MaaResultPagedDTOCopilotSetListRes interface.
  */
 export function instanceOfMaaResultPagedDTOCopilotSetListRes(value: object): value is MaaResultPagedDTOCopilotSetListRes {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -64,7 +65,7 @@ export function MaaResultPagedDTOCopilotSetListResFromJSONTyped(json: any, ignor
     }
     return {
         
-        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
+        'statusCode': json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : PagedDTOCopilotSetListResFromJSON(json['data']),
     };

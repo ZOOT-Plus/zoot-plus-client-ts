@@ -32,31 +32,35 @@ export interface CopilotPageInfo {
      * @type {boolean}
      * @memberof CopilotPageInfo
      */
-    hasNext?: boolean;
+    hasNext: boolean;
     /**
      * 
      * @type {number}
      * @memberof CopilotPageInfo
      */
-    page?: number;
+    page: number;
     /**
      * 
      * @type {number}
      * @memberof CopilotPageInfo
      */
-    total?: number;
+    total: number;
     /**
      * 
      * @type {Array<CopilotInfo>}
      * @memberof CopilotPageInfo
      */
-    data?: Array<CopilotInfo>;
+    data: Array<CopilotInfo>;
 }
 
 /**
  * Check if a given object implements the CopilotPageInfo interface.
  */
 export function instanceOfCopilotPageInfo(value: object): value is CopilotPageInfo {
+    if (!('hasNext' in value) || value['hasNext'] === undefined) return false;
+    if (!('page' in value) || value['page'] === undefined) return false;
+    if (!('total' in value) || value['total'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }
 
@@ -70,10 +74,10 @@ export function CopilotPageInfoFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'hasNext': json['has_next'] == null ? undefined : json['has_next'],
-        'page': json['page'] == null ? undefined : json['page'],
-        'total': json['total'] == null ? undefined : json['total'],
-        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(CopilotInfoFromJSON)),
+        'hasNext': json['has_next'],
+        'page': json['page'],
+        'total': json['total'],
+        'data': ((json['data'] as Array<any>).map(CopilotInfoFromJSON)),
     };
 }
 
@@ -91,7 +95,7 @@ export function CopilotPageInfoToJSONTyped(value?: CopilotPageInfo | null, ignor
         'has_next': value['hasNext'],
         'page': value['page'],
         'total': value['total'],
-        'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(CopilotInfoToJSON)),
+        'data': ((value['data'] as Array<any>).map(CopilotInfoToJSON)),
     };
 }
 

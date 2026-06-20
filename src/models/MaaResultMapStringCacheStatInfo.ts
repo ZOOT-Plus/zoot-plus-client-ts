@@ -32,7 +32,7 @@ export interface MaaResultMapStringCacheStatInfo {
      * @type {number}
      * @memberof MaaResultMapStringCacheStatInfo
      */
-    statusCode?: number;
+    statusCode: number;
     /**
      * 
      * @type {string}
@@ -51,6 +51,7 @@ export interface MaaResultMapStringCacheStatInfo {
  * Check if a given object implements the MaaResultMapStringCacheStatInfo interface.
  */
 export function instanceOfMaaResultMapStringCacheStatInfo(value: object): value is MaaResultMapStringCacheStatInfo {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -64,7 +65,7 @@ export function MaaResultMapStringCacheStatInfoFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
+        'statusCode': json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : (mapValues(json['data'], CacheStatInfoFromJSON)),
     };

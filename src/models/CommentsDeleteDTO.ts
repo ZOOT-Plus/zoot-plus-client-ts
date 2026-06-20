@@ -24,13 +24,14 @@ export interface CommentsDeleteDTO {
      * @type {number}
      * @memberof CommentsDeleteDTO
      */
-    commentId?: number;
+    commentId: number;
 }
 
 /**
  * Check if a given object implements the CommentsDeleteDTO interface.
  */
 export function instanceOfCommentsDeleteDTO(value: object): value is CommentsDeleteDTO {
+    if (!('commentId' in value) || value['commentId'] === undefined) return false;
     return true;
 }
 
@@ -44,7 +45,7 @@ export function CommentsDeleteDTOFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'commentId': json['comment_id'] == null ? undefined : json['comment_id'],
+        'commentId': json['comment_id'],
     };
 }
 

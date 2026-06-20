@@ -24,31 +24,31 @@ export interface MaaUserInfo {
      * @type {string}
      * @memberof MaaUserInfo
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof MaaUserInfo
      */
-    userName?: string;
+    userName: string;
     /**
      * 
      * @type {boolean}
      * @memberof MaaUserInfo
      */
-    activated?: boolean;
+    activated: boolean;
     /**
      * 
      * @type {number}
      * @memberof MaaUserInfo
      */
-    followingCount?: number;
+    followingCount: number;
     /**
      * 
      * @type {number}
      * @memberof MaaUserInfo
      */
-    fansCount?: number;
+    fansCount: number;
     /**
      * 
      * @type {MaaUserInfoRelationEnum}
@@ -81,6 +81,11 @@ export type MaaUserInfoRelationEnum = typeof MaaUserInfoRelationEnum[keyof typeo
  * Check if a given object implements the MaaUserInfo interface.
  */
 export function instanceOfMaaUserInfo(value: object): value is MaaUserInfo {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('userName' in value) || value['userName'] === undefined) return false;
+    if (!('activated' in value) || value['activated'] === undefined) return false;
+    if (!('followingCount' in value) || value['followingCount'] === undefined) return false;
+    if (!('fansCount' in value) || value['fansCount'] === undefined) return false;
     return true;
 }
 
@@ -94,11 +99,11 @@ export function MaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'userName': json['user_name'] == null ? undefined : json['user_name'],
-        'activated': json['activated'] == null ? undefined : json['activated'],
-        'followingCount': json['following_count'] == null ? undefined : json['following_count'],
-        'fansCount': json['fans_count'] == null ? undefined : json['fans_count'],
+        'id': json['id'],
+        'userName': json['user_name'],
+        'activated': json['activated'],
+        'followingCount': json['following_count'],
+        'fansCount': json['fans_count'],
         'relation': json['relation'] == null ? undefined : json['relation'],
         'followedAt': json['followed_at'] == null ? undefined : (new Date(json['followed_at'])),
     };

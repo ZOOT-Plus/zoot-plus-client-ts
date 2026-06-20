@@ -32,7 +32,7 @@ export interface MaaResultCopilotPageInfo {
      * @type {number}
      * @memberof MaaResultCopilotPageInfo
      */
-    statusCode?: number;
+    statusCode: number;
     /**
      * 
      * @type {string}
@@ -51,6 +51,7 @@ export interface MaaResultCopilotPageInfo {
  * Check if a given object implements the MaaResultCopilotPageInfo interface.
  */
 export function instanceOfMaaResultCopilotPageInfo(value: object): value is MaaResultCopilotPageInfo {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -64,7 +65,7 @@ export function MaaResultCopilotPageInfoFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
+        'statusCode': json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : CopilotPageInfoFromJSON(json['data']),
     };

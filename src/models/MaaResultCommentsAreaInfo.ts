@@ -32,7 +32,7 @@ export interface MaaResultCommentsAreaInfo {
      * @type {number}
      * @memberof MaaResultCommentsAreaInfo
      */
-    statusCode?: number;
+    statusCode: number;
     /**
      * 
      * @type {string}
@@ -51,6 +51,7 @@ export interface MaaResultCommentsAreaInfo {
  * Check if a given object implements the MaaResultCommentsAreaInfo interface.
  */
 export function instanceOfMaaResultCommentsAreaInfo(value: object): value is MaaResultCommentsAreaInfo {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -64,7 +65,7 @@ export function MaaResultCommentsAreaInfoFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
+        'statusCode': json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
         'data': json['data'] == null ? undefined : CommentsAreaInfoFromJSON(json['data']),
     };

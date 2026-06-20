@@ -24,7 +24,7 @@ export interface MaaResultUnit {
      * @type {number}
      * @memberof MaaResultUnit
      */
-    statusCode?: number;
+    statusCode: number;
     /**
      * 
      * @type {string}
@@ -37,6 +37,7 @@ export interface MaaResultUnit {
  * Check if a given object implements the MaaResultUnit interface.
  */
 export function instanceOfMaaResultUnit(value: object): value is MaaResultUnit {
+    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
     return true;
 }
 
@@ -50,7 +51,7 @@ export function MaaResultUnitFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'statusCode': json['status_code'] == null ? undefined : json['status_code'],
+        'statusCode': json['status_code'],
         'message': json['message'] == null ? undefined : json['message'],
     };
 }
