@@ -14,10 +14,10 @@
 
 import * as runtime from '../runtime';
 import {
-    type CopilotCUDRequest,
-    CopilotCUDRequestFromJSON,
-    CopilotCUDRequestToJSON,
-} from '../models/CopilotCUDRequest';
+    type CopilotDeleteRequest,
+    CopilotDeleteRequestFromJSON,
+    CopilotDeleteRequestToJSON,
+} from '../models/CopilotDeleteRequest';
 import {
     type CopilotRatingReq,
     CopilotRatingReqFromJSON,
@@ -48,6 +48,11 @@ import {
     MaaResultUnitFromJSON,
     MaaResultUnitToJSON,
 } from '../models/MaaResultUnit';
+import {
+    type UploadCopilotRequest,
+    UploadCopilotRequestFromJSON,
+    UploadCopilotRequestToJSON,
+} from '../models/UploadCopilotRequest';
 
 export interface BanCommentsRequest {
     copilotId: number;
@@ -55,7 +60,7 @@ export interface BanCommentsRequest {
 }
 
 export interface DeleteCopilotRequest {
-    copilotCUDRequest: CopilotCUDRequest;
+    copilotDeleteRequest: CopilotDeleteRequest;
 }
 
 export interface GetCopilotByIdRequest {
@@ -80,6 +85,7 @@ export interface QueriesCopilotRequest {
     language?: string;
     copilotIds?: Array<number>;
     status?: QueriesCopilotStatusEnum;
+    type?: QueriesCopilotTypeEnum;
     onlyFollowing?: boolean;
 }
 
@@ -88,11 +94,11 @@ export interface RatesCopilotOperationRequest {
 }
 
 export interface UpdateCopilotRequest {
-    copilotCUDRequest: CopilotCUDRequest;
+    uploadCopilotRequest: UploadCopilotRequest;
 }
 
-export interface UploadCopilotRequest {
-    copilotCUDRequest: CopilotCUDRequest;
+export interface UploadCopilotOperationRequest {
+    uploadCopilotRequest: UploadCopilotRequest;
 }
 
 /**
@@ -171,10 +177,10 @@ export class CopilotControllerApi extends runtime.BaseAPI {
      * Creates request options for deleteCopilot without sending the request
      */
     async deleteCopilotRequestOpts(requestParameters: DeleteCopilotRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['copilotCUDRequest'] == null) {
+        if (requestParameters['copilotDeleteRequest'] == null) {
             throw new runtime.RequiredError(
-                'copilotCUDRequest',
-                'Required parameter "copilotCUDRequest" was null or undefined when calling deleteCopilot().'
+                'copilotDeleteRequest',
+                'Required parameter "copilotDeleteRequest" was null or undefined when calling deleteCopilot().'
             );
         }
 
@@ -200,7 +206,7 @@ export class CopilotControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CopilotCUDRequestToJSON(requestParameters['copilotCUDRequest']),
+            body: CopilotDeleteRequestToJSON(requestParameters['copilotDeleteRequest']),
         };
     }
 
@@ -388,6 +394,10 @@ export class CopilotControllerApi extends runtime.BaseAPI {
             queryParameters['status'] = requestParameters['status'];
         }
 
+        if (requestParameters['type'] != null) {
+            queryParameters['type'] = requestParameters['type'];
+        }
+
         if (requestParameters['onlyFollowing'] != null) {
             queryParameters['onlyFollowing'] = requestParameters['onlyFollowing'];
         }
@@ -474,10 +484,10 @@ export class CopilotControllerApi extends runtime.BaseAPI {
      * Creates request options for updateCopilot without sending the request
      */
     async updateCopilotRequestOpts(requestParameters: UpdateCopilotRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['copilotCUDRequest'] == null) {
+        if (requestParameters['uploadCopilotRequest'] == null) {
             throw new runtime.RequiredError(
-                'copilotCUDRequest',
-                'Required parameter "copilotCUDRequest" was null or undefined when calling updateCopilot().'
+                'uploadCopilotRequest',
+                'Required parameter "uploadCopilotRequest" was null or undefined when calling updateCopilot().'
             );
         }
 
@@ -503,7 +513,7 @@ export class CopilotControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CopilotCUDRequestToJSON(requestParameters['copilotCUDRequest']),
+            body: UploadCopilotRequestToJSON(requestParameters['uploadCopilotRequest']),
         };
     }
 
@@ -528,11 +538,11 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     /**
      * Creates request options for uploadCopilot without sending the request
      */
-    async uploadCopilotRequestOpts(requestParameters: UploadCopilotRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['copilotCUDRequest'] == null) {
+    async uploadCopilotRequestOpts(requestParameters: UploadCopilotOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['uploadCopilotRequest'] == null) {
             throw new runtime.RequiredError(
-                'copilotCUDRequest',
-                'Required parameter "copilotCUDRequest" was null or undefined when calling uploadCopilot().'
+                'uploadCopilotRequest',
+                'Required parameter "uploadCopilotRequest" was null or undefined when calling uploadCopilot().'
             );
         }
 
@@ -558,14 +568,14 @@ export class CopilotControllerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CopilotCUDRequestToJSON(requestParameters['copilotCUDRequest']),
+            body: UploadCopilotRequestToJSON(requestParameters['uploadCopilotRequest']),
         };
     }
 
     /**
      * 上传作业
      */
-    async uploadCopilotRaw(requestParameters: UploadCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultLong>> {
+    async uploadCopilotRaw(requestParameters: UploadCopilotOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultLong>> {
         const requestOptions = await this.uploadCopilotRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -575,7 +585,7 @@ export class CopilotControllerApi extends runtime.BaseAPI {
     /**
      * 上传作业
      */
-    async uploadCopilot(requestParameters: UploadCopilotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultLong> {
+    async uploadCopilot(requestParameters: UploadCopilotOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultLong> {
         const response = await this.uploadCopilotRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -598,3 +608,11 @@ export const QueriesCopilotStatusEnum = {
     Public: 'PUBLIC'
 } as const;
 export type QueriesCopilotStatusEnum = typeof QueriesCopilotStatusEnum[keyof typeof QueriesCopilotStatusEnum];
+/**
+ * @export
+ */
+export const QueriesCopilotTypeEnum = {
+    Prts: 'PRTS',
+    Video: 'VIDEO'
+} as const;
+export type QueriesCopilotTypeEnum = typeof QueriesCopilotTypeEnum[keyof typeof QueriesCopilotTypeEnum];

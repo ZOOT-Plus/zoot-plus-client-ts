@@ -21,12 +21,27 @@ import {
     CopilotSetStatusToJSONTyped,
 } from './CopilotSetStatus';
 
+import { type PrtsCUDRequest, PrtsCUDRequestFromJSONTyped, PrtsCUDRequestToJSON, PrtsCUDRequestToJSONTyped } from './PrtsCUDRequest';
+import { type VideoCUDRequest, VideoCUDRequestFromJSONTyped, VideoCUDRequestToJSON, VideoCUDRequestToJSONTyped } from './VideoCUDRequest';
 /**
+ * 作业 CUD 请求 (ADT)。作业类型由请求子类型决定，`type` 为 kotlinx/Jackson 的判别字段。
  * 
+ *  - 运行时反序列化使用 kotlinx-serialization，判别字段默认为 `type`，
+ *   值由子类的 [SerialName] 提供。为兼容不携带 `type` 的旧客户端，
+ *   缺失/为 null 的 `type` 默认视作 PRTS（见 [CopilotCUDRequestSerializer]）。
+ *  - OpenAPI/TS 客户端生成由 SpringDoc 通过 Jackson 反射完成，因此同时挂载 Jackson
+ *   的 [JsonTypeInfo]/[JsonSubTypes]，与 kotlinx 保持相同的判别字段与取值。
+ *   两套注解互不干扰：Jackson 忽略 [SerialName]，kotlinx 忽略 Jackson 注解。
  * @export
  * @interface CopilotCUDRequest
  */
 export interface CopilotCUDRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof CopilotCUDRequest
+     */
+    id?: number;
     /**
      * 
      * @type {string}
@@ -35,16 +50,16 @@ export interface CopilotCUDRequest {
     content: string;
     /**
      * 
-     * @type {number}
-     * @memberof CopilotCUDRequest
-     */
-    id?: number | null;
-    /**
-     * 
      * @type {CopilotSetStatus}
      * @memberof CopilotCUDRequest
      */
     status: CopilotSetStatus;
+    /**
+     * 
+     * @type {string}
+     * @memberof CopilotCUDRequest
+     */
+    type: string;
 }
 
 
@@ -55,6 +70,7 @@ export interface CopilotCUDRequest {
 export function instanceOfCopilotCUDRequest(value: object): value is CopilotCUDRequest {
     if (!('content' in value) || value['content'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
 
@@ -66,11 +82,21 @@ export function CopilotCUDRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     if (json == null) {
         return json;
     }
+    if (!ignoreDiscriminator) {
+        if (json['type'] === 'PRTS') {
+            return PrtsCUDRequestFromJSONTyped(json, ignoreDiscriminator);
+        }
+        if (json['type'] === 'VIDEO') {
+            return VideoCUDRequestFromJSONTyped(json, ignoreDiscriminator);
+        }
+
+    }
     return {
         
-        'content': json['content'],
         'id': json['id'] == null ? undefined : json['id'],
+        'content': json['content'],
         'status': CopilotSetStatusFromJSON(json['status']),
+        'type': json['type'],
     };
 }
 
@@ -83,11 +109,23 @@ export function CopilotCUDRequestToJSONTyped(value?: CopilotCUDRequest | null, i
         return value;
     }
 
+    if (!ignoreDiscriminator) {
+        switch (value['type']) {
+            case 'PRTS':
+                return PrtsCUDRequestToJSONTyped(value as PrtsCUDRequest, ignoreDiscriminator);
+            case 'VIDEO':
+                return VideoCUDRequestToJSONTyped(value as VideoCUDRequest, ignoreDiscriminator);
+            default:
+                return value;
+        }
+    }
+
     return {
         
-        'content': value['content'],
         'id': value['id'],
+        'content': value['content'],
         'status': CopilotSetStatusToJSON(value['status']),
+        'type': value['type'],
     };
 }
 

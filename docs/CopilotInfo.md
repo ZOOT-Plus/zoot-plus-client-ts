@@ -7,6 +7,8 @@
 Name | Type
 ------------ | -------------
 `id` | number
+`type` | string
+`videoUrl` | string
 `uploadTime` | Date
 `uploaderId` | string
 `uploader` | string
@@ -32,6 +34,8 @@ import type { CopilotInfo } from 'zoot-plus-client'
 // TODO: Update the object below with actual values
 const example = {
   "id": null,
+  "type": null,
+  "videoUrl": null,
   "uploadTime": null,
   "uploaderId": null,
   "uploader": null,

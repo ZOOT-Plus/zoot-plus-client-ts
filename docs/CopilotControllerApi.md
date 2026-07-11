@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost:8848*
 | [**queriesCopilot**](CopilotControllerApi.md#queriescopilot) | **GET** /copilot/query | 分页查询作业，提供登录凭据时查询用户自己的作业 |
 | [**ratesCopilotOperation**](CopilotControllerApi.md#ratescopilotoperation) | **POST** /copilot/rating | 为作业评分 |
 | [**updateCopilot**](CopilotControllerApi.md#updatecopilot) | **POST** /copilot/update | 更新作业 |
-| [**uploadCopilot**](CopilotControllerApi.md#uploadcopilot) | **POST** /copilot/upload | 上传作业 |
+| [**uploadCopilot**](CopilotControllerApi.md#uploadcopilotoperation) | **POST** /copilot/upload | 上传作业 |
 
 
 
@@ -89,7 +89,7 @@ example().catch(console.error);
 
 ## deleteCopilot
 
-> MaaResultUnit deleteCopilot(copilotCUDRequest)
+> MaaResultUnit deleteCopilot(copilotDeleteRequest)
 
 删除作业
 
@@ -111,8 +111,8 @@ async function example() {
   const api = new CopilotControllerApi(config);
 
   const body = {
-    // CopilotCUDRequest
-    copilotCUDRequest: ...,
+    // CopilotDeleteRequest
+    copilotDeleteRequest: ...,
   } satisfies DeleteCopilotRequest;
 
   try {
@@ -132,7 +132,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **copilotCUDRequest** | [CopilotCUDRequest](CopilotCUDRequest.md) |  | |
+| **copilotDeleteRequest** | [CopilotDeleteRequest](CopilotDeleteRequest.md) |  | |
 
 ### Return type
 
@@ -295,7 +295,7 @@ example().catch(console.error);
 
 ## queriesCopilot
 
-> MaaResultCopilotPageInfo queriesCopilot(page, limit, levelKeyword, operator, content, document, uploaderId, desc, orderBy, language, copilotIds, status, onlyFollowing)
+> MaaResultCopilotPageInfo queriesCopilot(page, limit, levelKeyword, operator, content, document, uploaderId, desc, orderBy, language, copilotIds, status, type, onlyFollowing)
 
 分页查询作业，提供登录凭据时查询用户自己的作业
 
@@ -337,6 +337,8 @@ async function example() {
     copilotIds: ...,
     // 'PRIVATE' | 'PUBLIC' (optional)
     status: status_example,
+    // 'PRTS' | 'VIDEO' (optional)
+    type: type_example,
     // boolean (optional)
     onlyFollowing: true,
   } satisfies QueriesCopilotRequest;
@@ -370,6 +372,7 @@ example().catch(console.error);
 | **language** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **copilotIds** | `Array<number>` |  | [Optional] |
 | **status** | `PRIVATE`, `PUBLIC` |  | [Optional] [Defaults to `undefined`] [Enum: PRIVATE, PUBLIC] |
+| **type** | `PRTS`, `VIDEO` |  | [Optional] [Defaults to `undefined`] [Enum: PRTS, VIDEO] |
 | **onlyFollowing** | `boolean` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -461,7 +464,7 @@ No authorization required
 
 ## updateCopilot
 
-> MaaResultUnit updateCopilot(copilotCUDRequest)
+> MaaResultUnit updateCopilot(uploadCopilotRequest)
 
 更新作业
 
@@ -483,8 +486,8 @@ async function example() {
   const api = new CopilotControllerApi(config);
 
   const body = {
-    // CopilotCUDRequest
-    copilotCUDRequest: ...,
+    // UploadCopilotRequest
+    uploadCopilotRequest: ...,
   } satisfies UpdateCopilotRequest;
 
   try {
@@ -504,7 +507,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **copilotCUDRequest** | [CopilotCUDRequest](CopilotCUDRequest.md) |  | |
+| **uploadCopilotRequest** | [UploadCopilotRequest](UploadCopilotRequest.md) |  | |
 
 ### Return type
 
@@ -530,7 +533,7 @@ example().catch(console.error);
 
 ## uploadCopilot
 
-> MaaResultLong uploadCopilot(copilotCUDRequest)
+> MaaResultLong uploadCopilot(uploadCopilotRequest)
 
 上传作业
 
@@ -541,7 +544,7 @@ import {
   Configuration,
   CopilotControllerApi,
 } from 'zoot-plus-client';
-import type { UploadCopilotRequest } from 'zoot-plus-client';
+import type { UploadCopilotOperationRequest } from 'zoot-plus-client';
 
 async function example() {
   console.log("🚀 Testing zoot-plus-client SDK...");
@@ -552,9 +555,9 @@ async function example() {
   const api = new CopilotControllerApi(config);
 
   const body = {
-    // CopilotCUDRequest
-    copilotCUDRequest: ...,
-  } satisfies UploadCopilotRequest;
+    // UploadCopilotRequest
+    uploadCopilotRequest: ...,
+  } satisfies UploadCopilotOperationRequest;
 
   try {
     const data = await api.uploadCopilot(body);
@@ -573,7 +576,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **copilotCUDRequest** | [CopilotCUDRequest](CopilotCUDRequest.md) |  | |
+| **uploadCopilotRequest** | [UploadCopilotRequest](UploadCopilotRequest.md) |  | |
 
 ### Return type
 

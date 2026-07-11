@@ -35,6 +35,18 @@ export interface CopilotInfo {
     id: number;
     /**
      * 
+     * @type {CopilotInfoTypeEnum}
+     * @memberof CopilotInfo
+     */
+    type: CopilotInfoTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CopilotInfo
+     */
+    videoUrl?: string | null;
+    /**
+     * 
      * @type {Date}
      * @memberof CopilotInfo
      */
@@ -135,6 +147,15 @@ export interface CopilotInfo {
 /**
  * @export
  */
+export const CopilotInfoTypeEnum = {
+    Prts: 'PRTS',
+    Video: 'VIDEO'
+} as const;
+export type CopilotInfoTypeEnum = typeof CopilotInfoTypeEnum[keyof typeof CopilotInfoTypeEnum];
+
+/**
+ * @export
+ */
 export const CopilotInfoCommentStatusEnum = {
     Enabled: 'ENABLED',
     Disabled: 'DISABLED'
@@ -147,6 +168,7 @@ export type CopilotInfoCommentStatusEnum = typeof CopilotInfoCommentStatusEnum[k
  */
 export function instanceOfCopilotInfo(value: object): value is CopilotInfo {
     if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
     if ((!('uploadTime' in value) && !('upload_time' in value)) || (value['uploadTime'] === undefined && value['upload_time'] === undefined)) return false;
     if ((!('uploaderId' in value) && !('uploader_id' in value)) || (value['uploaderId'] === undefined && value['uploader_id'] === undefined)) return false;
     if (!('uploader' in value) || value['uploader'] === undefined) return false;
@@ -177,6 +199,8 @@ export function CopilotInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'id': json['id'],
+        'type': json['type'],
+        'videoUrl': json['video_url'] == null ? undefined : json['video_url'],
         'uploadTime': (new Date(json['upload_time'])),
         'uploaderId': json['uploader_id'],
         'uploader': json['uploader'],
@@ -208,6 +232,8 @@ export function CopilotInfoToJSONTyped(value?: CopilotInfo | null, ignoreDiscrim
     return {
         
         'id': value['id'],
+        'type': value['type'],
+        'video_url': value['videoUrl'],
         'upload_time': value['uploadTime'].toISOString(),
         'uploader_id': value['uploaderId'],
         'uploader': value['uploader'],
