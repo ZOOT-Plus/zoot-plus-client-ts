@@ -31,7 +31,7 @@ export interface UserInfoUpdateDTO {
  * Check if a given object implements the UserInfoUpdateDTO interface.
  */
 export function instanceOfUserInfoUpdateDTO(value: object): value is UserInfoUpdateDTO {
-    if (!('userName' in value) || value['userName'] === undefined) return false;
+    if ((!('userName' in value) && !('user_name' in value)) || (value['userName'] === undefined && value['user_name'] === undefined)) return false;
     return true;
 }
 

@@ -14,7 +14,7 @@ Name | Type
 ## Example
 
 ```typescript
-import type { PasswordResetDTO } from 'maa-copilot-client'
+import type { PasswordResetDTO } from 'zoot-plus-client'
 
 // TODO: Update the object below with actual values
 const example = {

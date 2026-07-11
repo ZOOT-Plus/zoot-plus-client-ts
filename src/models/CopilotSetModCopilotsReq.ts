@@ -38,7 +38,7 @@ export interface CopilotSetModCopilotsReq {
  */
 export function instanceOfCopilotSetModCopilotsReq(value: object): value is CopilotSetModCopilotsReq {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('copilotIds' in value) || value['copilotIds'] === undefined) return false;
+    if ((!('copilotIds' in value) && !('copilot_ids' in value)) || (value['copilotIds'] === undefined && value['copilot_ids'] === undefined)) return false;
     return true;
 }
 

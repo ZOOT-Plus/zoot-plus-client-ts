@@ -23,11 +23,11 @@ All URIs are relative to *http://localhost:8848*
 import {
   Configuration,
   UserFollowApi,
-} from 'maa-copilot-client';
-import type { FollowRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { FollowRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -92,11 +92,11 @@ example().catch(console.error);
 import {
   Configuration,
   UserFollowApi,
-} from 'maa-copilot-client';
-import type { GetFansListRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { GetFansListRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -164,11 +164,11 @@ example().catch(console.error);
 import {
   Configuration,
   UserFollowApi,
-} from 'maa-copilot-client';
-import type { GetFollowingListRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { GetFollowingListRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -236,11 +236,11 @@ example().catch(console.error);
 import {
   Configuration,
   UserFollowApi,
-} from 'maa-copilot-client';
-import type { UnfollowRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { UnfollowRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",

@@ -13,7 +13,7 @@ Name | Type
 ## Example
 
 ```typescript
-import type { MaaResultString } from 'maa-copilot-client'
+import type { MaaResultString } from 'zoot-plus-client'
 
 // TODO: Update the object below with actual values
 const example = {

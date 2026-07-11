@@ -25,11 +25,11 @@ All URIs are relative to *http://localhost:8848*
 import {
   Configuration,
   CommentAreaApi,
-} from 'maa-copilot-client';
-import type { DeleteCommentsRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { DeleteCommentsRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -94,11 +94,11 @@ example().catch(console.error);
 import {
   Configuration,
   CommentAreaApi,
-} from 'maa-copilot-client';
-import type { ModifyStatus1Request } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { ModifyStatus1Request } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -166,11 +166,11 @@ example().catch(console.error);
 import {
   Configuration,
   CommentAreaApi,
-} from 'maa-copilot-client';
-import type { QueriesCommentsAreaRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { QueriesCommentsAreaRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CommentAreaApi();
 
   const body = {
@@ -246,11 +246,11 @@ No authorization required
 import {
   Configuration,
   CommentAreaApi,
-} from 'maa-copilot-client';
-import type { RatesCommentsRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { RatesCommentsRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -315,11 +315,11 @@ example().catch(console.error);
 import {
   Configuration,
   CommentAreaApi,
-} from 'maa-copilot-client';
-import type { SendCommentsRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { SendCommentsRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -384,11 +384,11 @@ example().catch(console.error);
 import {
   Configuration,
   CommentAreaApi,
-} from 'maa-copilot-client';
-import type { ToppingCommentsRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { ToppingCommentsRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",

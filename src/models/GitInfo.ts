@@ -50,9 +50,9 @@ export interface GitInfo {
  */
 export function instanceOfGitInfo(value: object): value is GitInfo {
     if (!('branch' in value) || value['branch'] === undefined) return false;
-    if (!('commitId' in value) || value['commitId'] === undefined) return false;
-    if (!('shortCommitId' in value) || value['shortCommitId'] === undefined) return false;
-    if (!('commitTime' in value) || value['commitTime'] === undefined) return false;
+    if ((!('commitId' in value) && !('commit_id' in value)) || (value['commitId'] === undefined && value['commit_id'] === undefined)) return false;
+    if ((!('shortCommitId' in value) && !('short_commit_id' in value)) || (value['shortCommitId'] === undefined && value['short_commit_id'] === undefined)) return false;
+    if ((!('commitTime' in value) && !('commit_time' in value)) || (value['commitTime'] === undefined && value['commit_time'] === undefined)) return false;
     return true;
 }
 

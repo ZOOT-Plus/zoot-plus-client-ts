@@ -43,7 +43,7 @@ export interface MaaResultString {
  * Check if a given object implements the MaaResultString interface.
  */
 export function instanceOfMaaResultString(value: object): value is MaaResultString {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    if ((!('statusCode' in value) && !('status_code' in value)) || (value['statusCode'] === undefined && value['status_code'] === undefined)) return false;
     return true;
 }
 

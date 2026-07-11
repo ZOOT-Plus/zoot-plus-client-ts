@@ -37,7 +37,7 @@ export interface MaaResultUnit {
  * Check if a given object implements the MaaResultUnit interface.
  */
 export function instanceOfMaaResultUnit(value: object): value is MaaResultUnit {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    if ((!('statusCode' in value) && !('status_code' in value)) || (value['statusCode'] === undefined && value['status_code'] === undefined)) return false;
     return true;
 }
 

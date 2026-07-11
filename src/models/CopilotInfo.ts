@@ -147,21 +147,21 @@ export type CopilotInfoCommentStatusEnum = typeof CopilotInfoCommentStatusEnum[k
  */
 export function instanceOfCopilotInfo(value: object): value is CopilotInfo {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('uploadTime' in value) || value['uploadTime'] === undefined) return false;
-    if (!('uploaderId' in value) || value['uploaderId'] === undefined) return false;
+    if ((!('uploadTime' in value) && !('upload_time' in value)) || (value['uploadTime'] === undefined && value['upload_time'] === undefined)) return false;
+    if ((!('uploaderId' in value) && !('uploader_id' in value)) || (value['uploaderId'] === undefined && value['uploader_id'] === undefined)) return false;
     if (!('uploader' in value) || value['uploader'] === undefined) return false;
     if (!('views' in value) || value['views'] === undefined) return false;
-    if (!('hotScore' in value) || value['hotScore'] === undefined) return false;
+    if ((!('hotScore' in value) && !('hot_score' in value)) || (value['hotScore'] === undefined && value['hot_score'] === undefined)) return false;
     if (!('available' in value) || value['available'] === undefined) return false;
-    if (!('ratingLevel' in value) || value['ratingLevel'] === undefined) return false;
-    if (!('notEnoughRating' in value) || value['notEnoughRating'] === undefined) return false;
-    if (!('ratingRatio' in value) || value['ratingRatio'] === undefined) return false;
-    if (!('ratingType' in value) || value['ratingType'] === undefined) return false;
-    if (!('commentsCount' in value) || value['commentsCount'] === undefined) return false;
+    if ((!('ratingLevel' in value) && !('rating_level' in value)) || (value['ratingLevel'] === undefined && value['rating_level'] === undefined)) return false;
+    if ((!('notEnoughRating' in value) && !('not_enough_rating' in value)) || (value['notEnoughRating'] === undefined && value['not_enough_rating'] === undefined)) return false;
+    if ((!('ratingRatio' in value) && !('rating_ratio' in value)) || (value['ratingRatio'] === undefined && value['rating_ratio'] === undefined)) return false;
+    if ((!('ratingType' in value) && !('rating_type' in value)) || (value['ratingType'] === undefined && value['rating_type'] === undefined)) return false;
+    if ((!('commentsCount' in value) && !('comments_count' in value)) || (value['commentsCount'] === undefined && value['comments_count'] === undefined)) return false;
     if (!('content' in value) || value['content'] === undefined) return false;
     if (!('like' in value) || value['like'] === undefined) return false;
     if (!('dislike' in value) || value['dislike'] === undefined) return false;
-    if (!('commentStatus' in value) || value['commentStatus'] === undefined) return false;
+    if ((!('commentStatus' in value) && !('comment_status' in value)) || (value['commentStatus'] === undefined && value['comment_status'] === undefined)) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }

@@ -14,7 +14,7 @@ Name | Type
 ## Example
 
 ```typescript
-import type { MaaSystemInfo } from 'maa-copilot-client'
+import type { MaaSystemInfo } from 'zoot-plus-client'
 
 // TODO: Update the object below with actual values
 const example = {

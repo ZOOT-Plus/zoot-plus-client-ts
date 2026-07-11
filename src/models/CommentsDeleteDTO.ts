@@ -31,7 +31,7 @@ export interface CommentsDeleteDTO {
  * Check if a given object implements the CommentsDeleteDTO interface.
  */
 export function instanceOfCommentsDeleteDTO(value: object): value is CommentsDeleteDTO {
-    if (!('commentId' in value) || value['commentId'] === undefined) return false;
+    if ((!('commentId' in value) && !('comment_id' in value)) || (value['commentId'] === undefined && value['comment_id'] === undefined)) return false;
     return true;
 }
 

@@ -82,10 +82,10 @@ export type MaaUserInfoRelationEnum = typeof MaaUserInfoRelationEnum[keyof typeo
  */
 export function instanceOfMaaUserInfo(value: object): value is MaaUserInfo {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('userName' in value) || value['userName'] === undefined) return false;
+    if ((!('userName' in value) && !('user_name' in value)) || (value['userName'] === undefined && value['user_name'] === undefined)) return false;
     if (!('activated' in value) || value['activated'] === undefined) return false;
-    if (!('followingCount' in value) || value['followingCount'] === undefined) return false;
-    if (!('fansCount' in value) || value['fansCount'] === undefined) return false;
+    if ((!('followingCount' in value) && !('following_count' in value)) || (value['followingCount'] === undefined && value['following_count'] === undefined)) return false;
+    if ((!('fansCount' in value) && !('fans_count' in value)) || (value['fansCount'] === undefined && value['fans_count'] === undefined)) return false;
     return true;
 }
 

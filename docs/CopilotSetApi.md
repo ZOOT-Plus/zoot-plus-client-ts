@@ -26,11 +26,11 @@ All URIs are relative to *http://localhost:8848*
 import {
   Configuration,
   CopilotSetApi,
-} from 'maa-copilot-client';
-import type { AddCopilotIdsRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { AddCopilotIdsRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -95,11 +95,11 @@ example().catch(console.error);
 import {
   Configuration,
   CopilotSetApi,
-} from 'maa-copilot-client';
-import type { CreateSetRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { CreateSetRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -164,11 +164,11 @@ example().catch(console.error);
 import {
   Configuration,
   CopilotSetApi,
-} from 'maa-copilot-client';
-import type { DeleteCopilotSetRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { DeleteCopilotSetRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -233,11 +233,11 @@ example().catch(console.error);
 import {
   Configuration,
   CopilotSetApi,
-} from 'maa-copilot-client';
-import type { GetSetRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { GetSetRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotSetApi();
 
   const body = {
@@ -298,11 +298,11 @@ No authorization required
 import {
   Configuration,
   CopilotSetApi,
-} from 'maa-copilot-client';
-import type { QuerySetsRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { QuerySetsRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotSetApi();
 
   const body = {
@@ -363,11 +363,11 @@ No authorization required
 import {
   Configuration,
   CopilotSetApi,
-} from 'maa-copilot-client';
-import type { RemoveCopilotIdsRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { RemoveCopilotIdsRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -432,11 +432,11 @@ example().catch(console.error);
 import {
   Configuration,
   CopilotSetApi,
-} from 'maa-copilot-client';
-import type { UpdateCopilotSetRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { UpdateCopilotSetRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",

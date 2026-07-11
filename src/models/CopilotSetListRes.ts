@@ -92,12 +92,12 @@ export function instanceOfCopilotSetListRes(value: object): value is CopilotSetL
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('creatorId' in value) || value['creatorId'] === undefined) return false;
+    if ((!('creatorId' in value) && !('creator_id' in value)) || (value['creatorId'] === undefined && value['creator_id'] === undefined)) return false;
     if (!('creator' in value) || value['creator'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('createTime' in value) || value['createTime'] === undefined) return false;
-    if (!('updateTime' in value) || value['updateTime'] === undefined) return false;
-    if (!('copilotIds' in value) || value['copilotIds'] === undefined) return false;
+    if ((!('createTime' in value) && !('create_time' in value)) || (value['createTime'] === undefined && value['create_time'] === undefined)) return false;
+    if ((!('updateTime' in value) && !('update_time' in value)) || (value['updateTime'] === undefined && value['update_time'] === undefined)) return false;
+    if ((!('copilotIds' in value) && !('copilot_ids' in value)) || (value['copilotIds'] === undefined && value['copilot_ids'] === undefined)) return false;
     return true;
 }
 

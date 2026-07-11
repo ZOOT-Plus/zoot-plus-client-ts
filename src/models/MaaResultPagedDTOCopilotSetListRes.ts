@@ -51,7 +51,7 @@ export interface MaaResultPagedDTOCopilotSetListRes {
  * Check if a given object implements the MaaResultPagedDTOCopilotSetListRes interface.
  */
 export function instanceOfMaaResultPagedDTOCopilotSetListRes(value: object): value is MaaResultPagedDTOCopilotSetListRes {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    if ((!('statusCode' in value) && !('status_code' in value)) || (value['statusCode'] === undefined && value['status_code'] === undefined)) return false;
     return true;
 }
 

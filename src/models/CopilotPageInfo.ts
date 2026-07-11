@@ -57,7 +57,7 @@ export interface CopilotPageInfo {
  * Check if a given object implements the CopilotPageInfo interface.
  */
 export function instanceOfCopilotPageInfo(value: object): value is CopilotPageInfo {
-    if (!('hasNext' in value) || value['hasNext'] === undefined) return false;
+    if ((!('hasNext' in value) && !('has_next' in value)) || (value['hasNext'] === undefined && value['has_next'] === undefined)) return false;
     if (!('page' in value) || value['page'] === undefined) return false;
     if (!('total' in value) || value['total'] === undefined) return false;
     if (!('data' in value) || value['data'] === undefined) return false;

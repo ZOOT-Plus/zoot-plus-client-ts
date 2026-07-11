@@ -19,7 +19,7 @@ Name | Type
 ## Example
 
 ```typescript
-import type { CopilotSetRes } from 'maa-copilot-client'
+import type { CopilotSetRes } from 'zoot-plus-client'
 
 // TODO: Update the object below with actual values
 const example = {

@@ -51,7 +51,7 @@ export interface MaaResultCopilotPageInfo {
  * Check if a given object implements the MaaResultCopilotPageInfo interface.
  */
 export function instanceOfMaaResultCopilotPageInfo(value: object): value is MaaResultCopilotPageInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    if ((!('statusCode' in value) && !('status_code' in value)) || (value['statusCode'] === undefined && value['status_code'] === undefined)) return false;
     return true;
 }
 

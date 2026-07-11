@@ -51,7 +51,7 @@ export interface MaaResultListArkLevelInfo {
  * Check if a given object implements the MaaResultListArkLevelInfo interface.
  */
 export function instanceOfMaaResultListArkLevelInfo(value: object): value is MaaResultListArkLevelInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    if ((!('statusCode' in value) && !('status_code' in value)) || (value['statusCode'] === undefined && value['status_code'] === undefined)) return false;
     return true;
 }
 

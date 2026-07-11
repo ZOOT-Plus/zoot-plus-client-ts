@@ -51,7 +51,7 @@ export interface MaaResultCopilotSetRes {
  * Check if a given object implements the MaaResultCopilotSetRes interface.
  */
 export function instanceOfMaaResultCopilotSetRes(value: object): value is MaaResultCopilotSetRes {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    if ((!('statusCode' in value) && !('status_code' in value)) || (value['statusCode'] === undefined && value['status_code'] === undefined)) return false;
     return true;
 }
 

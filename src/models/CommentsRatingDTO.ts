@@ -37,7 +37,7 @@ export interface CommentsRatingDTO {
  * Check if a given object implements the CommentsRatingDTO interface.
  */
 export function instanceOfCommentsRatingDTO(value: object): value is CommentsRatingDTO {
-    if (!('commentId' in value) || value['commentId'] === undefined) return false;
+    if ((!('commentId' in value) && !('comment_id' in value)) || (value['commentId'] === undefined && value['comment_id'] === undefined)) return false;
     if (!('rating' in value) || value['rating'] === undefined) return false;
     return true;
 }

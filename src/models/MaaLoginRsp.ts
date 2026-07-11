@@ -76,12 +76,12 @@ export interface MaaLoginRsp {
  */
 export function instanceOfMaaLoginRsp(value: object): value is MaaLoginRsp {
     if (!('token' in value) || value['token'] === undefined) return false;
-    if (!('validBefore' in value) || value['validBefore'] === undefined) return false;
-    if (!('validAfter' in value) || value['validAfter'] === undefined) return false;
-    if (!('refreshToken' in value) || value['refreshToken'] === undefined) return false;
-    if (!('refreshTokenValidBefore' in value) || value['refreshTokenValidBefore'] === undefined) return false;
-    if (!('refreshTokenValidAfter' in value) || value['refreshTokenValidAfter'] === undefined) return false;
-    if (!('userInfo' in value) || value['userInfo'] === undefined) return false;
+    if ((!('validBefore' in value) && !('valid_before' in value)) || (value['validBefore'] === undefined && value['valid_before'] === undefined)) return false;
+    if ((!('validAfter' in value) && !('valid_after' in value)) || (value['validAfter'] === undefined && value['valid_after'] === undefined)) return false;
+    if ((!('refreshToken' in value) && !('refresh_token' in value)) || (value['refreshToken'] === undefined && value['refresh_token'] === undefined)) return false;
+    if ((!('refreshTokenValidBefore' in value) && !('refresh_token_valid_before' in value)) || (value['refreshTokenValidBefore'] === undefined && value['refresh_token_valid_before'] === undefined)) return false;
+    if ((!('refreshTokenValidAfter' in value) && !('refresh_token_valid_after' in value)) || (value['refreshTokenValidAfter'] === undefined && value['refresh_token_valid_after'] === undefined)) return false;
+    if ((!('userInfo' in value) && !('user_info' in value)) || (value['userInfo'] === undefined && value['user_info'] === undefined)) return false;
     return true;
 }
 

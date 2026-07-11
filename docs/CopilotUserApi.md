@@ -33,11 +33,11 @@ All URIs are relative to *http://localhost:8848*
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { GetBatchUserInfoRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { GetBatchUserInfoRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotUserApi();
 
   const body = {
@@ -100,11 +100,11 @@ No authorization required
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { GetMeRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { GetMeRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -163,11 +163,11 @@ This endpoint does not need any parameter.
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { GetUserInfoRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { GetUserInfoRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotUserApi();
 
   const body = {
@@ -231,11 +231,11 @@ No authorization required
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { LoginRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { LoginRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotUserApi();
 
   const body = {
@@ -298,11 +298,11 @@ No authorization required
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { PasswordResetRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { PasswordResetRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotUserApi();
 
   const body = {
@@ -365,11 +365,11 @@ No authorization required
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { PasswordResetRequestRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { PasswordResetRequestRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotUserApi();
 
   const body = {
@@ -432,11 +432,11 @@ No authorization required
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { RefreshRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { RefreshRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotUserApi();
 
   const body = {
@@ -499,11 +499,11 @@ No authorization required
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { RegisterRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { RegisterRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotUserApi();
 
   const body = {
@@ -566,11 +566,11 @@ No authorization required
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { SearchUsersRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { SearchUsersRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotUserApi();
 
   const body = {
@@ -639,11 +639,11 @@ No authorization required
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { SendRegistrationTokenRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { SendRegistrationTokenRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new CopilotUserApi();
 
   const body = {
@@ -706,11 +706,11 @@ No authorization required
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { UpdateInfoRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { UpdateInfoRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",
@@ -777,11 +777,11 @@ example().catch(console.error);
 import {
   Configuration,
   CopilotUserApi,
-} from 'maa-copilot-client';
-import type { UpdatePasswordRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { UpdatePasswordRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // Configure HTTP bearer authorization: Jwt
     accessToken: "YOUR BEARER TOKEN",

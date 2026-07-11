@@ -75,7 +75,7 @@ export interface CopilotSetQuery {
 export function instanceOfCopilotSetQuery(value: object): value is CopilotSetQuery {
     if (!('page' in value) || value['page'] === undefined) return false;
     if (!('limit' in value) || value['limit'] === undefined) return false;
-    if (!('onlyFollowing' in value) || value['onlyFollowing'] === undefined) return false;
+    if ((!('onlyFollowing' in value) && !('only_following' in value)) || (value['onlyFollowing'] === undefined && value['only_following'] === undefined)) return false;
     if (!('desc' in value) || value['desc'] === undefined) return false;
     return true;
 }

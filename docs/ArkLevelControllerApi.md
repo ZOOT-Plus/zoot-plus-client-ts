@@ -20,11 +20,11 @@ All URIs are relative to *http://localhost:8848*
 import {
   Configuration,
   ArkLevelControllerApi,
-} from 'maa-copilot-client';
-import type { GetLevelsRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { GetLevelsRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new ArkLevelControllerApi();
 
   try {

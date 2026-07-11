@@ -51,7 +51,7 @@ export interface MaaResultPagedDTOMaaUserInfo {
  * Check if a given object implements the MaaResultPagedDTOMaaUserInfo interface.
  */
 export function instanceOfMaaResultPagedDTOMaaUserInfo(value: object): value is MaaResultPagedDTOMaaUserInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    if ((!('statusCode' in value) && !('status_code' in value)) || (value['statusCode'] === undefined && value['status_code'] === undefined)) return false;
     return true;
 }
 

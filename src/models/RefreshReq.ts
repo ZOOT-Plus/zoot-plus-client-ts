@@ -31,7 +31,7 @@ export interface RefreshReq {
  * Check if a given object implements the RefreshReq interface.
  */
 export function instanceOfRefreshReq(value: object): value is RefreshReq {
-    if (!('refreshToken' in value) || value['refreshToken'] === undefined) return false;
+    if ((!('refreshToken' in value) && !('refresh_token' in value)) || (value['refreshToken'] === undefined && value['refresh_token'] === undefined)) return false;
     return true;
 }
 

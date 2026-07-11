@@ -37,7 +37,7 @@ export interface CommentsToppingDTO {
  * Check if a given object implements the CommentsToppingDTO interface.
  */
 export function instanceOfCommentsToppingDTO(value: object): value is CommentsToppingDTO {
-    if (!('commentId' in value) || value['commentId'] === undefined) return false;
+    if ((!('commentId' in value) && !('comment_id' in value)) || (value['commentId'] === undefined && value['comment_id'] === undefined)) return false;
     if (!('topping' in value) || value['topping'] === undefined) return false;
     return true;
 }

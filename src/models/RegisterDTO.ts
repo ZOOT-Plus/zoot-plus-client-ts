@@ -50,9 +50,9 @@ export interface RegisterDTO {
  */
 export function instanceOfRegisterDTO(value: object): value is RegisterDTO {
     if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('userName' in value) || value['userName'] === undefined) return false;
+    if ((!('userName' in value) && !('user_name' in value)) || (value['userName'] === undefined && value['user_name'] === undefined)) return false;
     if (!('password' in value) || value['password'] === undefined) return false;
-    if (!('registrationToken' in value) || value['registrationToken'] === undefined) return false;
+    if ((!('registrationToken' in value) && !('registration_token' in value)) || (value['registrationToken'] === undefined && value['registration_token'] === undefined)) return false;
     return true;
 }
 

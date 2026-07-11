@@ -13,7 +13,7 @@ Name | Type
 ## Example
 
 ```typescript
-import type { CopilotCUDRequest } from 'maa-copilot-client'
+import type { CopilotCUDRequest } from 'zoot-plus-client'
 
 // TODO: Update the object below with actual values
 const example = {

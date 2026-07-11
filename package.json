@@ -1,7 +1,7 @@
 {
-  "name": "maa-copilot-client",
-  "version": "0.1.0-SNAPSHOT.999.sha.d286f0d",
-  "description": "OpenAPI client for maa-copilot-client",
+  "name": "zoot-plus-client",
+  "version": "0.1.0-SNAPSHOT.1000.sha.fa0c2db",
+  "description": "OpenAPI client for zoot-plus-client",
   "author": "OpenAPI-Generator",
   "repository": {
     "type": "git",

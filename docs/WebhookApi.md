@@ -21,11 +21,11 @@ All URIs are relative to *http://localhost:8848*
 import {
   Configuration,
   WebhookApi,
-} from 'maa-copilot-client';
-import type { LevelOpenStatusUpdateRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { LevelOpenStatusUpdateRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // To configure API key authorization: API_Key
     apiKey: "YOUR API KEY",
@@ -82,11 +82,11 @@ This endpoint does not need any parameter.
 import {
   Configuration,
   WebhookApi,
-} from 'maa-copilot-client';
-import type { LevelsUpdateRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { LevelsUpdateRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const config = new Configuration({ 
     // To configure API key authorization: API_Key
     apiKey: "YOUR API KEY",

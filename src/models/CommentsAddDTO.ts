@@ -69,9 +69,9 @@ export type CommentsAddDTOCommentStatusEnum = typeof CommentsAddDTOCommentStatus
  */
 export function instanceOfCommentsAddDTO(value: object): value is CommentsAddDTO {
     if (!('message' in value) || value['message'] === undefined) return false;
-    if (!('copilotId' in value) || value['copilotId'] === undefined) return false;
+    if ((!('copilotId' in value) && !('copilot_id' in value)) || (value['copilotId'] === undefined && value['copilot_id'] === undefined)) return false;
     if (!('notification' in value) || value['notification'] === undefined) return false;
-    if (!('commentStatus' in value) || value['commentStatus'] === undefined) return false;
+    if ((!('commentStatus' in value) && !('comment_status' in value)) || (value['commentStatus'] === undefined && value['comment_status'] === undefined)) return false;
     return true;
 }
 

@@ -85,15 +85,15 @@ export interface SubCommentsInfo {
  * Check if a given object implements the SubCommentsInfo interface.
  */
 export function instanceOfSubCommentsInfo(value: object): value is SubCommentsInfo {
-    if (!('commentId' in value) || value['commentId'] === undefined) return false;
+    if ((!('commentId' in value) && !('comment_id' in value)) || (value['commentId'] === undefined && value['comment_id'] === undefined)) return false;
     if (!('uploader' in value) || value['uploader'] === undefined) return false;
-    if (!('uploaderId' in value) || value['uploaderId'] === undefined) return false;
+    if ((!('uploaderId' in value) && !('uploader_id' in value)) || (value['uploaderId'] === undefined && value['uploader_id'] === undefined)) return false;
     if (!('message' in value) || value['message'] === undefined) return false;
-    if (!('uploadTime' in value) || value['uploadTime'] === undefined) return false;
+    if ((!('uploadTime' in value) && !('upload_time' in value)) || (value['uploadTime'] === undefined && value['upload_time'] === undefined)) return false;
     if (!('like' in value) || value['like'] === undefined) return false;
     if (!('dislike' in value) || value['dislike'] === undefined) return false;
-    if (!('fromCommentId' in value) || value['fromCommentId'] === undefined) return false;
-    if (!('mainCommentId' in value) || value['mainCommentId'] === undefined) return false;
+    if ((!('fromCommentId' in value) && !('from_comment_id' in value)) || (value['fromCommentId'] === undefined && value['from_comment_id'] === undefined)) return false;
+    if ((!('mainCommentId' in value) && !('main_comment_id' in value)) || (value['mainCommentId'] === undefined && value['main_comment_id'] === undefined)) return false;
     if (!('deleted' in value) || value['deleted'] === undefined) return false;
     return true;
 }

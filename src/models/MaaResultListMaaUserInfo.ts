@@ -51,7 +51,7 @@ export interface MaaResultListMaaUserInfo {
  * Check if a given object implements the MaaResultListMaaUserInfo interface.
  */
 export function instanceOfMaaResultListMaaUserInfo(value: object): value is MaaResultListMaaUserInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    if ((!('statusCode' in value) && !('status_code' in value)) || (value['statusCode'] === undefined && value['status_code'] === undefined)) return false;
     return true;
 }
 

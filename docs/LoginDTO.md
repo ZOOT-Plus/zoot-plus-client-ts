@@ -12,7 +12,7 @@ Name | Type
 ## Example
 
 ```typescript
-import type { LoginDTO } from 'maa-copilot-client'
+import type { LoginDTO } from 'zoot-plus-client'
 
 // TODO: Update the object below with actual values
 const example = {

@@ -67,13 +67,13 @@ export interface CacheStatInfo {
  * Check if a given object implements the CacheStatInfo interface.
  */
 export function instanceOfCacheStatInfo(value: object): value is CacheStatInfo {
-    if (!('hitRate' in value) || value['hitRate'] === undefined) return false;
-    if (!('missRate' in value) || value['missRate'] === undefined) return false;
-    if (!('hitCount' in value) || value['hitCount'] === undefined) return false;
-    if (!('missCount' in value) || value['missCount'] === undefined) return false;
-    if (!('loadCount' in value) || value['loadCount'] === undefined) return false;
-    if (!('evictionCount' in value) || value['evictionCount'] === undefined) return false;
-    if (!('averageLoadPenalty' in value) || value['averageLoadPenalty'] === undefined) return false;
+    if ((!('hitRate' in value) && !('hit_rate' in value)) || (value['hitRate'] === undefined && value['hit_rate'] === undefined)) return false;
+    if ((!('missRate' in value) && !('miss_rate' in value)) || (value['missRate'] === undefined && value['miss_rate'] === undefined)) return false;
+    if ((!('hitCount' in value) && !('hit_count' in value)) || (value['hitCount'] === undefined && value['hit_count'] === undefined)) return false;
+    if ((!('missCount' in value) && !('miss_count' in value)) || (value['missCount'] === undefined && value['miss_count'] === undefined)) return false;
+    if ((!('loadCount' in value) && !('load_count' in value)) || (value['loadCount'] === undefined && value['load_count'] === undefined)) return false;
+    if ((!('evictionCount' in value) && !('eviction_count' in value)) || (value['evictionCount'] === undefined && value['eviction_count'] === undefined)) return false;
+    if ((!('averageLoadPenalty' in value) && !('average_load_penalty' in value)) || (value['averageLoadPenalty'] === undefined && value['average_load_penalty'] === undefined)) return false;
     return true;
 }
 

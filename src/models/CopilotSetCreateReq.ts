@@ -61,7 +61,7 @@ export interface CopilotSetCreateReq {
 export function instanceOfCopilotSetCreateReq(value: object): value is CopilotSetCreateReq {
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('copilotIds' in value) || value['copilotIds'] === undefined) return false;
+    if ((!('copilotIds' in value) && !('copilot_ids' in value)) || (value['copilotIds'] === undefined && value['copilot_ids'] === undefined)) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }

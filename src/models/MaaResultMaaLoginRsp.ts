@@ -51,7 +51,7 @@ export interface MaaResultMaaLoginRsp {
  * Check if a given object implements the MaaResultMaaLoginRsp interface.
  */
 export function instanceOfMaaResultMaaLoginRsp(value: object): value is MaaResultMaaLoginRsp {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    if ((!('statusCode' in value) && !('status_code' in value)) || (value['statusCode'] === undefined && value['status_code'] === undefined)) return false;
     return true;
 }
 

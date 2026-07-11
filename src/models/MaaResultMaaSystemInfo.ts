@@ -51,7 +51,7 @@ export interface MaaResultMaaSystemInfo {
  * Check if a given object implements the MaaResultMaaSystemInfo interface.
  */
 export function instanceOfMaaResultMaaSystemInfo(value: object): value is MaaResultMaaSystemInfo {
-    if (!('statusCode' in value) || value['statusCode'] === undefined) return false;
+    if ((!('statusCode' in value) && !('status_code' in value)) || (value['statusCode'] === undefined && value['status_code'] === undefined)) return false;
     return true;
 }
 

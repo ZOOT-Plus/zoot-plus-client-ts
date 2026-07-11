@@ -44,7 +44,7 @@ export interface PasswordResetDTO {
  */
 export function instanceOfPasswordResetDTO(value: object): value is PasswordResetDTO {
     if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('activeCode' in value) || value['activeCode'] === undefined) return false;
+    if ((!('activeCode' in value) && !('active_code' in value)) || (value['activeCode'] === undefined && value['active_code'] === undefined)) return false;
     if (!('password' in value) || value['password'] === undefined) return false;
     return true;
 }

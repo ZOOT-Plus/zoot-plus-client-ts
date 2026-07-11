@@ -24,11 +24,11 @@ All URIs are relative to *http://localhost:8848*
 import {
   Configuration,
   SystemApi,
-} from 'maa-copilot-client';
-import type { GetIntraProcessCacheStatRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { GetIntraProcessCacheStatRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new SystemApi();
 
   try {
@@ -83,11 +83,11 @@ Gets the current version of the server.
 import {
   Configuration,
   SystemApi,
-} from 'maa-copilot-client';
-import type { GetSystemVersionRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { GetSystemVersionRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new SystemApi();
 
   try {
@@ -142,11 +142,11 @@ Tests if the server is ready.
 import {
   Configuration,
   SystemApi,
-} from 'maa-copilot-client';
-import type { TestRequest } from 'maa-copilot-client';
+} from 'zoot-plus-client';
+import type { TestRequest } from 'zoot-plus-client';
 
 async function example() {
-  console.log("🚀 Testing maa-copilot-client SDK...");
+  console.log("🚀 Testing zoot-plus-client SDK...");
   const api = new SystemApi();
 
   try {

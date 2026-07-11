@@ -73,11 +73,11 @@ export interface ArkLevelInfo {
  * Check if a given object implements the ArkLevelInfo interface.
  */
 export function instanceOfArkLevelInfo(value: object): value is ArkLevelInfo {
-    if (!('levelId' in value) || value['levelId'] === undefined) return false;
-    if (!('stageId' in value) || value['stageId'] === undefined) return false;
-    if (!('catOne' in value) || value['catOne'] === undefined) return false;
-    if (!('catTwo' in value) || value['catTwo'] === undefined) return false;
-    if (!('catThree' in value) || value['catThree'] === undefined) return false;
+    if ((!('levelId' in value) && !('level_id' in value)) || (value['levelId'] === undefined && value['level_id'] === undefined)) return false;
+    if ((!('stageId' in value) && !('stage_id' in value)) || (value['stageId'] === undefined && value['stage_id'] === undefined)) return false;
+    if ((!('catOne' in value) && !('cat_one' in value)) || (value['catOne'] === undefined && value['cat_one'] === undefined)) return false;
+    if ((!('catTwo' in value) && !('cat_two' in value)) || (value['catTwo'] === undefined && value['cat_two'] === undefined)) return false;
+    if ((!('catThree' in value) && !('cat_three' in value)) || (value['catThree'] === undefined && value['cat_three'] === undefined)) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('width' in value) || value['width'] === undefined) return false;
     if (!('height' in value) || value['height'] === undefined) return false;

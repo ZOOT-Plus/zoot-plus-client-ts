@@ -37,8 +37,8 @@ export interface PasswordUpdateDTO {
  * Check if a given object implements the PasswordUpdateDTO interface.
  */
 export function instanceOfPasswordUpdateDTO(value: object): value is PasswordUpdateDTO {
-    if (!('originalPassword' in value) || value['originalPassword'] === undefined) return false;
-    if (!('newPassword' in value) || value['newPassword'] === undefined) return false;
+    if ((!('originalPassword' in value) && !('original_password' in value)) || (value['originalPassword'] === undefined && value['original_password'] === undefined)) return false;
+    if ((!('newPassword' in value) && !('new_password' in value)) || (value['newPassword'] === undefined && value['new_password'] === undefined)) return false;
     return true;
 }
 
