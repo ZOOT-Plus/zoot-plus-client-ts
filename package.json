@@ -1,6 +1,6 @@
 {
   "name": "zoot-plus-client",
-  "version": "0.1.0-SNAPSHOT.1002.sha.dc6d4dc",
+  "version": "0.1.0",
   "description": "OpenAPI client for zoot-plus-client",
   "author": "OpenAPI-Generator",
   "repository": {
