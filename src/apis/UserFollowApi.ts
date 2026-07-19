@@ -14,6 +14,11 @@
 
 import * as runtime from '../runtime';
 import {
+    type MaaResultFollowStatusInfo,
+    MaaResultFollowStatusInfoFromJSON,
+    MaaResultFollowStatusInfoToJSON,
+} from '../models/MaaResultFollowStatusInfo';
+import {
     type MaaResultPagedDTOMaaUserInfo,
     MaaResultPagedDTOMaaUserInfoFromJSON,
     MaaResultPagedDTOMaaUserInfoToJSON,
@@ -36,6 +41,15 @@ export interface GetFansListRequest {
 export interface GetFollowingListRequest {
     page?: number;
     size?: number;
+}
+
+export interface GetStatusRequest {
+    followUserId: number;
+}
+
+export interface SpecialFollowRequest {
+    followUserId: number;
+    status: boolean;
 }
 
 export interface UnfollowRequest {
@@ -203,6 +217,123 @@ export class UserFollowApi extends runtime.BaseAPI {
      */
     async getFollowingList(requestParameters: GetFollowingListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultPagedDTOMaaUserInfo> {
         const response = await this.getFollowingListRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getStatus without sending the request
+     */
+    async getStatusRequestOpts(requestParameters: GetStatusRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['followUserId'] == null) {
+            throw new runtime.RequiredError(
+                'followUserId',
+                'Required parameter "followUserId" was null or undefined when calling getStatus().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("Jwt", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/follow/status/{followUserId}`;
+        urlPath = urlPath.replace('{followUserId}', encodeURIComponent(String(requestParameters['followUserId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 查询关注状态
+     */
+    async getStatusRaw(requestParameters: GetStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultFollowStatusInfo>> {
+        const requestOptions = await this.getStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultFollowStatusInfoFromJSON(jsonValue));
+    }
+
+    /**
+     * 查询关注状态
+     */
+    async getStatus(requestParameters: GetStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultFollowStatusInfo> {
+        const response = await this.getStatusRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for specialFollow without sending the request
+     */
+    async specialFollowRequestOpts(requestParameters: SpecialFollowRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['followUserId'] == null) {
+            throw new runtime.RequiredError(
+                'followUserId',
+                'Required parameter "followUserId" was null or undefined when calling specialFollow().'
+            );
+        }
+
+        if (requestParameters['status'] == null) {
+            throw new runtime.RequiredError(
+                'status',
+                'Required parameter "status" was null or undefined when calling specialFollow().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("Jwt", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/follow/special/{followUserId}`;
+        urlPath = urlPath.replace('{followUserId}', encodeURIComponent(String(requestParameters['followUserId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 设置特别关注
+     */
+    async specialFollowRaw(requestParameters: SpecialFollowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultUnit>> {
+        const requestOptions = await this.specialFollowRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultUnitFromJSON(jsonValue));
+    }
+
+    /**
+     * 设置特别关注
+     */
+    async specialFollow(requestParameters: SpecialFollowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultUnit> {
+        const response = await this.specialFollowRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

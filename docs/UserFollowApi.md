@@ -7,6 +7,8 @@ All URIs are relative to *http://localhost:8848*
 | [**follow**](UserFollowApi.md#follow) | **POST** /follow/follow/{followUserId} | 关注用户 |
 | [**getFansList**](UserFollowApi.md#getfanslist) | **GET** /follow/fansList | 获取粉丝列表 |
 | [**getFollowingList**](UserFollowApi.md#getfollowinglist) | **GET** /follow/followingList | 获取关注列表 |
+| [**getStatus**](UserFollowApi.md#getstatus) | **GET** /follow/status/{followUserId} | 查询关注状态 |
+| [**specialFollow**](UserFollowApi.md#specialfollow) | **POST** /follow/special/{followUserId} | 设置特别关注 |
 | [**unfollow**](UserFollowApi.md#unfollow) | **POST** /follow/unfollow/{followUserId} | 取消关注 |
 
 
@@ -220,6 +222,147 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **0** | 关注列表 |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getStatus
+
+> MaaResultFollowStatusInfo getStatus(followUserId)
+
+查询关注状态
+
+### Example
+
+```ts
+import {
+  Configuration,
+  UserFollowApi,
+} from 'zoot-plus-client';
+import type { GetStatusRequest } from 'zoot-plus-client';
+
+async function example() {
+  console.log("🚀 Testing zoot-plus-client SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: Jwt
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new UserFollowApi(config);
+
+  const body = {
+    // number
+    followUserId: 789,
+  } satisfies GetStatusRequest;
+
+  try {
+    const data = await api.getStatus(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **followUserId** | `number` |  | [Defaults to `undefined`] |
+
+### Return type
+
+[**MaaResultFollowStatusInfo**](MaaResultFollowStatusInfo.md)
+
+### Authorization
+
+[Jwt](../README.md#Jwt)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `*/*`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **0** | 关注状态 |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## specialFollow
+
+> MaaResultUnit specialFollow(followUserId, status)
+
+设置特别关注
+
+### Example
+
+```ts
+import {
+  Configuration,
+  UserFollowApi,
+} from 'zoot-plus-client';
+import type { SpecialFollowRequest } from 'zoot-plus-client';
+
+async function example() {
+  console.log("🚀 Testing zoot-plus-client SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: Jwt
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new UserFollowApi(config);
+
+  const body = {
+    // number
+    followUserId: 789,
+    // boolean
+    status: true,
+  } satisfies SpecialFollowRequest;
+
+  try {
+    const data = await api.specialFollow(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **followUserId** | `number` |  | [Defaults to `undefined`] |
+| **status** | `boolean` |  | [Defaults to `undefined`] |
+
+### Return type
+
+[**MaaResultUnit**](MaaResultUnit.md)
+
+### Authorization
+
+[Jwt](../README.md#Jwt)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `*/*`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **0** | 设置特别关注结果 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

@@ -57,6 +57,12 @@ export interface MaaUserInfo {
     relation?: MaaUserInfoRelationEnum | null;
     /**
      * 
+     * @type {boolean}
+     * @memberof MaaUserInfo
+     */
+    specialFollow: boolean;
+    /**
+     * 
      * @type {Date}
      * @memberof MaaUserInfo
      */
@@ -86,6 +92,7 @@ export function instanceOfMaaUserInfo(value: object): value is MaaUserInfo {
     if (!('activated' in value) || value['activated'] === undefined) return false;
     if ((!('followingCount' in value) && !('following_count' in value)) || (value['followingCount'] === undefined && value['following_count'] === undefined)) return false;
     if ((!('fansCount' in value) && !('fans_count' in value)) || (value['fansCount'] === undefined && value['fans_count'] === undefined)) return false;
+    if ((!('specialFollow' in value) && !('special_follow' in value)) || (value['specialFollow'] === undefined && value['special_follow'] === undefined)) return false;
     return true;
 }
 
@@ -105,6 +112,7 @@ export function MaaUserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'followingCount': json['following_count'],
         'fansCount': json['fans_count'],
         'relation': json['relation'] == null ? undefined : json['relation'],
+        'specialFollow': json['special_follow'],
         'followedAt': json['followed_at'] == null ? undefined : (new Date(json['followed_at'])),
     };
 }
@@ -126,6 +134,7 @@ export function MaaUserInfoToJSONTyped(value?: MaaUserInfo | null, ignoreDiscrim
         'following_count': value['followingCount'],
         'fans_count': value['fansCount'],
         'relation': value['relation'],
+        'special_follow': value['specialFollow'],
         'followed_at': value['followedAt'] == null ? value['followedAt'] : value['followedAt'].toISOString(),
     };
 }

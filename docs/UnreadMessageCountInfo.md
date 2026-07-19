@@ -1,37 +1,22 @@
 
-# MaaUserInfo
+# UnreadMessageCountInfo
 
-用户可对外公开的信息
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`id` | string
-`userName` | string
-`activated` | boolean
-`followingCount` | number
-`fansCount` | number
-`relation` | string
-`specialFollow` | boolean
-`followedAt` | Date
+`unreadCount` | number
 
 ## Example
 
 ```typescript
-import type { MaaUserInfo } from 'zoot-plus-client'
+import type { UnreadMessageCountInfo } from 'zoot-plus-client'
 
 // TODO: Update the object below with actual values
 const example = {
-  "id": null,
-  "userName": null,
-  "activated": null,
-  "followingCount": null,
-  "fansCount": null,
-  "relation": null,
-  "specialFollow": null,
-  "followedAt": null,
-} satisfies MaaUserInfo
+  "unreadCount": null,
+} satisfies UnreadMessageCountInfo
 
 console.log(example)
 
@@ -40,7 +25,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as MaaUserInfo
+const exampleParsed = JSON.parse(exampleJSON) as UnreadMessageCountInfo
 console.log(exampleParsed)
 ```
 

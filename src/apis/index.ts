@@ -5,6 +5,7 @@ export * from './CommentAreaApi';
 export * from './CopilotControllerApi';
 export * from './CopilotSetApi';
 export * from './CopilotUserApi';
+export * from './SiteMessageApi';
 export * from './SystemApi';
 export * from './UserFollowApi';
 export * from './WebhookApi';
