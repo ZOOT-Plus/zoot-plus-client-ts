@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './ArkLevelInfo';
+export * from './ArkLevelInfoV2';
 export * from './CacheStatInfo';
 export * from './CommentsAddDTO';
 export * from './CommentsAreaInfo';
@@ -23,6 +24,8 @@ export * from './CopilotSetStatus';
 export * from './CopilotSetUpdateReq';
 export * from './FollowStatusInfo';
 export * from './GitInfo';
+export * from './LevelPayload';
+export * from './LevelVersions';
 export * from './LoginDTO';
 export * from './MaaLoginRsp';
 export * from './MaaResult';
@@ -33,6 +36,8 @@ export * from './MaaResultCopilotPageInfo';
 export * from './MaaResultCopilotSetRes';
 export * from './MaaResultFollowStatusInfo';
 export * from './MaaResultInteger';
+export * from './MaaResultLevelPayload';
+export * from './MaaResultLevelVersions';
 export * from './MaaResultListArkLevelInfo';
 export * from './MaaResultListMaaUserInfo';
 export * from './MaaResultLong';

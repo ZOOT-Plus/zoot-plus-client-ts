@@ -14,15 +14,70 @@
 
 import * as runtime from '../runtime';
 import {
+    type MaaResultLevelPayload,
+    MaaResultLevelPayloadFromJSON,
+    MaaResultLevelPayloadToJSON,
+} from '../models/MaaResultLevelPayload';
+import {
+    type MaaResultLevelVersions,
+    MaaResultLevelVersionsFromJSON,
+    MaaResultLevelVersionsToJSON,
+} from '../models/MaaResultLevelVersions';
+import {
     type MaaResultListArkLevelInfo,
     MaaResultListArkLevelInfoFromJSON,
     MaaResultListArkLevelInfoToJSON,
 } from '../models/MaaResultListArkLevelInfo';
 
+export interface GetLevelsV2Request {
+    v?: string;
+    lite?: boolean;
+    withSize?: boolean;
+}
+
 /**
  * 
  */
 export class ArkLevelControllerApi extends runtime.BaseAPI {
+
+    /**
+     * Creates request options for getLevelVersions without sending the request
+     */
+    async getLevelVersionsRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/arknights/level/v2/version`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 版本探测端点：一次往返取到两个变体的当前版本号，客户端据此决定是否要重新拉数据。   与内容端点都以 `lite` 为缓存键命中 [ArkLevelV2Service.snapshot] 的同一批快照，因此二者给出的  版本号**不可能互相矛盾**。
+     * 获取关卡数据版本号（v2）
+     */
+    async getLevelVersionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultLevelVersions>> {
+        const requestOptions = await this.getLevelVersionsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultLevelVersionsFromJSON(jsonValue));
+    }
+
+    /**
+     * 版本探测端点：一次往返取到两个变体的当前版本号，客户端据此决定是否要重新拉数据。   与内容端点都以 `lite` 为缓存键命中 [ArkLevelV2Service.snapshot] 的同一批快照，因此二者给出的  版本号**不可能互相矛盾**。
+     * 获取关卡数据版本号（v2）
+     */
+    async getLevelVersions(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultLevelVersions> {
+        const response = await this.getLevelVersionsRaw(initOverrides);
+        return await response.value();
+    }
 
     /**
      * Creates request options for getLevels without sending the request
@@ -58,6 +113,57 @@ export class ArkLevelControllerApi extends runtime.BaseAPI {
      */
     async getLevels(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultListArkLevelInfo> {
         const response = await this.getLevelsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getLevelsV2 without sending the request
+     */
+    async getLevelsV2RequestOpts(requestParameters: GetLevelsV2Request): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['lite'] != null) {
+            queryParameters['lite'] = requestParameters['lite'];
+        }
+
+        if (requestParameters['withSize'] != null) {
+            queryParameters['withSize'] = requestParameters['withSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/arknights/level/v2`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 关卡数据的版本化缓存端点（面向本站前端）。   与 v1 的差别只有两点：可用查询参数选择变体（`lite`/`withSize`），以及按「内容寻址 URL + 长缓存」  返回 —— 客户端带上本地版本号 `v`，命中时响应为 `immutable`，浏览器此后永久命中本地缓存，  不产生任何请求。版本号不匹配时返回**当前**数据（不保留历史快照）并短缓存，客户端更新本地版本号  后即进入 immutable 通道，构成自愈路径。   参数顺序与写法固定在 `v` → `lite` → `withSize`，值为 false 的开关**省略不写**：WAF 把查询串计入  缓存键且不做归一化（实测 `?a=1&b=2` 与 `?b=2&a=1` 是两个独立条目），放任变体写法会让同一份内容  在浏览器与 WAF 里各占多份。写法不规范的请求仍返回正确内容，只是走短缓存，不进 immutable 通道。   返回可空：请求带 `If-None-Match` 且与当前版本一致时，[ServletWebRequest.checkNotModified] 会把响应  置为 304 并返回 true，此处返回 null 让 Spring 不写响应体（若照常返回 `MaaResult`，304 也会带 body）。  返回类型可空**不影响**生成的 OpenAPI——实测 schema 仍是 `MaaResultLevelPayload`、响应仍是 `default`。
+     * 获取关卡数据（v2，内容寻址）
+     */
+    async getLevelsV2Raw(requestParameters: GetLevelsV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MaaResultLevelPayload>> {
+        const requestOptions = await this.getLevelsV2RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MaaResultLevelPayloadFromJSON(jsonValue));
+    }
+
+    /**
+     * 关卡数据的版本化缓存端点（面向本站前端）。   与 v1 的差别只有两点：可用查询参数选择变体（`lite`/`withSize`），以及按「内容寻址 URL + 长缓存」  返回 —— 客户端带上本地版本号 `v`，命中时响应为 `immutable`，浏览器此后永久命中本地缓存，  不产生任何请求。版本号不匹配时返回**当前**数据（不保留历史快照）并短缓存，客户端更新本地版本号  后即进入 immutable 通道，构成自愈路径。   参数顺序与写法固定在 `v` → `lite` → `withSize`，值为 false 的开关**省略不写**：WAF 把查询串计入  缓存键且不做归一化（实测 `?a=1&b=2` 与 `?b=2&a=1` 是两个独立条目），放任变体写法会让同一份内容  在浏览器与 WAF 里各占多份。写法不规范的请求仍返回正确内容，只是走短缓存，不进 immutable 通道。   返回可空：请求带 `If-None-Match` 且与当前版本一致时，[ServletWebRequest.checkNotModified] 会把响应  置为 304 并返回 true，此处返回 null 让 Spring 不写响应体（若照常返回 `MaaResult`，304 也会带 body）。  返回类型可空**不影响**生成的 OpenAPI——实测 schema 仍是 `MaaResultLevelPayload`、响应仍是 `default`。
+     * 获取关卡数据（v2，内容寻址）
+     */
+    async getLevelsV2(requestParameters: GetLevelsV2Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MaaResultLevelPayload> {
+        const response = await this.getLevelsV2Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
